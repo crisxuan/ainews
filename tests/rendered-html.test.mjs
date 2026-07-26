@@ -29,6 +29,11 @@ test("server-renders the AI hotspot briefing", async () => {
 
   const html = await response.text();
   assert.match(html, /AI 风向标/);
+  assert.match(html, /准实时雷达/);
+  assert.match(html, /当前没有达到推送阈值的突发热点/);
+  assert.match(html, /60 分钟/);
+  assert.match(html, /2\+ 来源/);
+  assert.match(html, /6 小时/);
   assert.match(html, /风酱捞到的 4 个热点/);
   assert.match(html, /风酱的信号袋/);
   assert.match(html, /以前吹过的风/);
@@ -37,5 +42,6 @@ test("server-renders the AI hotspot briefing", async () => {
   assert.match(html, /Claude Opus 5/);
   assert.match(html, /08:00/);
   assert.match(html, /20:00/);
+  assert.match(html, /每小时巡逻/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|SkeletonPreview/);
 });

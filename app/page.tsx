@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import briefingArchive from "../data/briefings.json";
+import breakingData from "../data/breaking.json";
 
 type Category = "模型" | "开放生态" | "基础设施" | "社会情绪";
 
@@ -32,6 +33,29 @@ type ArchiveIssue = {
 };
 
 const archiveIssues = briefingArchive as ArchiveIssue[];
+
+type BreakingItem = {
+  id: string;
+  detectedAt: string;
+  title: string;
+  category: Category;
+  heat: "高" | "中";
+  signal: "突发热点" | "快速升温" | "重要更新";
+  summary: string;
+  why: string;
+  sourceCount: number;
+  sources: string[];
+  link: string;
+};
+
+type BreakingFeed = {
+  updatedAt: string;
+  cadenceMinutes: number;
+  cooldownHours: number;
+  items: BreakingItem[];
+};
+
+const breakingFeed = breakingData as BreakingFeed;
 
 type Story = {
   id: string;
@@ -264,6 +288,17 @@ function StoryCard({ story }: { story: Story }) {
   );
 }
 
+function formatShanghaiTime(value: string) {
+  return new Intl.DateTimeFormat("zh-CN", {
+    timeZone: "Asia/Shanghai",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(new Date(value));
+}
+
 export default function Home() {
   const [edition, setEdition] = useState<"morning" | "evening">("morning");
   const [category, setCategory] = useState<(typeof filters)[number]>("全部");
@@ -303,12 +338,12 @@ export default function Home() {
           </span>
         </a>
         <nav aria-label="页面导航">
+          <a href="#live">准实时雷达</a>
           <a href="#briefing">今日热点</a>
           <a href="#archive">历史档案</a>
-          <a href="#radar">信号袋</a>
           <a href="#method">怎么挑的</a>
         </nav>
-        <div className="live-status"><span /> 风酱巡逻中</div>
+        <div className="live-status"><span /> 每小时巡逻中</div>
       </header>
 
       <section className="hero" id="top">
@@ -329,7 +364,7 @@ export default function Home() {
         <div className="welcome-copy">
           <span>风酱说</span>
           <h1>早安呀，今天的 AI 圈在聊什么？</h1>
-          <p>我从 25 个网站和社区里，替你捞出真正值得看的热点。少一点噪音，多一点有用的判断。</p>
+          <p>每小时轻扫 25 个网站和社区，达到阈值就立即告诉你；08:00 与 20:00 再整理成完整手账。</p>
         </div>
         <div className="edition-switch" aria-label="选择简报场次">
           <button
@@ -352,6 +387,60 @@ export default function Home() {
             <strong>20:00</strong>
             <small>晚安刊 · {archiveIssues.some((issue) => issue.date === latestDate && issue.edition === "evening") ? "已发布" : "跟踪中"}</small>
           </button>
+        </div>
+      </section>
+
+      <section className="live-radar" id="live">
+        <div className="live-radar-shell">
+          <div className="live-radar-heading">
+            <div>
+              <p className="kicker">NEAR REAL-TIME RADAR <span>✦</span></p>
+              <h2>有大风时，<br />不用等到早晚刊。</h2>
+            </div>
+            <div className="live-radar-note">
+              <span className="live-mode"><i /> 准实时监测中</span>
+              <p>
+                整点轻扫，命中阈值才启动 last30days 深挖并推送。没有足够证据时，风酱会安静观察，不拿半成品打扰你。
+              </p>
+            </div>
+          </div>
+
+          <div className="live-metrics" aria-label="准实时监测规则">
+            <div><span>⏱</span><strong>{`${breakingFeed.cadenceMinutes} 分钟`}</strong><small>轻量扫描一次</small></div>
+            <div><span>🔗</span><strong>2+ 来源</strong><small>触发深度核验</small></div>
+            <div><span>🫧</span><strong>{`${breakingFeed.cooldownHours} 小时`}</strong><small>同主题去重</small></div>
+            <div><span>📒</span><strong>08 / 20</strong><small>完整总结归档</small></div>
+          </div>
+
+          {breakingFeed.items.length ? (
+            <div className="breaking-grid" aria-live="polite">
+              {breakingFeed.items.map((item) => (
+                <article className={`breaking-card accent-${categoryAccent[item.category]}`} key={item.id}>
+                  <div className="breaking-card-top">
+                    <span className="breaking-badge">⚡ {item.signal}</span>
+                    <time dateTime={item.detectedAt}>{formatShanghaiTime(item.detectedAt)}</time>
+                  </div>
+                  <p className="breaking-meta">#{item.category} · {item.sourceCount} 个独立来源 · 热度{item.heat}</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                  <div className="breaking-judgement"><strong>风酱速判</strong>{item.why}</div>
+                  <footer>
+                    <div>{item.sources.map((source) => <span key={source}>#{source}</span>)}</div>
+                    <a href={item.link} target="_blank" rel="noreferrer">看原始信号 ↗</a>
+                  </footer>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="live-empty" aria-live="polite">
+              <div className="scanner-orbit" aria-hidden="true"><span>📡</span><i /><b /></div>
+              <div>
+                <span>ALL QUIET · 安静巡逻中</span>
+                <h3>当前没有达到推送阈值的突发热点</h3>
+                <p>这不是“没有新闻”，而是暂时没有通过多来源确认或互动跃升门槛的新事件。下一次轻扫会在整点自动进行。</p>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -499,37 +588,36 @@ export default function Home() {
           <p className="kicker">FUKA&apos;S SIGNAL BAG <span>✦</span></p>
           <h2>风酱的信号袋，<br />今天装了些什么？</h2>
           <p>
-            25 个编辑源帮我发现线索，Reddit、Hacker News 和 GitHub
-            帮我确认大家是不是真的在意。看到的不是一篇孤零零的报道，而是一阵正在形成的风。
+            25 个编辑源负责捕捉事实，Reddit、Hacker News 与 Digg 负责发现社区升温。
+            只有线索达到门槛，last30days 才会接力深挖，看到的是一阵正在形成的风，而不是一篇孤零零的报道。
           </p>
           <div className="method-tags" id="method">
-            <span>🧷 跨来源去重</span>
-            <span>⏰ 12 小时窗口</span>
-            <span>💬 社区参与度</span>
-            <span>✍️ 人工角度判断</span>
+            <span>⏱ 每小时轻扫</span>
+            <span>🚨 2+ 独立来源触发</span>
+            <span>🧷 6 小时去重</span>
+            <span>📚 08 / 20 完整归档</span>
           </div>
         </div>
 
         <div className="coverage-card">
           <span className="card-tape" aria-hidden="true" />
           <div className="coverage-head">
-            <div><span>今日信号收集进度</span><small>SIGNAL COLLECTION</small></div>
-            <strong>7 / 11</strong>
+            <div><span>准实时采集链路</span><small>SIGNAL COLLECTION</small></div>
+            <strong>25 + 3</strong>
           </div>
           {[
             ["25 站白名单", "100%", "full", "🌐"],
             ["Reddit", "100%", "full", "💬"],
             ["Hacker News", "100%", "full", "🟠"],
-            ["GitHub", "86%", "wide", "🐙"],
-            ["Polymarket", "72%", "medium", "🔮"],
-            ["X / YouTube", "待接入", "empty", "📡"],
+            ["Digg", "100%", "full", "📰"],
+            ["last30days 深挖", "按需触发", "medium", "🔭"],
           ].map(([name, value, size, emoji]) => (
             <div className="coverage-row" key={name}>
               <div><span>{emoji} {name}</span><strong>{value}</strong></div>
               <div className="coverage-track"><i className={size} /></div>
             </div>
           ))}
-          <p>下一次打开信号袋：今天 20:00</p>
+          <p>下一次轻扫：每个整点 · 深挖只在达到阈值时启动</p>
         </div>
       </section>
 
@@ -538,8 +626,8 @@ export default function Home() {
           <span className="brand-mark">✦</span>
           <span><strong>AI 风向标</strong><small>风酱的热点手账</small></span>
         </div>
-        <p>每天两次，把噪音留在云朵外面。</p>
-        <span>08:00 · 20:00 · ASIA/SHANGHAI</span>
+        <p>每小时巡逻，早晚两次写进手账。</p>
+        <span>HOURLY SCAN · 08:00 · 20:00</span>
       </footer>
     </main>
   );

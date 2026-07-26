@@ -5,10 +5,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ai-fengxiang-brief.vercel.app"),
   title: "AI 风向标｜风酱的热点手账",
   description:
-    "融合 25 个编辑源与 Reddit、Hacker News、GitHub 等社区信号的 AI 热点简报。每天 08:00 与 20:00 更新，并永久保留历史热点。",
+    "融合 25 个编辑源与 Reddit、Hacker News、Digg 等社区信号的准实时 AI 热点雷达。每小时扫描，08:00 与 20:00 总结，并永久保留历史热点。",
   openGraph: {
     title: "AI 风向标｜风酱的热点手账",
-    description: "每天两次，捕捉真正的热点。",
+    description: "每小时巡逻，达到阈值立即推送；每天 08:00 与 20:00 完整总结。",
     type: "website",
     images: [
       {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "AI 风向标｜风酱的热点手账",
-    description: "每天两次，捕捉真正的热点。",
+    description: "每小时巡逻，达到阈值立即推送；每天 08:00 与 20:00 完整总结。",
     images: ["/og.png"],
   },
 };
