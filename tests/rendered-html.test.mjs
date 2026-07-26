@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render() {
@@ -28,9 +29,20 @@ test("server-renders the AI hotspot briefing", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
+  const breaking = JSON.parse(
+    await readFile(new URL("../data/breaking.json", import.meta.url), "utf8"),
+  );
   assert.match(html, /AI 风向标/);
   assert.match(html, /准实时雷达/);
-  assert.match(html, /当前没有达到推送阈值的突发热点/);
+  if (breaking.items.length === 0) {
+    assert.match(html, /当前没有达到推送阈值的突发热点/);
+  } else {
+    assert.doesNotMatch(html, /当前没有达到推送阈值的突发热点/);
+    for (const item of breaking.items) {
+      assert.ok(html.includes(item.title));
+      assert.ok(html.includes(item.link));
+    }
+  }
   assert.match(html, /60 分钟/);
   assert.match(html, /2\+ 来源/);
   assert.match(html, /6 小时/);

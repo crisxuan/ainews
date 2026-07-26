@@ -1,6 +1,39 @@
 {
-  "updatedAt": "2026-07-26T20:00:00+08:00",
+  "updatedAt": "2026-07-26T13:10:27.739Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
-  "items": []
+  "items": [
+    {
+      "id": "open-weight-ai-kubernetes",
+      "detectedAt": "2026-07-26T20:57:40+08:00",
+      "title": "开源权重 AI 正迎来“Kubernetes 时刻”",
+      "category": "开放生态",
+      "heat": "高",
+      "signal": "突发热点",
+      "summary": "一篇将开源权重模型生态比作 Kubernetes 平台化拐点的文章在 Hacker News 获得 383 分和 299 条评论，并出现 Reddit 跟进讨论。",
+      "why": "焦点已从单一模型跑分转向可移植模型、推理服务、Agent 运行时、评测与可观测性的开放基础设施栈；政策限制也可能直接改变生态中心。",
+      "sourceCount": 2,
+      "sources": [
+        "Hacker News",
+        "Reddit"
+      ],
+      "link": "https://tobi.knaup.me/2026-07-25-open-weight-ai-is-having-its-kubernetes-moment/"
+    },
+    {
+      "id": "cloudflare-ai-traffic-controls",
+      "detectedAt": "2026-07-26T20:57:40+08:00",
+      "title": "Cloudflare 将 AI 流量拆分为搜索、Agent 与训练",
+      "category": "基础设施",
+      "heat": "中",
+      "signal": "快速升温",
+      "summary": "Cloudflare 面向所有客户推出按 Search、Agent、Training 用途管理 AI 流量的控制项，并测试 robots.txt 的内容使用信号；相关讨论在 Hacker News 达到 142 分和 123 条评论。",
+      "why": "网站不再只能在“全部放行”和“全部屏蔽”之间二选一，这为 Agent 访问、内容授权、引用回链和模型训练建立了更细粒度的网络规则。",
+      "sourceCount": 2,
+      "sources": [
+        "Cloudflare 官方",
+        "Hacker News"
+      ],
+      "link": "https://blog.cloudflare.com/content-independence-day-ai-options/"
+    }
+  ]
 }
