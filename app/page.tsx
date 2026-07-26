@@ -2,8 +2,36 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import briefingArchive from "../data/briefings.json";
 
 type Category = "模型" | "开放生态" | "基础设施" | "社会情绪";
+
+type ArchiveTopic = {
+  title: string;
+  category: Category;
+  heat: string;
+  signal: string;
+  link: string;
+  summary?: string;
+  why?: string;
+  community?: string;
+  editorial?: string;
+  sources?: string[];
+};
+
+type ArchiveIssue = {
+  id: string;
+  date: string;
+  dateLabel: string;
+  weekday: string;
+  edition: "morning" | "evening";
+  publishedAt: string;
+  title: string;
+  summary: string;
+  topics: ArchiveTopic[];
+};
+
+const archiveIssues = briefingArchive as ArchiveIssue[];
 
 type Story = {
   id: string;
@@ -120,6 +148,40 @@ const filterEmoji: Record<(typeof filters)[number], string> = {
   社会情绪: "☁️",
 };
 
+const categoryAccent: Record<Category, Story["accent"]> = {
+  模型: "pink",
+  开放生态: "mint",
+  基础设施: "yellow",
+  社会情绪: "blue",
+};
+
+function issueToStories(issue: ArchiveIssue): Story[] {
+  return issue.topics.map((topic, index) => {
+    const detailedStory = stories.find((story) => story.title === topic.title);
+    if (detailedStory) return { ...detailedStory, rank: String(index + 1).padStart(2, "0") };
+
+    const heat = topic.heat === "高" ? 5 : topic.heat === "中" ? 4 : 3;
+    return {
+      id: `${issue.id}-${index + 1}`,
+      rank: String(index + 1).padStart(2, "0"),
+      category: topic.category,
+      emoji: filterEmoji[topic.category],
+      state: topic.signal,
+      title: topic.title,
+      summary: topic.summary ?? issue.summary,
+      why: topic.why ?? "这个信号已经通过多来源合并，值得放进本期观察清单。",
+      heat,
+      change: topic.heat,
+      community: topic.community ?? `${topic.signal} · 热度${topic.heat}`,
+      editorial: topic.editorial ?? "点击查看本主题的原始来源",
+      sources: topic.sources ?? [topic.category, "原始来源"],
+      link: topic.link,
+      linkLabel: "去看原始信号",
+      accent: categoryAccent[topic.category],
+    };
+  });
+}
+
 const watchItems = [
   {
     time: "12:30",
@@ -206,16 +268,29 @@ export default function Home() {
   const [edition, setEdition] = useState<"morning" | "evening">("morning");
   const [category, setCategory] = useState<(typeof filters)[number]>("全部");
   const [strongOnly, setStrongOnly] = useState(false);
+  const [archiveIssueId, setArchiveIssueId] = useState(archiveIssues[0].id);
+
+  const latestDate = archiveIssues[0].date;
+  const currentIssue = archiveIssues.find(
+    (issue) => issue.date === latestDate && issue.edition === edition,
+  );
+  const currentStories = useMemo(
+    () => (currentIssue ? issueToStories(currentIssue) : []),
+    [currentIssue],
+  );
 
   const visibleStories = useMemo(
     () =>
-      stories.filter((story) => {
+      currentStories.filter((story) => {
         const categoryMatch = category === "全部" || story.category === category;
         const heatMatch = !strongOnly || story.heat >= 4;
         return categoryMatch && heatMatch;
       }),
-    [category, strongOnly],
+    [category, currentStories, strongOnly],
   );
+
+  const selectedArchive =
+    archiveIssues.find((issue) => issue.id === archiveIssueId) ?? archiveIssues[0];
 
   return (
     <main>
@@ -229,6 +304,7 @@ export default function Home() {
         </a>
         <nav aria-label="页面导航">
           <a href="#briefing">今日热点</a>
+          <a href="#archive">历史档案</a>
           <a href="#radar">信号袋</a>
           <a href="#method">怎么挑的</a>
         </nav>
@@ -264,7 +340,7 @@ export default function Home() {
           >
             <span aria-hidden="true">☀️</span>
             <strong>08:00</strong>
-            <small>早安刊 · 已发布</small>
+            <small>早安刊 · {archiveIssues.some((issue) => issue.date === latestDate && issue.edition === "morning") ? "已发布" : "待发布"}</small>
           </button>
           <button
             type="button"
@@ -274,7 +350,7 @@ export default function Home() {
           >
             <span aria-hidden="true">🌙</span>
             <strong>20:00</strong>
-            <small>晚安刊 · 跟踪中</small>
+            <small>晚安刊 · {archiveIssues.some((issue) => issue.date === latestDate && issue.edition === "evening") ? "已发布" : "跟踪中"}</small>
           </button>
         </div>
       </section>
@@ -283,16 +359,16 @@ export default function Home() {
         <div className="section-heading">
           <div>
             <p className="kicker">TODAY&apos;S PICKS <span>♡</span></p>
-            <h2>{edition === "morning" ? "风酱捞到的 4 个热点" : "今晚要继续蹲的 3 件事"}</h2>
+            <h2>{currentIssue ? `风酱捞到的 ${currentIssue.topics.length} 个热点` : "今晚要继续蹲的 3 件事"}</h2>
           </div>
           <p>
-            {edition === "morning"
-              ? "不是转贴新闻：同一事件会跨来源合并，再用社区里的真实讨论来验热度。"
+            {currentIssue
+              ? `${currentIssue.date} · ${currentIssue.summary}`
               : "20:00 会重新抓取信息源，只记录热度、事实或社区态度真的发生变化的议题。"}
           </p>
         </div>
 
-        {edition === "morning" ? (
+        {currentIssue ? (
           <>
             <div className="filter-row" aria-label="筛选热点">
               <div className="filter-pills">
@@ -348,6 +424,74 @@ export default function Home() {
             </div>
           </div>
         )}
+      </section>
+
+      <section className="archive-section" id="archive">
+        <div className="archive-heading">
+          <div>
+            <p className="kicker">HOTSPOT ARCHIVE <span>✦</span></p>
+            <h2>以前吹过的风，<br />都替你收好啦。</h2>
+          </div>
+          <div className="archive-stats" aria-label="历史简报统计">
+            <div><strong>{archiveIssues.length}</strong><span>已归档简报</span></div>
+            <div><strong>{archiveIssues.reduce((sum, issue) => sum + issue.topics.length, 0)}</strong><span>历史热点</span></div>
+            <div><strong>永久</strong><span>保留时间</span></div>
+          </div>
+        </div>
+
+        <div className="archive-browser">
+          <div className="issue-list" role="list" aria-label="历史简报列表">
+            {archiveIssues.map((issue) => (
+              <button
+                type="button"
+                key={issue.id}
+                className={archiveIssueId === issue.id ? "active" : ""}
+                aria-pressed={archiveIssueId === issue.id}
+                aria-label={`${issue.date} ${issue.edition === "morning" ? "早安刊" : "晚安刊"}，${issue.topics.length} 个热点`}
+                onClick={() => setArchiveIssueId(issue.id)}
+              >
+                <span className="issue-date">{issue.dateLabel}</span>
+                <span className="issue-edition">
+                  {issue.edition === "morning" ? "☀️ 早安刊" : "🌙 晚安刊"}
+                </span>
+                <small>{issue.weekday} · {issue.topics.length} 个热点</small>
+              </button>
+            ))}
+          </div>
+
+          <article className="archive-paper" aria-live="polite">
+            <span className="archive-clip" aria-hidden="true">♡</span>
+            <header>
+              <div>
+                <span>{selectedArchive.date} · {selectedArchive.publishedAt}</span>
+                <strong>{selectedArchive.edition === "morning" ? "MORNING EDITION" : "EVENING EDITION"}</strong>
+              </div>
+              <span className="archive-count">{selectedArchive.topics.length} PICKS</span>
+            </header>
+            <h3>{selectedArchive.title}</h3>
+            <p className="archive-summary">{selectedArchive.summary}</p>
+            <div className="archive-topics">
+              {selectedArchive.topics.map((topic, index) => (
+                <a href={topic.link} target="_blank" rel="noreferrer" key={`${selectedArchive.id}-${topic.title}`}>
+                  <span className="archive-topic-number">{String(index + 1).padStart(2, "0")}</span>
+                  <div>
+                    <div className="archive-topic-meta">
+                      <span>#{topic.category}</span>
+                      <span>{topic.heat === "高" ? "♥♥♥" : topic.heat === "中" ? "♥♥♡" : "♥♡♡"}</span>
+                      <span>{topic.signal}</span>
+                    </div>
+                    <h4>{topic.title}</h4>
+                  </div>
+                  <span className="archive-arrow" aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </div>
+            <footer className="archive-paper-footer">
+              <span>风酱的热点手账 · {selectedArchive.dateLabel}</span>
+              <span>内容已归档，不会被新简报覆盖</span>
+            </footer>
+          </article>
+        </div>
       </section>
 
       <section className="radar-section" id="radar">

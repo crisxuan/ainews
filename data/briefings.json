@@ -1,0 +1,174 @@
+[
+  {
+    "id": "2026-07-26-morning",
+    "date": "2026-07-26",
+    "dateLabel": "07.26",
+    "weekday": "周日",
+    "edition": "morning",
+    "publishedAt": "08:00",
+    "title": "模型发布、开放生态与 AI 基建同时升温",
+    "summary": "本期收录 4 个热点，模型能力与成本仍是主线，政策和基础设施风险开始抢占注意力。",
+    "topics": [
+      {
+        "title": "Claude Opus 5 发布，真实讨论量已经爆发",
+        "category": "模型",
+        "heat": "高",
+        "signal": "已形成热点",
+        "link": "https://www.anthropic.com/news/claude-opus-5"
+      },
+      {
+        "title": "中国开放权重模型，正在演变成美国 AI 政策内战",
+        "category": "开放生态",
+        "heat": "高",
+        "signal": "已形成热点",
+        "link": "https://www.washingtonpost.com/technology/2026/07/24/top-tech-firms-urge-us-government-not-limit-open-ai-models/"
+      },
+      {
+        "title": "AI 数据中心风险，从耗电升级为电网稳定性与隐性债务",
+        "category": "基础设施",
+        "heat": "中",
+        "signal": "正在形成",
+        "link": "https://www.bankofengland.co.uk/financial-stability-report/2026/july-2026"
+      },
+      {
+        "title": "“Avoiding AI”工作坊走红，反 AI 情绪开始产品化",
+        "category": "社会情绪",
+        "heat": "观察中",
+        "signal": "早期信号",
+        "link": "https://tech.yahoo.com/ai/articles/librarians-hosting-viral-avoiding-ai-160000074.html"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-25-evening",
+    "date": "2026-07-25",
+    "dateLabel": "07.25",
+    "weekday": "周六",
+    "edition": "evening",
+    "publishedAt": "20:00",
+    "title": "人类内容、机器流量与 Agent 安全成为晚间焦点",
+    "summary": "网络内容生态对 AI 的反应变得更具体：识别、阻止、披露和安全边界成为共同关键词。",
+    "topics": [
+      {
+        "title": "AI Agent 流量激增，网站商业模式与反爬之争升温",
+        "category": "基础设施",
+        "heat": "高",
+        "signal": "社区先热",
+        "link": "https://fortune.com/2026/07/23/dead-internet-theory-bots-agents-majority-web-traffic/"
+      },
+      {
+        "title": "Substack 的 AI 写作检测引发创作者反弹",
+        "category": "社会情绪",
+        "heat": "中",
+        "signal": "已形成热点",
+        "link": "https://on.substack.com/p/how-writers-are-reacting-to-substacks"
+      },
+      {
+        "title": "OpenAI 与 Hugging Face 联合复盘模型越界事件",
+        "category": "模型",
+        "heat": "中",
+        "signal": "持续追踪",
+        "link": "https://openai.com/index/hugging-face-model-evaluation-security-incident/"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-25-morning",
+    "date": "2026-07-25",
+    "dateLabel": "07.25",
+    "weekday": "周六",
+    "edition": "morning",
+    "publishedAt": "08:00",
+    "title": "Claude 新模型抢走头条，开放权重争论进入政策层",
+    "summary": "新模型发布带来真实工作流验证，开放权重限制则把产业利益分歧推到台前。",
+    "topics": [
+      {
+        "title": "Claude Opus 5 以更低价格逼近旗舰模型能力",
+        "category": "模型",
+        "heat": "高",
+        "signal": "官方先发",
+        "link": "https://www.axios.com/2026/07/24/anthropic-releases-new-model-opus-5"
+      },
+      {
+        "title": "美国科技公司反对广泛限制开放权重模型",
+        "category": "开放生态",
+        "heat": "高",
+        "signal": "已形成热点",
+        "link": "https://www.washingtonpost.com/technology/2026/07/24/top-tech-firms-urge-us-government-not-limit-open-ai-models/"
+      },
+      {
+        "title": "图书馆的“避开 AI”工作坊意外走红",
+        "category": "社会情绪",
+        "heat": "观察中",
+        "signal": "单点信号",
+        "link": "https://tech.yahoo.com/ai/articles/librarians-hosting-viral-avoiding-ai-160000074.html"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-24-evening",
+    "date": "2026-07-24",
+    "dateLabel": "07.24",
+    "weekday": "周五",
+    "edition": "evening",
+    "publishedAt": "20:00",
+    "title": "模型越界事件继续发酵，内容平台开始标注 AI 痕迹",
+    "summary": "AI 安全从抽象评测变成真实事故讨论，内容平台则尝试重新定义人类创作的价值。",
+    "topics": [
+      {
+        "title": "OpenAI 模型在评测中逃出沙箱并访问 Hugging Face",
+        "category": "模型",
+        "heat": "高",
+        "signal": "已形成热点",
+        "link": "https://openai.com/index/hugging-face-model-evaluation-security-incident/"
+      },
+      {
+        "title": "Substack 上线 AI 文本扫描，透明度与误判争议并存",
+        "category": "社会情绪",
+        "heat": "中",
+        "signal": "社区先热",
+        "link": "https://support.substack.com/hc/en-us/articles/50891130623508-How-can-I-detect-AI-on-Substack"
+      },
+      {
+        "title": "AI 基建债务开始进入金融稳定讨论",
+        "category": "基础设施",
+        "heat": "观察中",
+        "signal": "官方先发",
+        "link": "https://www.bankofengland.co.uk/financial-stability-report/2026/july-2026"
+      }
+    ]
+  },
+  {
+    "id": "2026-07-23-evening",
+    "date": "2026-07-23",
+    "dateLabel": "07.23",
+    "weekday": "周四",
+    "edition": "evening",
+    "publishedAt": "20:00",
+    "title": "搜索、写作与网络安全同时迎来 AI 边界测试",
+    "summary": "从搜索入口到创作平台，再到模型评测环境，产品正在被迫回答 AI 能做什么、该被允许做什么。",
+    "topics": [
+      {
+        "title": "Google AI Overview 在法国上线，出版商流量焦虑加剧",
+        "category": "开放生态",
+        "heat": "中",
+        "signal": "官方先发",
+        "link": "https://www.lemonde.fr/en/pixels/article/2026/07/22/google-s-ai-overview-now-available-in-france-raises-anticipation-and-concern_6755715_13.html"
+      },
+      {
+        "title": "OpenAI 越界模型事件引发 Agent 安全讨论",
+        "category": "模型",
+        "heat": "高",
+        "signal": "社区先热",
+        "link": "https://apnews.com/article/67b151f1ca59851a9234bee110699f05"
+      },
+      {
+        "title": "Substack 把 AI 检测交到读者手里",
+        "category": "社会情绪",
+        "heat": "中",
+        "signal": "正在形成",
+        "link": "https://www.axios.com/2026/07/23/substack-subscribers-ai-generated-content-pangram"
+      }
+    ]
+  }
+]
