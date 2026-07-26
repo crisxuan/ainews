@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 
 type Category = "模型" | "开放生态" | "基础设施" | "社会情绪";
@@ -8,6 +9,7 @@ type Story = {
   id: string;
   rank: string;
   category: Category;
+  emoji: string;
   state: string;
   title: string;
   summary: string;
@@ -19,7 +21,7 @@ type Story = {
   sources: string[];
   link: string;
   linkLabel: string;
-  accent: "coral" | "green" | "amber" | "blue";
+  accent: "pink" | "mint" | "yellow" | "blue";
 };
 
 const stories: Story[] = [
@@ -27,7 +29,8 @@ const stories: Story[] = [
     id: "opus-5",
     rank: "01",
     category: "模型",
-    state: "已形成热点",
+    emoji: "✨",
+    state: "超热",
     title: "Claude Opus 5 发布，真实讨论量已经爆发",
     summary:
       "接近 Fable 5 的能力，价格减半，首批开发者把注意力集中在长任务、Coding Agent 与低 effort 性价比。",
@@ -38,14 +41,15 @@ const stories: Story[] = [
     editorial: "量子位 · Latent Space · Anthropic",
     sources: ["Reddit", "HN", "GitHub", "官方"],
     link: "https://www.anthropic.com/news/claude-opus-5",
-    linkLabel: "查看官方发布",
-    accent: "coral",
+    linkLabel: "去看原始信号",
+    accent: "pink",
   },
   {
     id: "open-weight",
     rank: "02",
     category: "开放生态",
-    state: "已形成热点",
+    emoji: "🌱",
+    state: "超热",
     title: "中国开放权重模型，正在演变成美国 AI 政策内战",
     summary:
       "创业公司、云厂商与芯片公司反对广泛限制，争论焦点从模型安全转向成本、供应商选择与市场集中度。",
@@ -57,14 +61,15 @@ const stories: Story[] = [
     sources: ["Reddit", "HN", "GitHub", "媒体"],
     link:
       "https://www.washingtonpost.com/technology/2026/07/24/top-tech-firms-urge-us-government-not-limit-open-ai-models/",
-    linkLabel: "查看争议全貌",
-    accent: "green",
+    linkLabel: "去看争议全貌",
+    accent: "mint",
   },
   {
     id: "infrastructure",
     rank: "03",
     category: "基础设施",
-    state: "正在形成",
+    emoji: "⚡",
+    state: "升温中",
     title: "AI 数据中心风险，从耗电升级为电网稳定性与隐性债务",
     summary:
       "输电线路故障触发数据中心大规模切换备用电源，另一边，特殊目的载体正在把 AI 基建债务扩散到更广泛的金融体系。",
@@ -74,16 +79,16 @@ const stories: Story[] = [
     community: "HN 685 分 · 375 评论",
     editorial: "TechCrunch · Bank of England · Reuters",
     sources: ["HN", "监管", "媒体"],
-    link:
-      "https://www.bankofengland.co.uk/financial-stability-report/2026/july-2026",
-    linkLabel: "查看金融稳定报告",
-    accent: "amber",
+    link: "https://www.bankofengland.co.uk/financial-stability-report/2026/july-2026",
+    linkLabel: "去看风险报告",
+    accent: "yellow",
   },
   {
     id: "avoiding-ai",
     rank: "04",
     category: "社会情绪",
-    state: "早期信号",
+    emoji: "☁️",
+    state: "悄悄冒头",
     title: "“Avoiding AI”工作坊走红，反 AI 情绪开始产品化",
     summary:
       "图书馆开始教普通人减少对生成式 AI 和大型科技平台的依赖，活动帖传播量远超该机构的日常内容。",
@@ -93,9 +98,8 @@ const stories: Story[] = [
     community: "Instagram 2,000+ 赞 · 220 次分享",
     editorial: "TechCrunch · Free Library",
     sources: ["Instagram", "媒体", "机构"],
-    link:
-      "https://tech.yahoo.com/ai/articles/librarians-hosting-viral-avoiding-ai-160000074.html",
-    linkLabel: "查看趋势报道",
+    link: "https://tech.yahoo.com/ai/articles/librarians-hosting-viral-avoiding-ai-160000074.html",
+    linkLabel: "去看趋势报道",
     accent: "blue",
   },
 ];
@@ -108,29 +112,42 @@ const filters: Array<"全部" | Category> = [
   "社会情绪",
 ];
 
+const filterEmoji: Record<(typeof filters)[number], string> = {
+  全部: "🌈",
+  模型: "✨",
+  开放生态: "🌱",
+  基础设施: "⚡",
+  社会情绪: "☁️",
+};
+
 const watchItems = [
   {
     time: "12:30",
     title: "Opus 5 长周期任务反馈",
     note: "观察性能回调、限额消耗与 Coding Agent 稳定性",
+    emoji: "🧪",
   },
   {
     time: "15:00",
     title: "开放权重联署后续",
     note: "跟进美国政策表态，以及创业公司与头部实验室的分歧",
+    emoji: "📝",
   },
   {
     time: "18:30",
     title: "AI 基建风险扩散",
     note: "检查电网事件是否形成更大范围的监管或资本市场讨论",
+    emoji: "🔭",
   },
 ];
 
 function HeatMeter({ value }: { value: number }) {
   return (
-    <span className="heat-meter" aria-label={`热度 ${value} 星`}>
+    <span className="heat-meter" aria-label={`热度 ${value} 颗心`}>
       {Array.from({ length: 5 }, (_, index) => (
-        <i key={index} className={index < value ? "active" : ""} />
+        <i key={index} className={index < value ? "active" : ""}>
+          {index < value ? "♥" : "♡"}
+        </i>
       ))}
     </span>
   );
@@ -139,43 +156,47 @@ function HeatMeter({ value }: { value: number }) {
 function StoryCard({ story }: { story: Story }) {
   return (
     <article className={`story-card accent-${story.accent}`}>
-      <div className="story-rail">
-        <span className="story-rank">{story.rank}</span>
-        <span className="story-category">{story.category}</span>
+      <span className="card-tape" aria-hidden="true" />
+      <div className="story-topline">
+        <span className="story-rank">HOT {story.rank}</span>
+        <span className="story-category">
+          {story.emoji} {story.category}
+        </span>
+        <span className="story-state">{story.state}</span>
       </div>
-      <div className="story-content">
-        <div className="story-meta">
-          <span className="state-dot" />
-          <span>{story.state}</span>
-          <HeatMeter value={story.heat} />
-          <span className="trend-up">{story.change}</span>
-        </div>
-        <h3>{story.title}</h3>
-        <p className="story-summary">{story.summary}</p>
-        <div className="signal-grid">
-          <div>
-            <span>社区信号</span>
-            <strong>{story.community}</strong>
-          </div>
-          <div>
-            <span>编辑源</span>
-            <strong>{story.editorial}</strong>
-          </div>
-        </div>
-        <p className="editor-note">
-          <span>编辑判断</span>
-          {story.why}
+      <h3>{story.title}</h3>
+      <p className="story-summary">{story.summary}</p>
+
+      <div className="heat-row">
+        <HeatMeter value={story.heat} />
+        <span>讨论升温 {story.change}</span>
+      </div>
+
+      <div className="signal-note">
+        <p>
+          <span>💬 社区在聊</span>
+          {story.community}
         </p>
-        <div className="story-footer">
-          <div className="source-pills" aria-label="信息来源">
-            {story.sources.map((source) => (
-              <span key={source}>{source}</span>
-            ))}
-          </div>
-          <a href={story.link} target="_blank" rel="noreferrer">
-            {story.linkLabel} <span aria-hidden="true">↗</span>
-          </a>
+        <p>
+          <span>📰 编辑线索</span>
+          {story.editorial}
+        </p>
+      </div>
+
+      <div className="mascot-note">
+        <span aria-hidden="true">✦</span>
+        <p><strong>风酱的判断</strong>{story.why}</p>
+      </div>
+
+      <div className="story-footer">
+        <div className="source-pills" aria-label="信息来源">
+          {story.sources.map((source) => (
+            <span key={source}>#{source}</span>
+          ))}
         </div>
+        <a href={story.link} target="_blank" rel="noreferrer">
+          {story.linkLabel} <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </article>
   );
@@ -196,109 +217,78 @@ export default function Home() {
     [category, strongOnly],
   );
 
-  const spotlight = stories[0];
-
   return (
     <main>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="AI 风向标首页">
-          <span className="brand-mark">AI</span>
+          <span className="brand-mark">✦</span>
           <span>
-            <strong>风向标</strong>
-            <small>HOT SIGNALS</small>
+            <strong>AI 风向标</strong>
+            <small>风酱的热点手账</small>
           </span>
         </a>
         <nav aria-label="页面导航">
-          <a href="#briefing">热点</a>
-          <a href="#radar">来源雷达</a>
-          <a href="#method">研判方法</a>
+          <a href="#briefing">今日热点</a>
+          <a href="#radar">信号袋</a>
+          <a href="#method">怎么挑的</a>
         </nav>
-        <div className="live-status">
-          <span /> 自动更新中
-        </div>
+        <div className="live-status"><span /> 风酱巡逻中</div>
       </header>
 
       <section className="hero" id="top">
-        <div className="hero-copy">
-          <p className="eyebrow">2026.07.26 · 周日 · 上海</p>
-          <h1>
-            不是更多新闻，
-            <br />
-            是更早看见<span>风向。</span>
-          </h1>
-          <p className="hero-deck">
-            25 个编辑源负责发现，社区讨论负责验证。每天 08:00 与 20:00，
-            把分散信号压缩成真正值得关注的 AI 议题。
-          </p>
-          <div className="edition-switch" aria-label="选择简报场次">
-            <button
-              type="button"
-              className={edition === "morning" ? "selected" : ""}
-              aria-pressed={edition === "morning"}
-              onClick={() => setEdition("morning")}
-            >
-              <span>08:00</span>
-              上午简报
-              <small>已发布</small>
-            </button>
-            <button
-              type="button"
-              className={edition === "evening" ? "selected" : ""}
-              aria-pressed={edition === "evening"}
-              onClick={() => setEdition("evening")}
-            >
-              <span>20:00</span>
-              晚间简报
-              <small>跟踪中</small>
-            </button>
-          </div>
-        </div>
-
-        <aside className="hero-signal" aria-label="今日头号热点">
-          <div className="signal-topline">
-            <span>NO. 1 SIGNAL</span>
-            <span>过去 12 小时</span>
-          </div>
-          <div className="signal-score">
-            <strong>96</strong>
-            <span>/100</span>
-            <div className="signal-bars" aria-hidden="true">
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-            </div>
-          </div>
-          <p className="signal-label">综合信号强度</p>
-          <h2>{spotlight.title}</h2>
-          <p>{spotlight.community}</p>
-          <a href="#briefing">进入完整简报 <span>↓</span></a>
-        </aside>
+        <span className="hero-tape hero-tape-left" aria-hidden="true" />
+        <span className="hero-tape hero-tape-right" aria-hidden="true" />
+        <Image
+          className="hero-art"
+          src="/og.png"
+          alt="AI 风向标动漫角色风酱，在云朵与信号波之间捕捉热点"
+          width={1672}
+          height={941}
+          priority
+        />
       </section>
 
-      <section className="pulse-strip" aria-label="本轮信号概览">
-        <div><strong>190</strong><span>抓取条目</span></div>
-        <div><strong>09</strong><span>有效候选</span></div>
-        <div><strong>04</strong><span>合并议题</span></div>
-        <div><strong>00</strong><span>来源错误</span></div>
-        <p><span /> WINDOW 20:00 → 08:00</p>
+      <section className="welcome-strip" aria-label="今日简报介绍">
+        <div className="welcome-avatar" aria-hidden="true">✦</div>
+        <div className="welcome-copy">
+          <span>风酱说</span>
+          <h1>早安呀，今天的 AI 圈在聊什么？</h1>
+          <p>我从 25 个网站和社区里，替你捞出真正值得看的热点。少一点噪音，多一点有用的判断。</p>
+        </div>
+        <div className="edition-switch" aria-label="选择简报场次">
+          <button
+            type="button"
+            className={edition === "morning" ? "selected" : ""}
+            aria-pressed={edition === "morning"}
+            onClick={() => setEdition("morning")}
+          >
+            <span aria-hidden="true">☀️</span>
+            <strong>08:00</strong>
+            <small>早安刊 · 已发布</small>
+          </button>
+          <button
+            type="button"
+            className={edition === "evening" ? "selected" : ""}
+            aria-pressed={edition === "evening"}
+            onClick={() => setEdition("evening")}
+          >
+            <span aria-hidden="true">🌙</span>
+            <strong>20:00</strong>
+            <small>晚安刊 · 跟踪中</small>
+          </button>
+        </div>
       </section>
 
       <section className="briefing-section" id="briefing">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">
-              {edition === "morning" ? "MORNING BRIEFING" : "EVENING WATCH"}
-            </p>
-            <h2>{edition === "morning" ? "今早，四个判断" : "今晚，三个追踪点"}</h2>
+            <p className="kicker">TODAY&apos;S PICKS <span>♡</span></p>
+            <h2>{edition === "morning" ? "风酱捞到的 4 个热点" : "今晚要继续蹲的 3 件事"}</h2>
           </div>
           <p>
             {edition === "morning"
-              ? "同一事件跨来源合并，热度由社区互动、来源权重和时效共同决定。"
-              : "20:00 将重新抓取白名单与社区信号，只报告有实质变化的议题。"}
+              ? "不是转贴新闻：同一事件会跨来源合并，再用社区里的真实讨论来验热度。"
+              : "20:00 会重新抓取信息源，只记录热度、事实或社区态度真的发生变化的议题。"}
           </p>
         </div>
 
@@ -314,7 +304,7 @@ export default function Home() {
                     aria-pressed={category === filter}
                     onClick={() => setCategory(filter)}
                   >
-                    {filter}
+                    <span aria-hidden="true">{filterEmoji[filter]}</span> {filter}
                   </button>
                 ))}
               </div>
@@ -324,32 +314,32 @@ export default function Home() {
                 aria-pressed={strongOnly}
                 onClick={() => setStrongOnly((value) => !value)}
               >
-                <span /> 只看强热点
+                <span aria-hidden="true">♥</span> 只看强信号
               </button>
             </div>
 
-            <div className="story-list">
+            <div className="story-grid">
               {visibleStories.length ? (
                 visibleStories.map((story) => <StoryCard key={story.id} story={story} />)
               ) : (
-                <div className="empty-state">当前筛选条件下没有热点。</div>
+                <div className="empty-state">这只信号袋现在空空的，换个标签看看吧～</div>
               )}
             </div>
           </>
         ) : (
           <div className="watch-panel">
             <div className="watch-intro">
-              <span className="watch-orbit" aria-hidden="true"><i /></span>
-              <p className="eyebrow">NEXT EDITION</p>
-              <h3>距离晚间简报还有一个观察周期</h3>
-              <p>系统不会重复上午内容，只在热度、事实或社区态度发生变化时更新。</p>
+              <span className="moon-sticker" aria-hidden="true">🌙</span>
+              <p className="kicker">EVENING WATCH</p>
+              <h3>晚安刊还在认真观察中</h3>
+              <p>不会把上午的内容再念一遍。只有信号真的变了，风酱才会写进晚间手账。</p>
             </div>
             <div className="watch-list">
               {watchItems.map((item) => (
                 <div key={item.time}>
-                  <time>{item.time}</time>
-                  <span />
+                  <span className="watch-emoji" aria-hidden="true">{item.emoji}</span>
                   <section>
+                    <div><time>{item.time}</time><span>观察中</span></div>
                     <h4>{item.title}</h4>
                     <p>{item.note}</p>
                   </section>
@@ -362,47 +352,49 @@ export default function Home() {
 
       <section className="radar-section" id="radar">
         <div className="radar-copy">
-          <p className="eyebrow">SOURCE RADAR</p>
-          <h2>编辑源负责发现，<br />社区源负责验真。</h2>
+          <p className="kicker">FUKA&apos;S SIGNAL BAG <span>✦</span></p>
+          <h2>风酱的信号袋，<br />今天装了些什么？</h2>
           <p>
-            单篇报道只能说明“发生了什么”。跨平台互动能进一步回答：谁在讨论、
-            讨论有多深，以及它是一次发布还是正在形成的趋势。
+            25 个编辑源帮我发现线索，Reddit、Hacker News 和 GitHub
+            帮我确认大家是不是真的在意。看到的不是一篇孤零零的报道，而是一阵正在形成的风。
           </p>
           <div className="method-tags" id="method">
-            <span>跨来源去重</span>
-            <span>12 小时窗口</span>
-            <span>社区参与度</span>
-            <span>人工角度判断</span>
+            <span>🧷 跨来源去重</span>
+            <span>⏰ 12 小时窗口</span>
+            <span>💬 社区参与度</span>
+            <span>✍️ 人工角度判断</span>
           </div>
         </div>
+
         <div className="coverage-card">
+          <span className="card-tape" aria-hidden="true" />
           <div className="coverage-head">
-            <span>本轮覆盖</span>
+            <div><span>今日信号收集进度</span><small>SIGNAL COLLECTION</small></div>
             <strong>7 / 11</strong>
           </div>
           {[
-            ["25 站白名单", "100%", "full"],
-            ["Reddit", "100%", "full"],
-            ["Hacker News", "100%", "full"],
-            ["GitHub", "86%", "wide"],
-            ["Polymarket", "72%", "medium"],
-            ["X / YouTube", "待接入", "empty"],
-          ].map(([name, value, size]) => (
+            ["25 站白名单", "100%", "full", "🌐"],
+            ["Reddit", "100%", "full", "💬"],
+            ["Hacker News", "100%", "full", "🟠"],
+            ["GitHub", "86%", "wide", "🐙"],
+            ["Polymarket", "72%", "medium", "🔮"],
+            ["X / YouTube", "待接入", "empty", "📡"],
+          ].map(([name, value, size, emoji]) => (
             <div className="coverage-row" key={name}>
-              <div><span>{name}</span><strong>{value}</strong></div>
+              <div><span>{emoji} {name}</span><strong>{value}</strong></div>
               <div className="coverage-track"><i className={size} /></div>
             </div>
           ))}
-          <p>下一次刷新：今天 20:00</p>
+          <p>下一次打开信号袋：今天 20:00</p>
         </div>
       </section>
 
       <footer>
         <div className="brand footer-brand">
-          <span className="brand-mark">AI</span>
-          <span><strong>风向标</strong><small>HOT SIGNALS</small></span>
+          <span className="brand-mark">✦</span>
+          <span><strong>AI 风向标</strong><small>风酱的热点手账</small></span>
         </div>
-        <p>每天两次，把噪音留在外面。</p>
+        <p>每天两次，把噪音留在云朵外面。</p>
         <span>08:00 · 20:00 · ASIA/SHANGHAI</span>
       </footer>
     </main>

@@ -29,7 +29,8 @@ test("server-renders the AI hotspot briefing", async () => {
 
   const html = await response.text();
   assert.match(html, /AI 风向标/);
-  assert.match(html, /不是更多新闻/);
+  assert.match(html, /风酱捞到的 4 个热点/);
+  assert.match(html, /风酱的信号袋/);
   assert.match(html, /Claude Opus 5/);
   assert.match(html, /08:00/);
   assert.match(html, /20:00/);
