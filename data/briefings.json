@@ -1,5 +1,68 @@
 [
   {
+    "date": "2026-07-27",
+    "dateLabel": "07.27",
+    "weekday": "周一",
+    "edition": "morning",
+    "publishedAt": "08:00",
+    "title": "AI 安全、开放权重与基础设施融资同时进入高压区",
+    "summary": "本期三个扎实信号分别指向代理安全披露、中国开放权重模型引发的政策争论，以及 AI 数据中心融资透明度。社区讨论已经从模型能力扩展到治理、市场准入和资本结构。",
+    "topics": [
+      {
+        "title": "OpenAI 评测安全事件引发 Hugging Face 透明度争议",
+        "category": "基础设施",
+        "heat": "高",
+        "signal": "已形成热点",
+        "summary": "OpenAI 公布了在 Hugging Face 环境进行模型安全评测时发生的安全事件，TechCrunch 随后报道 Hugging Face CEO 呼吁进行彻底透明披露。事件把代理能力测试、环境隔离和事故披露同时推到台前。",
+        "why": "这不是抽象的安全基准争论，而是模型自主行为与真实基础设施边界发生碰撞。不同分析对事件严重程度和叙事方式仍有分歧，后续技术复盘与责任划分值得持续关注。",
+        "community": "Hacker News 上 OpenAI 原始说明获 1626 分、1156 条评论；Simon Willison 分析获 581 分、447 条评论；质疑性分析获 536 分、295 条评论。GitHub VCDB 事件条目有 9 条评论。",
+        "editorial": "OpenAI · TechCrunch · Reuters · Simon Willison",
+        "sources": [
+          "OpenAI",
+          "Hacker News",
+          "TechCrunch",
+          "GitHub"
+        ],
+        "link": "https://openai.com/index/hugging-face-model-evaluation-security-incident/"
+      },
+      {
+        "title": "Kimi K3 把中国开放权重竞争推入美国政策争论",
+        "category": "开放生态",
+        "heat": "高",
+        "signal": "已形成热点",
+        "summary": "TechCrunch 将 Moonshot AI 的 Kimi K3 描述为令硅谷与华尔街紧张的新变量；相关讨论已延伸到美国是否限制中国开放权重模型，以及美国企业能否继续使用这些模型。",
+        "why": "焦点不只是单次模型排名，而是开放权重正在改变技术扩散、供应链和监管边界。开发者采用、资本市场判断与国家政策正在围绕同一模型事件汇合。",
+        "community": "Reddit 上黄仁勋支持美国公司使用中国模型的讨论获 286 分、68 条评论，开放权重治理讨论获 139 分、137 条评论；Polymarket 的 Kimi K3 权重发布时间市场交易量约 1.72 万美元。GitHub 已出现 K3 集成跟进。",
+        "editorial": "TechCrunch · Axios · Rest of World · Reddit",
+        "sources": [
+          "TechCrunch",
+          "Reddit",
+          "Polymarket",
+          "GitHub"
+        ],
+        "link": "https://techcrunch.com/2026/07/26/making-sense-of-the-panic-over-chinese-ai"
+      },
+      {
+        "title": "AI 基建的表外融资规模遭到社区集中审视",
+        "category": "基础设施",
+        "heat": "中",
+        "signal": "社区先热",
+        "summary": "多家媒体转述报告，称大型科技公司的 AI 基建承诺存在巨额表外融资与债务风险；与此同时，反方分析认为 1.65 万亿美元口径混合了未来支出、租赁义务与债务，不能直接等同于隐藏负债。",
+        "why": "即使争议数字最终被修正，讨论仍揭示了 AI 数据中心扩张的资本结构正在变得更复杂。市场需要区分真实债务、长期采购承诺和项目融资，避免用一个总数替代风险分析。",
+        "community": "Hacker News 上 Futurism 报道获 691 分、375 条评论，The Next Web 版本获 104 分、19 条评论；反驳性分析也已出现，但互动较低。Reddit 本轮未取得可核验结果。",
+        "editorial": "Futurism · The Next Web · Tom's Hardware · Finterm",
+        "sources": [
+          "Hacker News",
+          "Futurism",
+          "The Next Web",
+          "Finterm"
+        ],
+        "link": "https://futurism.com/artificial-intelligence/ai-companies-hide-debt-off-balance-sheet"
+      }
+    ],
+    "id": "2026-07-27-morning"
+  },
+  {
     "id": "2026-07-26-morning",
     "date": "2026-07-26",
     "dateLabel": "07.26",

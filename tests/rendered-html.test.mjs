@@ -32,6 +32,10 @@ test("server-renders the AI hotspot briefing", async () => {
   const breaking = JSON.parse(
     await readFile(new URL("../data/breaking.json", import.meta.url), "utf8"),
   );
+  const briefings = JSON.parse(
+    await readFile(new URL("../data/briefings.json", import.meta.url), "utf8"),
+  );
+  const latestBriefing = briefings[0];
   assert.match(html, /AI 风向标/);
   assert.match(html, /准实时雷达/);
   if (breaking.items.length === 0) {
@@ -46,12 +50,15 @@ test("server-renders the AI hotspot briefing", async () => {
   assert.match(html, /60 分钟/);
   assert.match(html, /2\+ 来源/);
   assert.match(html, /6 小时/);
-  assert.match(html, /风酱捞到的 4 个热点/);
+  assert.ok(html.includes(`风酱捞到的 ${latestBriefing.topics.length} 个热点`));
   assert.match(html, /风酱的信号袋/);
   assert.match(html, /以前吹过的风/);
-  assert.match(html, /2026-07-25/);
+  assert.ok(html.includes(latestBriefing.date));
   assert.match(html, /内容已归档/);
-  assert.match(html, /Claude Opus 5/);
+  for (const topic of latestBriefing.topics) {
+    assert.ok(html.includes(topic.title));
+    assert.ok(html.includes(topic.link));
+  }
   assert.match(html, /08:00/);
   assert.match(html, /20:00/);
   assert.match(html, /每小时巡逻/);
