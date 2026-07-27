@@ -1,8 +1,24 @@
 {
-  "updatedAt": "2026-07-27T17:00:29.553Z",
+  "updatedAt": "2026-07-27T20:46:54.293Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
+    {
+      "id": "ai-washington-lobbying-record-spend",
+      "detectedAt": "2026-07-28T04:42:34+08:00",
+      "title": "AI 公司在华盛顿游说支出创纪录",
+      "category": "社会情绪",
+      "heat": "高",
+      "signal": "突发热点",
+      "summary": "Financial Times 报道称，联邦申报记录显示 OpenAI、Anthropic 等 AI 公司正在增加华盛顿游说投入。Hacker News 围绕该报道形成高互动讨论，Reddit 出现同一事件的独立帖子。",
+      "why": "AI 竞争正从模型与算力扩展到政策影响力。社区关注点已转向监管议程、产业集中度以及企业能否借游说塑造未来规则。",
+      "sourceCount": 2,
+      "sources": [
+        "Hacker News",
+        "Reddit"
+      ],
+      "link": "https://www.ft.com/content/d8a5f95e-3b6d-463a-a848-c9ef8e2394db"
+    },
     {
       "id": "ai-rare-books-training-data",
       "detectedAt": "2026-07-28T00:52:39+08:00",
