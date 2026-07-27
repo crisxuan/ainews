@@ -300,7 +300,7 @@ function formatShanghaiTime(value: string) {
 }
 
 export default function Home() {
-  const [edition, setEdition] = useState<"morning" | "evening">("morning");
+  const [edition, setEdition] = useState<"morning" | "evening">(archiveIssues[0].edition);
   const [category, setCategory] = useState<(typeof filters)[number]>("全部");
   const [strongOnly, setStrongOnly] = useState(false);
   const [archiveIssueId, setArchiveIssueId] = useState(archiveIssues[0].id);

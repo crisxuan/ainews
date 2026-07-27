@@ -3,6 +3,74 @@
     "date": "2026-07-27",
     "dateLabel": "07.27",
     "weekday": "周一",
+    "edition": "evening",
+    "publishedAt": "20:00",
+    "title": "AI 开始重写工作边界，Agent 基础设施转向可检查架构",
+    "summary": "OpenAI 用真实使用数据观察 AI 如何让工作任务跨越职业边界，NVIDIA 与 BAIR 则分别从 Agent harness 和长程记忆切入可靠性问题。本期以官方先发为主，社区对这些新发布尚未形成直接、可核验的集中讨论。",
+    "topics": [
+      {
+        "title": "OpenAI：近半职业专属 AI 使用正在跨越岗位边界",
+        "category": "社会情绪",
+        "heat": "中",
+        "signal": "官方先发",
+        "summary": "OpenAI Economic Research 分析了超过 80 万条美国 ChatGPT 用户消息，称 43.5% 的职业专属消息涉及传统上属于另一职业的任务；按全部工作相关消息计算，该比例为 16.8%。",
+        "why": "这组数据把讨论从“AI 是否替代岗位”推进到“岗位内部如何重新分工”。它尤其值得中小企业关注，因为 AI 可能让最接近问题的人直接承担原本需要跨团队交接的任务。",
+        "community": "本轮 Reddit、Hacker News、Digg 与 GitHub 深挖没有返回直接针对该报告的可核验讨论，社区覆盖不足。",
+        "editorial": "OpenAI News",
+        "sources": [
+          "OpenAI News"
+        ],
+        "link": "https://openai.com/index/how-ai-is-expanding-what-people-do-at-work/"
+      },
+      {
+        "title": "NVIDIA 开源 NOOA，把 Agent harness 变成可测试的 Python 对象",
+        "category": "基础设施",
+        "heat": "中",
+        "signal": "官方先发",
+        "summary": "NVIDIA Labs 发布 NOOA 研究预览，把 Agent 的能力、状态与提示统一进 Python 类，并强调类型化输入输出、按引用传递、代码即动作、显式状态和可调用 harness API 六项能力。",
+        "why": "Agent 性能差异不只来自模型，harness 设计也会显著影响准确率、上下文成本和可审计性。NOOA 的价值在于把这些差异变成可以复现、单测和代码审查的工程对象。",
+        "community": "本轮深挖返回的 NVIDIA 讨论主要指向其他模型和数据中心事件，没有直接验证该 NOOA 发布的社区反应；YouTube 全站深挖覆盖不足。",
+        "editorial": "NVIDIA Technical Blog",
+        "sources": [
+          "NVIDIA Technical Blog"
+        ],
+        "link": "https://developer.nvidia.com/blog/six-agent-harness-capabilities-for-higher-model-performance/"
+      },
+      {
+        "title": "BAIR 用可学习 belief state 缓解长程交互的上下文压缩损失",
+        "category": "模型",
+        "heat": "观察中",
+        "signal": "单点信号",
+        "summary": "Berkeley BAIR 介绍 ABBEL，让模型周期性更新自然语言 belief state，并通过重建式评分监督其中保留的信息。在 CollabBench 上，该方法恢复了约一半相对完整上下文的性能差距，并减少训练步骤与峰值上下文。",
+        "why": "长程 Agent 的关键瓶颈正从上下文长度转向“该记住什么”。ABBEL 的思路把摘要从固定提示工程变成可训练的决策状态，对持续编码协作和多轮任务尤其相关。",
+        "community": "本轮社区发现未对该论文做专项深挖，没有可核验的 Reddit、Hacker News、Digg、GitHub 或 Polymarket互动数据。",
+        "editorial": "Berkeley BAIR Blog",
+        "sources": [
+          "Berkeley BAIR Blog"
+        ],
+        "link": "https://bair.berkeley.edu/blog/2026/07/26/abbel/"
+      },
+      {
+        "title": "Hugging Face 官方频道转向企业与学术 Hub 使用场景",
+        "category": "开放生态",
+        "heat": "观察中",
+        "signal": "单点信号",
+        "summary": "Hugging Face 官方 YouTube 频道发布《The Hugging Face Hub for Enterprise & Academia》，将 Hub 在企业与学术机构中的使用作为独立主题。",
+        "why": "这是一个早期官方信号：开放模型平台的竞争正在从个人开发者扩展到组织级协作与治理。当前证据只有官方频道发布，尚不足以判断市场反应。",
+        "community": "官方 YouTube 频道 RSS 抓取成功；last30days 的 YouTube 全站深挖返回 no-results，按规则标记为覆盖不足，不能据此判断没有讨论。",
+        "editorial": "YouTube · Hugging Face",
+        "sources": [
+          "YouTube · Hugging Face"
+        ],
+        "link": "https://www.youtube.com/watch?v=wUzfRBi9wZ0"
+      }
+    ],
+    "id": "2026-07-27-evening"
+  },
+  {
+    "date": "2026-07-27",
+    "dateLabel": "07.27",
+    "weekday": "周一",
     "edition": "morning",
     "publishedAt": "08:00",
     "title": "AI 安全、开放权重与基础设施融资同时进入高压区",
