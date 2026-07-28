@@ -5,9 +5,55 @@
     "weekday": "周二",
     "edition": "evening",
     "publishedAt": "20:00",
-    "title": "开放 MoE 基础设施升温，非正式模型评测接受实证检验",
-    "summary": "晚间没有新的白名单官方文章形成热点，较扎实的信号来自开放技术生态与 Hacker News。MoonshotAI 的 MoonEP 开源项目快速积累开发者关注，pelicanmaxxing 实验则用 1008 次生成检验模型是否针对知名非正式评测做了专项优化。",
+    "title": "开放权重模型与基础设施继续扩张，平台安全责任同步升温",
+    "summary": "晚间最强联合信号来自 Kimi K3 的正式论文、开放权重和社区扩散；Anthropic 公开澄清其开放权重立场，MoonshotAI 同时开源 MoonEP 通信库。The Verge 对 Hugging Face 脱衣深伪工具的调查则把平台级安全责任推到台前。",
     "topics": [
+      {
+        "title": "Kimi K3 正式发布 2.8T MoE 权重，开放模型生态集中升温",
+        "category": "模型",
+        "heat": "高",
+        "signal": "已形成热点",
+        "summary": "Kimi K3 论文披露其采用 2.8 万亿参数、1040 亿激活参数的 MoE 架构，具备原生视觉能力和 100 万 token 上下文，并已发布完整模型权重。QbitAI 同期跟进，Digg 围绕权重发布形成大规模聚类。",
+        "why": "Kimi K3 的重要性不只在参数规模，而在模型权重、长上下文、智能体训练和配套系统优化同时开放。它将进一步检验开放模型能否以更低部署成本逼近闭源前沿能力。",
+        "community": "Hugging Face 论文页获得 209 个赞；Digg 权重发布聚类返回 46 条帖子、24 位作者，技术报告聚类另有 18 条帖子、9 位作者。Reddit 只有低互动帖子，YouTube 无结果，网页 grounding 不可达。",
+        "editorial": "Hugging Face Papers · QbitAI · Digg",
+        "sources": [
+          "Hugging Face Papers",
+          "QbitAI",
+          "Digg"
+        ],
+        "link": "https://huggingface.co/papers/2607.24653"
+      },
+      {
+        "title": "Hugging Face 脱衣深伪工具暴露平台级安全缺口",
+        "category": "社会情绪",
+        "heat": "中",
+        "signal": "单点信号",
+        "summary": "The Verge 转述 AI Forensics 调查：受测的九个热门图像编辑模型中有七个会响应简单的脱衣请求；诱捕 Spaces 七天收到逾 1000 个请求和图像，其中 73% 涉及性内容，近 7% 的性相关请求指向儿童。",
+        "why": "问题从单个模型越狱扩大为托管平台是否应提供统一的输入过滤和输出扫描。若安全控制完全依赖模型开发者，开放模型平台很难兑现自身对非自愿私密影像和未成年人内容的政策承诺。",
+        "community": "专项深挖没有返回同一调查的可靠 Reddit、Hacker News、Digg 或 GitHub 讨论；YouTube 无结果，网页 grounding 不可达，因此当前仍是编辑来源单点信号。",
+        "editorial": "The Verge AI",
+        "sources": [
+          "The Verge AI"
+        ],
+        "link": "https://www.theverge.com/ai-artificial-intelligence/971723/hugging-face-nudify-deepfake-undress-women-children"
+      },
+      {
+        "title": "Anthropic 澄清：不支持全面禁止开放权重模型",
+        "category": "开放生态",
+        "heat": "中",
+        "signal": "官方先发",
+        "summary": "Dario Amodei 表示 Anthropic 从未主张按类别禁止开放权重模型，并认为不具危险能力的开放模型是公共产品；他同时支持限制先进芯片流向中国、打击工业化蒸馏，并要求足够强的开放与闭源模型接受强制安全测试。",
+        "why": "这份立场把“支持开放”与“控制前沿风险”拆成不同政策工具，也回应了开放权重争论中的保护主义指控。后续关键是能力阈值和强制测试能否形成可执行、跨国家的标准。",
+        "community": "TechCrunch 对该声明进行了直接报道，Latent Space 同期整理开放权重争论；本轮未返回直接针对声明的 Reddit、Hacker News 或 Digg 高互动证据，社区覆盖不足。",
+        "editorial": "Anthropic Research / News · TechCrunch AI · Latent Space",
+        "sources": [
+          "Anthropic",
+          "TechCrunch AI",
+          "Latent Space"
+        ],
+        "link": "https://www.anthropic.com/news/position-open-weights-models"
+      },
       {
         "title": "MoonshotAI 开源 MoonEP，尝试消除 MoE 专家并行负载失衡",
         "category": "基础设施",
@@ -28,9 +74,9 @@
         "category": "模型",
         "heat": "中",
         "signal": "社区先热",
-        "summary": "Dylan Castillo 用 7 个前沿模型生成 1008 张动物与交通工具组合 SVG，未发现模型对“鹈鹕骑自行车”这一知名提示存在显著专项优化；Hacker News 讨论达到 681 分和 242 条评论。",
-        "why": "模型发布越来越依赖排行榜和非正式评测，社区开始反向测试实验室是否在针对可见提示进行优化。该实验规模仍有限、依赖单一 LLM 评审，但把“benchmark contamination”争论推进到了可复核的数据与代码层。",
-        "community": "Hacker News 获 681 分、242 条评论。Reddit 和 Digg 深挖命中均为其他事件，YouTube无结果，网页 grounding 不可达，因此本主题仍是单平台高互动信号。",
+        "summary": "Dylan Castillo 用七个前沿模型生成 1008 张动物与交通工具组合 SVG，未发现模型对“鹈鹕骑自行车”这一知名提示存在显著专项优化；Hacker News 讨论达到 681 分和 242 条评论。",
+        "why": "模型发布越来越依赖排行榜和非正式评测，社区开始反向测试实验室是否在针对可见提示进行优化。该实验规模仍有限、依赖单一 LLM 评审，但把评测污染争论推进到了可复核的数据与代码层。",
+        "community": "Hacker News 获 681 分、242 条评论。Reddit 和 Digg 深挖命中均为其他事件，YouTube 无结果，网页 grounding 不可达，因此本主题仍是单平台高互动信号。",
         "editorial": "Dylan Castillo · Hacker News",
         "sources": [
           "Dylan Castillo",
