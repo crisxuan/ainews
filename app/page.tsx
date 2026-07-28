@@ -56,6 +56,11 @@ type BreakingFeed = {
 
 const breakingFeed = breakingData as BreakingFeed;
 
+const danceFrames = Array.from(
+  { length: 6 },
+  (_, index) => `/fengjiang-dance-frame-${String(index + 1).padStart(2, "0")}.webp`,
+);
+
 type Story = {
   id: string;
   rank: string;
@@ -407,14 +412,24 @@ export default function Home() {
               <span className="dance-note dance-note-one" aria-hidden="true">♪</span>
               <span className="dance-note dance-note-two" aria-hidden="true">♫</span>
               <span className="dance-note dance-note-star" aria-hidden="true">✦</span>
-              <img
-                src="/fengjiang-dance.png"
-                alt="风酱随着雷达节奏开心跳舞"
-                width={640}
-                height={960}
-                loading="lazy"
-                decoding="async"
-              />
+              <span
+                className="dance-frames"
+                role="img"
+                aria-label="风酱随着雷达节奏做出连续舞步"
+              >
+                {danceFrames.map((src, index) => (
+                  <img
+                    className={`dance-frame dance-frame-${index + 1}`}
+                    src={src}
+                    alt=""
+                    width={640}
+                    height={960}
+                    decoding="async"
+                    aria-hidden="true"
+                    key={src}
+                  />
+                ))}
+              </span>
               <i className="dance-shadow" aria-hidden="true" />
             </figure>
           </div>

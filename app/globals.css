@@ -313,18 +313,32 @@ h1, h2, h3, h4, .brand strong, .archive-stats strong, .live-metrics strong {
   pointer-events: none;
 }
 
-.live-dancer img {
+.dance-frames {
   position: absolute;
   z-index: 2;
+  inset: 0;
+  display: block;
+}
+
+.dance-frame {
+  position: absolute;
   left: 50%;
   bottom: -8px;
   width: 198px;
   height: auto;
+  opacity: 0;
   filter: drop-shadow(4px 7px 0 rgba(205, 180, 255, 0.34));
-  transform-origin: 50% 88%;
-  animation: fengjiang-dance 1.65s cubic-bezier(0.45, 0, 0.25, 1) infinite;
-  will-change: transform;
+  transform: translateX(-50%);
+  animation: dance-cel 1.8s steps(1, end) infinite;
+  will-change: opacity;
 }
+
+.dance-frame-1 { animation-delay: 0s; }
+.dance-frame-2 { animation-delay: -1.5s; }
+.dance-frame-3 { animation-delay: -1.2s; }
+.dance-frame-4 { animation-delay: -0.9s; }
+.dance-frame-5 { animation-delay: -0.6s; }
+.dance-frame-6 { animation-delay: -0.3s; }
 
 .dance-shadow {
   position: absolute;
@@ -337,7 +351,7 @@ h1, h2, h3, h4, .brand strong, .archive-stats strong, .live-metrics strong {
   background: rgba(74, 59, 61, 0.12);
   filter: blur(1px);
   transform: translateX(-50%);
-  animation: dance-shadow 1.65s ease-in-out infinite;
+  animation: dance-shadow 1.8s steps(6, end) infinite;
 }
 
 .dance-note {
@@ -355,16 +369,18 @@ h1, h2, h3, h4, .brand strong, .archive-stats strong, .live-metrics strong {
 .dance-note-two { top: 4px; right: 3px; color: #66b99d; animation-delay: -0.55s; }
 .dance-note-star { top: 88px; right: -7px; color: #e9b738; font-size: 17px; animation-delay: -1.1s; }
 
-@keyframes fengjiang-dance {
-  0%, 100% { transform: translateX(-50%) translateY(0) rotate(-3deg); }
-  25% { transform: translateX(-50%) translateY(-9px) rotate(2deg); }
-  50% { transform: translateX(-50%) translateY(1px) rotate(4deg); }
-  75% { transform: translateX(-50%) translateY(-7px) rotate(-2deg); }
+@keyframes dance-cel {
+  0%, 16.64% { opacity: 1; }
+  16.67%, 100% { opacity: 0; }
 }
 
 @keyframes dance-shadow {
-  0%, 50%, 100% { opacity: 0.65; transform: translateX(-50%) scaleX(1); }
-  25%, 75% { opacity: 0.34; transform: translateX(-50%) scaleX(0.76); }
+  0%, 100% { opacity: 0.58; transform: translateX(-50%) scaleX(0.86); }
+  16.67% { opacity: 0.72; transform: translateX(-50%) scaleX(1.08); }
+  33.33% { opacity: 0.25; transform: translateX(-50%) scaleX(0.58); }
+  50% { opacity: 0.54; transform: translateX(-50%) scaleX(0.84); }
+  66.67% { opacity: 0.78; transform: translateX(-50%) scaleX(1.12); }
+  83.33% { opacity: 0.6; transform: translateX(-50%) scaleX(0.92); }
 }
 
 @keyframes dance-note {
@@ -769,7 +785,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid rgba(255, 143, 155, 0
   .live-radar-heading > div:first-child { grid-column: 1 / -1; }
   .live-radar-note { grid-column: 1; padding-bottom: 18px; }
   .live-dancer { grid-column: 2; grid-row: 2; width: 190px; height: 238px; }
-  .live-dancer img { width: 174px; }
+  .dance-frame { width: 174px; }
   .live-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .archive-browser { grid-template-columns: 1fr; }
   .issue-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -806,7 +822,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid rgba(255, 143, 155, 0
   .live-radar-heading { grid-template-columns: 1fr; }
   .live-radar-heading > div:first-child, .live-radar-note, .live-dancer { grid-column: 1; }
   .live-dancer { grid-row: auto; width: 200px; height: 238px; margin-top: -8px; justify-self: center; }
-  .live-dancer img { width: 176px; }
+  .dance-frame { width: 176px; }
   .live-metrics { grid-template-columns: 1fr 1fr; gap: 8px; }
   .live-metrics > div { padding: 13px 10px; }
   .live-metrics > div > span { display: none; }
@@ -845,4 +861,6 @@ button:focus-visible, a:focus-visible { outline: 3px solid rgba(255, 143, 155, 0
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .dance-frame { animation: none !important; opacity: 0; }
+  .dance-frame-1 { opacity: 1; }
 }

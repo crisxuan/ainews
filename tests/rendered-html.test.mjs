@@ -38,8 +38,9 @@ test("server-renders the AI hotspot briefing", async () => {
   const latestBriefing = briefings[0];
   assert.match(html, /AI 风向标/);
   assert.match(html, /准实时雷达/);
-  assert.match(html, /fengjiang-dance\.png/);
-  assert.match(html, /风酱随着雷达节奏开心跳舞/);
+  assert.match(html, /fengjiang-dance-frame-01\.webp/);
+  assert.match(html, /fengjiang-dance-frame-06\.webp/);
+  assert.match(html, /风酱随着雷达节奏做出连续舞步/);
   if (breaking.items.length === 0) {
     assert.match(html, /当前没有达到推送阈值的突发热点/);
   } else {
