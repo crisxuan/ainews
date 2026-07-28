@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import briefingArchive from "../data/briefings.json";
 import breakingData from "../data/breaking.json";
 
@@ -303,6 +303,7 @@ export default function Home() {
   const [category, setCategory] = useState<(typeof filters)[number]>("全部");
   const [strongOnly, setStrongOnly] = useState(false);
   const [archiveIssueId, setArchiveIssueId] = useState(archiveIssues[0].id);
+  const briefingAnchorRef = useRef<HTMLDivElement>(null);
 
   const latestDate = archiveIssues[0].date;
   const currentIssue = archiveIssues.find(
@@ -325,6 +326,18 @@ export default function Home() {
 
   const selectedArchive =
     archiveIssues.find((issue) => issue.id === archiveIssueId) ?? archiveIssues[0];
+
+  const selectEdition = (nextEdition: "morning" | "evening") => {
+    setEdition(nextEdition);
+    window.requestAnimationFrame(() => {
+      briefingAnchorRef.current?.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+        block: "start",
+      });
+    });
+  };
 
   return (
     <main>
@@ -371,7 +384,7 @@ export default function Home() {
             type="button"
             className={edition === "morning" ? "selected" : ""}
             aria-pressed={edition === "morning"}
-            onClick={() => setEdition("morning")}
+            onClick={() => selectEdition("morning")}
           >
             <span aria-hidden="true">☀️</span>
             <strong>08:00</strong>
@@ -381,7 +394,7 @@ export default function Home() {
             type="button"
             className={edition === "evening" ? "selected" : ""}
             aria-pressed={edition === "evening"}
-            onClick={() => setEdition("evening")}
+            onClick={() => selectEdition("evening")}
           >
             <span aria-hidden="true">🌙</span>
             <strong>20:00</strong>
@@ -465,7 +478,7 @@ export default function Home() {
       </section>
 
       <section className="briefing-section" id="briefing">
-        <div className="section-heading">
+        <div className="section-heading briefing-anchor" ref={briefingAnchorRef}>
           <div>
             <p className="kicker">TODAY&apos;S PICKS <span>♡</span></p>
             <h2>{currentIssue ? `风酱捞到的 ${currentIssue.topics.length} 个热点` : "今晚要继续蹲的 3 件事"}</h2>

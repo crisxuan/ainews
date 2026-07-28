@@ -238,6 +238,8 @@ h1, h2, h3, h4, .brand strong, .archive-stats strong, .live-metrics strong {
   padding: 118px 0 110px;
 }
 
+.briefing-anchor { scroll-margin-top: 24px; }
+
 .section-heading {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
