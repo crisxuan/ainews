@@ -56,10 +56,21 @@ type BreakingFeed = {
 
 const breakingFeed = breakingData as BreakingFeed;
 
-const danceFrames = Array.from(
-  { length: 6 },
-  (_, index) => `/fengjiang-dance-frame-${String(index + 1).padStart(2, "0")}.webp`,
-);
+const danceFrames = [
+  "/fengjiang-dance-frame-01.webp",
+  "/fengjiang-dance-tween-01-02.webp",
+  "/fengjiang-dance-frame-02.webp",
+  "/fengjiang-dance-tween-02-03.webp",
+  "/fengjiang-dance-frame-03.webp",
+  "/fengjiang-dance-tween-03-04.webp",
+  "/fengjiang-dance-frame-04.webp",
+  "/fengjiang-dance-tween-04-05.webp",
+  "/fengjiang-dance-frame-05.webp",
+  "/fengjiang-dance-tween-05-06.webp",
+  "/fengjiang-dance-frame-06.webp",
+  "/fengjiang-dance-tween-06-01.webp",
+];
+const danceFrameIntervalSeconds = 0.15;
 
 type Story = {
   id: string;
@@ -426,6 +437,7 @@ export default function Home() {
                     height={960}
                     decoding="async"
                     aria-hidden="true"
+                    style={{ animationDelay: `${index * danceFrameIntervalSeconds}s` }}
                     key={src}
                   />
                 ))}
