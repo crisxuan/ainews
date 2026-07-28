@@ -1,5 +1,74 @@
 [
   {
+    "date": "2026-07-28",
+    "dateLabel": "07.28",
+    "weekday": "周二",
+    "edition": "morning",
+    "publishedAt": "08:00",
+    "title": "机器人控制与量子校准成为 AI 工程落地的新焦点",
+    "summary": "上午信号集中在 AI 向物理系统扩展：Enigma 尝试降低跨机器人控制门槛，NVIDIA 把上下文学习用于量子计算机自动校准，Meta 则推进辅助机器人应用。社区发现整体降级，本期多数主题仍处于官方先发阶段。",
+    "topics": [
+      {
+        "title": "Enigma 获 7000 万美元融资，尝试把机器人控制做成通用接口",
+        "category": "基础设施",
+        "heat": "中",
+        "signal": "已形成热点",
+        "summary": "TechCrunch 报道 Enigma 融资 7000 万美元，希望把机器人控制简化为接近日常设备调节的体验；Digg 同期聚类显示，其向公众开放 100 台可通过浏览器控制的实体机器人。",
+        "why": "机器人行业长期受硬件碎片化和控制接口复杂性制约。若统一控制层能够跨设备工作，具身智能的竞争重点可能从单机能力转向数据、远程操作和任务编排平台。",
+        "community": "Digg 返回 7 条帖子、6 位独立作者；Reddit 无结果，Hacker News 与 YouTube 深挖超时，社区覆盖仍不完整。",
+        "editorial": "TechCrunch AI",
+        "sources": [
+          "TechCrunch AI",
+          "Digg"
+        ],
+        "link": "https://techcrunch.com/2026/07/27/enigma-raises-70m-to-make-controlling-a-robot-as-easy-as-adjusting-the-volume"
+      },
+      {
+        "title": "NVIDIA Ising 用上下文学习自动化量子计算机校准",
+        "category": "基础设施",
+        "heat": "中",
+        "signal": "官方先发",
+        "summary": "NVIDIA Technical Blog 发布 Ising，主张通过增强的上下文学习实现量子计算机校准流程的全自动化。",
+        "why": "量子硬件的校准高度专业且耗时。把这一流程交给可适应设备状态的学习系统，可能降低设备维护成本，也体现 NVIDIA 正把 AI 基础设施能力延伸到量子计算控制层。",
+        "community": "深挖没有返回同一 Ising 事件的社区证据；Digg 命中均为其他 NVIDIA 话题，Hacker News 与 YouTube 超时，GitHub 受速率限制。",
+        "editorial": "NVIDIA Technical Blog",
+        "sources": [
+          "NVIDIA Technical Blog"
+        ],
+        "link": "https://developer.nvidia.com/blog/nvidia-ising-enables-fully-automated-quantum-computer-calibration-with-enhanced-in-context-learning"
+      },
+      {
+        "title": "Meta 与匹兹堡大学把 AI 模型用于辅助机器人",
+        "category": "开放生态",
+        "heat": "观察中",
+        "signal": "官方先发",
+        "summary": "Meta AI Blog 介绍其 AI 模型与匹兹堡大学辅助机器人研究的结合，目标是提升残障人士使用机器人完成日常任务的自主性。",
+        "why": "辅助机器人是具身 AI 最具实际价值、也最受可靠性约束的应用之一。该合作值得跟踪模型能力能否转化为稳定、安全且可负担的现实帮助。",
+        "community": "本主题未做单独深挖；本轮全局社区发现中 Hacker News 超时、Reddit 失败、Digg 无结果，因此只能标记为覆盖不足。",
+        "editorial": "Meta AI Blog",
+        "sources": [
+          "Meta AI Blog"
+        ],
+        "link": "https://ai.meta.com/blog/assistive-robotics-university-of-pittsburgh-sam-dino"
+      },
+      {
+        "title": "Skill Self-Play 让技能与任务协同自我进化",
+        "category": "模型",
+        "heat": "观察中",
+        "signal": "单点信号",
+        "summary": "Hugging Face Papers 收录 Skill Self-Play 研究，提出让技能与训练任务共同演化，以推动大模型能力边界。",
+        "why": "相比固定任务上的自我博弈，共同演化技能与任务更接近持续课程学习。但当前只有论文入口，尚需代码、复现实验和外部评测验证其泛化收益。",
+        "community": "深挖返回的唯一 Digg 条目是不同的棋类 PPO 自我博弈研究，未计入本主题；Hacker News 与 YouTube 超时，Reddit 无结果，GitHub 受速率限制。",
+        "editorial": "Hugging Face Papers",
+        "sources": [
+          "Hugging Face Papers"
+        ],
+        "link": "https://huggingface.co/papers/2607.22529"
+      }
+    ],
+    "id": "2026-07-28-morning"
+  },
+  {
     "date": "2026-07-27",
     "dateLabel": "07.27",
     "weekday": "周一",
