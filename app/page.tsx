@@ -56,22 +56,6 @@ type BreakingFeed = {
 
 const breakingFeed = breakingData as BreakingFeed;
 
-const danceFrames = [
-  "/fengjiang-dance-frame-01.webp",
-  "/fengjiang-dance-tween-01-02.webp",
-  "/fengjiang-dance-frame-02.webp",
-  "/fengjiang-dance-tween-02-03.webp",
-  "/fengjiang-dance-frame-03.webp",
-  "/fengjiang-dance-tween-03-04.webp",
-  "/fengjiang-dance-frame-04.webp",
-  "/fengjiang-dance-tween-04-05.webp",
-  "/fengjiang-dance-frame-05.webp",
-  "/fengjiang-dance-tween-05-06.webp",
-  "/fengjiang-dance-frame-06.webp",
-  "/fengjiang-dance-tween-06-01.webp",
-];
-const danceFrameIntervalSeconds = 0.15;
-
 type Story = {
   id: string;
   rank: string;
@@ -423,25 +407,20 @@ export default function Home() {
               <span className="dance-note dance-note-one" aria-hidden="true">♪</span>
               <span className="dance-note dance-note-two" aria-hidden="true">♫</span>
               <span className="dance-note dance-note-star" aria-hidden="true">✦</span>
-              <span
-                className="dance-frames"
-                role="img"
-                aria-label="风酱随着雷达节奏做出连续舞步"
-              >
-                {danceFrames.map((src, index) => (
-                  <img
-                    className={`dance-frame dance-frame-${index + 1}`}
-                    src={src}
-                    alt=""
-                    width={640}
-                    height={960}
-                    decoding="async"
-                    aria-hidden="true"
-                    style={{ animationDelay: `${index * danceFrameIntervalSeconds}s` }}
-                    key={src}
-                  />
-                ))}
-              </span>
+              <picture className="dance-frames">
+                <source
+                  media="(prefers-reduced-motion: reduce)"
+                  srcSet="/fengjiang-performance-still.webp"
+                />
+                <img
+                  className="dance-frame"
+                  src="/fengjiang-performance.webp"
+                  alt="风酱先挥手打招呼，开心地笑起来，再跳一小段舞"
+                  width={192}
+                  height={208}
+                  decoding="async"
+                />
+              </picture>
               <i className="dance-shadow" aria-hidden="true" />
             </figure>
           </div>
