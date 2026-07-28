@@ -3,6 +3,48 @@
     "date": "2026-07-28",
     "dateLabel": "07.28",
     "weekday": "周二",
+    "edition": "evening",
+    "publishedAt": "20:00",
+    "title": "开放 MoE 基础设施升温，非正式模型评测接受实证检验",
+    "summary": "晚间没有新的白名单官方文章形成热点，较扎实的信号来自开放技术生态与 Hacker News。MoonshotAI 的 MoonEP 开源项目快速积累开发者关注，pelicanmaxxing 实验则用 1008 次生成检验模型是否针对知名非正式评测做了专项优化。",
+    "topics": [
+      {
+        "title": "MoonshotAI 开源 MoonEP，尝试消除 MoE 专家并行负载失衡",
+        "category": "基础设施",
+        "heat": "中",
+        "signal": "官方先发",
+        "summary": "MoonshotAI 在 GitHub 以 MIT 许可证发布 MoonEP，通过动态冗余专家、在线规划、零拷贝和静态形状，让不同 rank 接收固定数量的 token；项目发布后已获得 714 个星标和 70 个分叉。",
+        "why": "大规模 MoE 训练的性能常被路由偏斜、跨卡通信和动态内存形状拖累。MoonEP 如果能在更多硬件和训练框架中复现官方结果，可能成为开放模型训练栈的重要通信组件。",
+        "community": "GitHub 官方仓库当前有 714 个星标、70 个分叉；Digg 返回 6 条相关帖子、6 位作者。Reddit 与 Hacker News 没有返回同一发布的可靠讨论，YouTube 无结果，网页 grounding 不可达。",
+        "editorial": "MoonshotAI GitHub · Digg",
+        "sources": [
+          "MoonshotAI GitHub",
+          "Digg"
+        ],
+        "link": "https://github.com/MoonshotAI/MoonEP"
+      },
+      {
+        "title": "“AI 实验室在 pelicanmaxxing 吗”引发高互动实证讨论",
+        "category": "模型",
+        "heat": "中",
+        "signal": "社区先热",
+        "summary": "Dylan Castillo 用 7 个前沿模型生成 1008 张动物与交通工具组合 SVG，未发现模型对“鹈鹕骑自行车”这一知名提示存在显著专项优化；Hacker News 讨论达到 681 分和 242 条评论。",
+        "why": "模型发布越来越依赖排行榜和非正式评测，社区开始反向测试实验室是否在针对可见提示进行优化。该实验规模仍有限、依赖单一 LLM 评审，但把“benchmark contamination”争论推进到了可复核的数据与代码层。",
+        "community": "Hacker News 获 681 分、242 条评论。Reddit 和 Digg 深挖命中均为其他事件，YouTube无结果，网页 grounding 不可达，因此本主题仍是单平台高互动信号。",
+        "editorial": "Dylan Castillo · Hacker News",
+        "sources": [
+          "Dylan Castillo",
+          "Hacker News"
+        ],
+        "link": "https://dylancastillo.co/posts/pelicanmaxxing.html"
+      }
+    ],
+    "id": "2026-07-28-evening"
+  },
+  {
+    "date": "2026-07-28",
+    "dateLabel": "07.28",
+    "weekday": "周二",
     "edition": "morning",
     "publishedAt": "08:00",
     "title": "机器人控制与量子校准成为 AI 工程落地的新焦点",
