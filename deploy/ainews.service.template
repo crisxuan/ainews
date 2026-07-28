@@ -1,0 +1,22 @@
+[Unit]
+Description=AI Fengxiang news radar
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=__APP_USER__
+Group=__APP_USER__
+WorkingDirectory=__APP_DIR__
+EnvironmentFile=-/etc/ainews/ainews.env
+ExecStart=__NODE_PATH__ __APP_DIR__/dist/standalone/server.js
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

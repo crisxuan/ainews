@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useMemo, useState } from "react";
 import briefingArchive from "../data/briefings.json";
 import breakingData from "../data/breaking.json";
@@ -349,13 +348,14 @@ export default function Home() {
       <section className="hero" id="top">
         <span className="hero-tape hero-tape-left" aria-hidden="true" />
         <span className="hero-tape hero-tape-right" aria-hidden="true" />
-        <Image
+        <img
           className="hero-art"
           src="/og.png"
           alt="AI 风向标动漫角色风酱，在云朵与信号波之间捕捉热点"
           width={1672}
           height={941}
-          priority
+          decoding="async"
+          fetchPriority="high"
         />
       </section>
 
