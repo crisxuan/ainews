@@ -403,6 +403,20 @@ export default function Home() {
                 整点轻扫，命中阈值才启动 last30days 深挖并推送。没有足够证据时，风酱会安静观察，不拿半成品打扰你。
               </p>
             </div>
+            <figure className="live-dancer">
+              <span className="dance-note dance-note-one" aria-hidden="true">♪</span>
+              <span className="dance-note dance-note-two" aria-hidden="true">♫</span>
+              <span className="dance-note dance-note-star" aria-hidden="true">✦</span>
+              <img
+                src="/fengjiang-dance.png"
+                alt="风酱随着雷达节奏开心跳舞"
+                width={640}
+                height={960}
+                loading="lazy"
+                decoding="async"
+              />
+              <i className="dance-shadow" aria-hidden="true" />
+            </figure>
           </div>
 
           <div className="live-metrics" aria-label="准实时监测规则">
