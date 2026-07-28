@@ -1,8 +1,25 @@
 {
-  "updatedAt": "2026-07-28T18:25:12.021Z",
+  "updatedAt": "2026-07-28T20:27:40.981Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
+    {
+      "id": "pacing-frontier-ai-statement",
+      "detectedAt": "2026-07-29T04:27:10+08:00",
+      "title": "逾 1100 名 AI 从业者联署，呼吁建立前沿模型减速机制",
+      "category": "社会情绪",
+      "heat": "高",
+      "signal": "突发热点",
+      "summary": "OpenAI、Anthropic、Google、Meta 等机构的员工联署致信美国政府，要求推动国际协调机制，以便在自动化 AI 研发失控风险上升时有能力放慢前沿模型开发。The Verge 报道签署者已超过 1100 人，TechCrunch 同期报道 Sam Altman 在近期安全事件后转向支持减速。",
+      "why": "这是从行业内部发出的跨公司治理诉求，讨论重点已从原则性安全承诺转向政府能否建立可执行的协调和减速工具。近期安全事件让这一议题从长期风险迅速转为现实政策压力。",
+      "sourceCount": 3,
+      "sources": [
+        "The Verge AI",
+        "TechCrunch AI",
+        "Digg"
+      ],
+      "link": "https://www.pacingthefrontier.com/"
+    },
     {
       "id": "chatgpt-work-enterprise-sales",
       "detectedAt": "2026-07-29T02:24:28+08:00",
