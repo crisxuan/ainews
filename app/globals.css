@@ -508,6 +508,15 @@ h1, h2, h3, h4, .brand strong, .archive-stats strong, .live-metrics strong {
 .signal-note { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .signal-note p { margin: 0; padding: 12px; border: 1.5px dashed color-mix(in srgb, var(--accent) 55%, var(--cocoa)); border-radius: 13px; background: var(--accent-soft); color: var(--muted); font-size: 10px; line-height: 1.55; }
 .signal-note span { display: block; margin-bottom: 4px; color: var(--cocoa); font-weight: 900; }
+.discussion-links { margin-top: 13px; padding: 12px 14px; border: 1.5px solid color-mix(in srgb, var(--accent) 45%, var(--line)); border-radius: 13px; background: color-mix(in srgb, var(--accent-soft) 62%, white); }
+.discussion-links > strong { display: block; margin-bottom: 8px; color: var(--cocoa); font-size: 9px; }
+.discussion-links > div { display: flex; flex-wrap: wrap; gap: 7px; }
+.discussion-links a { display: inline-grid; grid-template-columns: auto auto auto; align-items: center; gap: 6px; min-height: 30px; padding: 6px 9px; border: 1.5px solid color-mix(in srgb, var(--accent) 55%, var(--cocoa)); border-radius: 999px; background: var(--paper); color: var(--cocoa); font-size: 9px; font-weight: 1000; transition: 150ms ease; }
+.discussion-links a:hover { color: var(--accent); transform: translateY(-1px); box-shadow: 2px 2px 0 var(--accent-soft); }
+.discussion-links a small { color: var(--muted); font-size: 8px; font-weight: 800; }
+.discussion-links a i { color: var(--accent); font-style: normal; }
+.discussion-links.compact { padding: 10px 11px; }
+.discussion-links.compact > strong { margin-bottom: 6px; }
 
 .mascot-note { display: flex; gap: 9px; margin-top: 12px; padding: 13px 15px; border-radius: 5px 14px 14px 14px; background: #fff7dc; }
 .mascot-note > span { color: var(--pink); }
@@ -696,13 +705,15 @@ h1, h2, h3, h4, .brand strong, .archive-stats strong, .live-metrics strong {
 .archive-summary { position: relative; max-width: 760px; margin: 0 0 24px; color: var(--muted); font-size: 12px; line-height: 1.75; }
 
 .archive-topics { position: relative; display: flex; flex-direction: column; }
-.archive-topics > a { display: grid; grid-template-columns: 42px 1fr auto; gap: 13px; align-items: center; padding: 17px 3px; border-top: 1.5px dashed var(--line); }
-.archive-topics > a:hover h4 { color: var(--pink); }
+.archive-topic-row { padding: 17px 3px; border-top: 1.5px dashed var(--line); }
+.archive-topic-source { display: grid; grid-template-columns: 42px 1fr auto; gap: 13px; align-items: center; }
+.archive-topic-source:hover h4 { color: var(--pink); }
 .archive-topic-number { width: 35px; height: 35px; display: grid; place-items: center; border: 1.5px solid var(--cocoa); border-radius: 50%; background: var(--mint-soft); color: #55aa8d; font-size: 10px; font-weight: 1000; }
 .archive-topic-meta { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 5px; color: var(--muted); font-size: 8px; font-weight: 900; }
 .archive-topic-meta span:nth-child(2) { color: var(--pink); letter-spacing: 0.08em; }
 .archive-topics h4 { margin: 0; font-size: 14px; line-height: 1.5; transition: color 150ms ease; }
-.archive-arrow { color: var(--pink); font-size: 18px; }
+.archive-source-label { color: var(--pink); font-size: 9px; font-weight: 1000; white-space: nowrap; }
+.archive-topic-row > .discussion-links { margin: 10px 0 0 55px; }
 .archive-paper-footer { position: relative; min-height: 0; margin-top: 14px; padding: 18px 0 0; display: flex; justify-content: space-between; gap: 20px; border-top: 2px dashed var(--line); background: transparent; color: var(--muted); }
 .archive-paper-footer span { font-size: 8px; font-weight: 900; letter-spacing: 0.06em; }
 
@@ -836,8 +847,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid rgba(255, 143, 155, 0
   .archive-paper { min-height: 0; padding: 34px 23px 24px; }
   .archive-clip { right: 25px; width: 42px; height: 57px; }
   .archive-paper > h3 { font-size: 25px; }
-  .archive-topics > a { grid-template-columns: 35px 1fr auto; gap: 9px; }
+  .archive-topic-source { grid-template-columns: 35px 1fr; gap: 9px; }
   .archive-topic-number { width: 31px; height: 31px; }
+  .archive-source-label { grid-column: 2; justify-self: start; }
+  .archive-topic-row > .discussion-links { margin-left: 44px; }
   .archive-paper-footer { align-items: flex-start; flex-direction: column; }
   .radar-section { padding-top: 76px; padding-bottom: 76px; }
   .coverage-card { padding: 26px 20px; }

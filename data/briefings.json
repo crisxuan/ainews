@@ -82,6 +82,13 @@
           "Dylan Castillo",
           "Hacker News"
         ],
+        "discussionLinks": [
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=49010129",
+            "engagement": "680 分 · 242 评论"
+          }
+        ],
         "link": "https://dylancastillo.co/posts/pelicanmaxxing.html"
       }
     ],
@@ -248,6 +255,19 @@
           "TechCrunch",
           "GitHub"
         ],
+        "discussionLinks": [
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=48997548",
+            "engagement": "1631 分 · 1158 评论"
+          },
+          {
+            "platform": "Hacker News",
+            "title": "Simon Willison 的技术复盘讨论",
+            "url": "https://news.ycombinator.com/item?id=49015639",
+            "engagement": "586 分 · 448 评论"
+          }
+        ],
         "link": "https://openai.com/index/hugging-face-model-evaluation-security-incident/"
       },
       {
@@ -281,6 +301,13 @@
           "Futurism",
           "The Next Web",
           "Finterm"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=49020999",
+            "engagement": "685 分 · 375 评论"
+          }
         ],
         "link": "https://futurism.com/artificial-intelligence/ai-companies-hide-debt-off-balance-sheet"
       }

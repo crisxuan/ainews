@@ -1,5 +1,6 @@
 import { readFile, rename, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { upsertBreakingFeed } from "./database.mjs";
 
 const projectRoot = resolve(import.meta.dirname, "..");
 const feedPath = resolve(projectRoot, "data/breaking.json");
@@ -17,6 +18,25 @@ function normalizeTitle(value) {
   return value.toLowerCase().replace(/[\s\p{P}\p{S}]+/gu, "");
 }
 
+function validateDiscussionLinks(value) {
+  if (value === undefined) return null;
+  if (!Array.isArray(value) || value.length > 4) {
+    return "discussionLinks 必须是最多 4 条的数组";
+  }
+  for (const link of value) {
+    if (!link?.platform || !link?.url) {
+      return "每条 discussionLinks 都需要 platform 和 url";
+    }
+    try {
+      const url = new URL(link.url);
+      if (!["http:", "https:"].includes(url.protocol)) throw new Error("invalid protocol");
+    } catch {
+      return "discussionLinks.url 必须是有效的 HTTP(S) 链接";
+    }
+  }
+  return null;
+}
+
 function validateItem(item) {
   if (!item || typeof item !== "object") return "突发热点必须是 JSON 对象";
   if (!item.id || !item.detectedAt || !item.title || !item.summary || !item.why || !item.link) {
@@ -28,6 +48,8 @@ function validateItem(item) {
   if (!allowedSignals.has(item.signal)) return "signal 必须是突发热点、快速升温或重要更新";
   if (!Number.isInteger(item.sourceCount) || item.sourceCount < 2) return "sourceCount 必须至少为 2";
   if (!Array.isArray(item.sources) || item.sources.length < 2) return "sources 至少需要 2 个独立来源";
+  const discussionError = validateDiscussionLinks(item.discussionLinks);
+  if (discussionError) return discussionError;
   return null;
 }
 
@@ -41,18 +63,24 @@ if (process.argv.includes("--help")) {
     const activeItems = feed.items.filter(
       (item) => Date.now() - Date.parse(item.detectedAt) <= retentionMs,
     );
+    const nextFeed = {
+      ...feed,
+      updatedAt: new Date().toISOString(),
+      items: activeItems,
+    };
     if (activeItems.length === feed.items.length) {
       console.log("没有过期的准实时热点，网站数据未变化。");
     } else {
       const temporaryPath = `${feedPath}.tmp`;
       await writeFile(
         temporaryPath,
-        `${JSON.stringify({ ...feed, updatedAt: new Date().toISOString(), items: activeItems }, null, 2)}\n`,
+        `${JSON.stringify(nextFeed, null, 2)}\n`,
         "utf8",
       );
       await rename(temporaryPath, feedPath);
       console.log(`已清理 ${feed.items.length - activeItems.length} 条过期热点。`);
     }
+    await upsertBreakingFeed(nextFeed);
   } catch (error) {
     fail(error instanceof Error ? error.message : String(error));
   }
@@ -92,7 +120,8 @@ if (process.argv.includes("--help")) {
         activeItems.splice(duplicateIndex, 1);
       }
 
-      const { materialUpdate: _materialUpdate, ...publicItem } = item;
+      const publicItem = { ...item };
+      delete publicItem.materialUpdate;
       activeItems.push(publicItem);
       accepted += 1;
     }
@@ -109,7 +138,10 @@ if (process.argv.includes("--help")) {
       const temporaryPath = `${feedPath}.tmp`;
       await writeFile(temporaryPath, `${JSON.stringify(nextFeed, null, 2)}\n`, "utf8");
       await rename(temporaryPath, feedPath);
-      console.log(`已更新 ${accepted} 条准实时热点，当前保留 ${nextFeed.items.length} 条。`);
+      const databaseUpdated = await upsertBreakingFeed(nextFeed);
+      console.log(
+        `已更新 ${accepted} 条准实时热点，当前保留 ${nextFeed.items.length} 条${databaseUpdated ? "，并同步到 Neon" : ""}。`,
+      );
     }
   } catch (error) {
     fail(error instanceof Error ? error.message : String(error));

@@ -9,12 +9,16 @@
 
 网站本身负责热点数据的校验、归档和展示：
 
-- `data/breaking.json`：48 小时内达到阈值的突发热点。
-- `data/briefings.json`：08:00、20:00 生成的早晚深度简报及历史归档。
-- `scripts/update-breaking.mjs`：校验来源数、去重、冷却和写入突发热点。
-- `scripts/archive-briefing.mjs`：校验并归档完整简报。
+- Neon PostgreSQL：生产环境的主数据源，保存准实时热点、早晚刊与历史档案。
+- `/api/feed`：读取数据库，页面每 60 秒刷新一次；数据库不可用时自动回退到 JSON。
+- `data/breaking.json`：48 小时内突发热点的版本化快照。
+- `data/briefings.json`：08:00、20:00 深度简报与历史归档的版本化快照。
+- `scripts/update-breaking.mjs`：校验来源数、讨论链接、去重和冷却，再双写 JSON 与数据库。
+- `scripts/archive-briefing.mjs`：校验并双写完整简报。
 
 当前生产环境的热点发现由外部自动任务完成多来源扫描与深度核验。
+形成热点时可通过 `discussionLinks` 保存 Hacker News、Reddit 等社区的
+原始讨论串，页面会将它们作为“讨论现场”展示；`link` 仍然指向原始报道。
 部署本仓库可以得到完整网站；如果需要自动生成内容，还需要在自己的
 自动化环境中调用上述两个数据写入脚本。
 
@@ -29,6 +33,10 @@
 git clone https://github.com/crisxuan/ainews.git
 cd ainews
 npm ci
+cp .env.example .env.local
+# 编辑 .env.local，填写 DATABASE_URL
+npm run db:migrate
+npm run db:seed
 npm run dev
 ```
 
@@ -143,7 +151,30 @@ node scripts/update-breaking.mjs --prune
 node scripts/archive-briefing.mjs ./briefing.json
 ```
 
-写入数据后执行 `npm test`，再使用对应平台重新部署。
+写入数据后执行 `npm test`。配置数据库后，内容更新无需重新部署。
+
+配置 `DATABASE_URL` 后，两个写入脚本会同时更新 Neon，线上页面会在
+60 秒内读到新数据，纯内容更新不需要重新部署。Git 中的 JSON 快照用于
+审计、备份和数据库故障时回退。
+
+## 数据库
+
+项目使用 Neon PostgreSQL 与 Drizzle ORM。首次连接一个空数据库时运行：
+
+```bash
+npm run db:migrate
+npm run db:seed
+```
+
+修改 `db/schema.ts` 后生成并应用迁移：
+
+```bash
+npm run db:generate
+npm run db:migrate
+```
+
+不要提交 `.env.local`。Vercel 部署时请在项目的 Environment Variables
+中设置加密的 `DATABASE_URL`。
 
 ## 其他部署方式
 
@@ -157,7 +188,9 @@ node scripts/archive-briefing.mjs ./briefing.json
 ```text
 app/                 页面与样式
 data/                突发热点和历史简报
+db/                  Neon PostgreSQL 表结构与查询
 deploy/              systemd、Nginx 配置模板
+drizzle/              数据库迁移
 public/              静态资源
 scripts/             数据写入、安装和更新脚本
 tests/               生产构建渲染测试

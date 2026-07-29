@@ -1,5 +1,6 @@
 import { readFile, rename, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { upsertBriefing } from "./database.mjs";
 
 const projectRoot = resolve(import.meta.dirname, "..");
 const archivePath = resolve(projectRoot, "data/briefings.json");
@@ -7,6 +8,25 @@ const archivePath = resolve(projectRoot, "data/briefings.json");
 function fail(message) {
   console.error(message);
   process.exitCode = 1;
+}
+
+function validateDiscussionLinks(value) {
+  if (value === undefined) return null;
+  if (!Array.isArray(value) || value.length > 4) {
+    return "discussionLinks 必须是最多 4 条的数组";
+  }
+  for (const link of value) {
+    if (!link?.platform || !link?.url) {
+      return "每条 discussionLinks 都需要 platform 和 url";
+    }
+    try {
+      const url = new URL(link.url);
+      if (!["http:", "https:"].includes(url.protocol)) throw new Error("invalid protocol");
+    } catch {
+      return "discussionLinks.url 必须是有效的 HTTP(S) 链接";
+    }
+  }
+  return null;
 }
 
 function validateIssue(issue) {
@@ -22,6 +42,8 @@ function validateIssue(issue) {
     if (!topic.summary || !topic.why || !topic.community || !topic.editorial || !Array.isArray(topic.sources)) {
       return "每条 topic 都需要 summary、why、community、editorial 和 sources";
     }
+    const discussionError = validateDiscussionLinks(topic.discussionLinks);
+    if (discussionError) return `${topic.title}: ${discussionError}`;
   }
   return null;
 }
@@ -52,7 +74,10 @@ if (process.argv.includes("--help")) {
     const temporaryPath = `${archivePath}.tmp`;
     await writeFile(temporaryPath, `${JSON.stringify(next, null, 2)}\n`, "utf8");
     await rename(temporaryPath, archivePath);
-    console.log(`已归档 ${issue.id}，共 ${next.length} 期。`);
+    const databaseUpdated = await upsertBriefing(issue);
+    console.log(
+      `已归档 ${issue.id}，共 ${next.length} 期${databaseUpdated ? "，并同步到 Neon" : ""}。`,
+    );
   } catch (error) {
     fail(error instanceof Error ? error.message : String(error));
   }

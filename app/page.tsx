@@ -1,10 +1,17 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import briefingArchive from "../data/briefings.json";
 import breakingData from "../data/breaking.json";
 
 type Category = "模型" | "开放生态" | "基础设施" | "社会情绪";
+
+type DiscussionLink = {
+  platform: string;
+  url: string;
+  title?: string;
+  engagement?: string;
+};
 
 type ArchiveTopic = {
   title: string;
@@ -17,6 +24,7 @@ type ArchiveTopic = {
   community?: string;
   editorial?: string;
   sources?: string[];
+  discussionLinks?: DiscussionLink[];
 };
 
 type ArchiveIssue = {
@@ -31,7 +39,7 @@ type ArchiveIssue = {
   topics: ArchiveTopic[];
 };
 
-const archiveIssues = briefingArchive as ArchiveIssue[];
+const fallbackArchiveIssues = briefingArchive as ArchiveIssue[];
 
 type BreakingItem = {
   id: string;
@@ -44,6 +52,7 @@ type BreakingItem = {
   why: string;
   sourceCount: number;
   sources: string[];
+  discussionLinks?: DiscussionLink[];
   link: string;
 };
 
@@ -54,7 +63,7 @@ type BreakingFeed = {
   items: BreakingItem[];
 };
 
-const breakingFeed = breakingData as BreakingFeed;
+const fallbackBreakingFeed = breakingData as BreakingFeed;
 
 type Story = {
   id: string;
@@ -70,6 +79,7 @@ type Story = {
   community: string;
   editorial: string;
   sources: string[];
+  discussionLinks: DiscussionLink[];
   link: string;
   linkLabel: string;
   accent: "pink" | "mint" | "yellow" | "blue";
@@ -91,6 +101,18 @@ const stories: Story[] = [
     community: "17 个 Reddit 帖 · 10,275 赞 · 1,943 评论",
     editorial: "量子位 · Latent Space · Anthropic",
     sources: ["Reddit", "HN", "GitHub", "官方"],
+    discussionLinks: [
+      {
+        platform: "Hacker News",
+        url: "https://news.ycombinator.com/item?id=49038433",
+        engagement: "1778 分 · 1330 评论",
+      },
+      {
+        platform: "Reddit",
+        url: "https://www.reddit.com/r/ClaudeAI/comments/1v5h6o9/introducing_claude_opus_5/",
+        engagement: "2848 赞 · 634 评论",
+      },
+    ],
     link: "https://www.anthropic.com/news/claude-opus-5",
     linkLabel: "去看原始信号",
     accent: "pink",
@@ -110,6 +132,13 @@ const stories: Story[] = [
     community: "21 个 Reddit 帖 · 12,418 赞 · 2,307 评论",
     editorial: "Washington Post · HN · BAAI Hub",
     sources: ["Reddit", "HN", "GitHub", "媒体"],
+    discussionLinks: [
+      {
+        platform: "Hacker News",
+        url: "https://news.ycombinator.com/item?id=49023016",
+        engagement: "1060 分 · 870 评论",
+      },
+    ],
     link:
       "https://www.washingtonpost.com/technology/2026/07/24/top-tech-firms-urge-us-government-not-limit-open-ai-models/",
     linkLabel: "去看争议全貌",
@@ -130,6 +159,13 @@ const stories: Story[] = [
     community: "HN 685 分 · 375 评论",
     editorial: "TechCrunch · Bank of England · Reuters",
     sources: ["HN", "监管", "媒体"],
+    discussionLinks: [
+      {
+        platform: "Hacker News",
+        url: "https://news.ycombinator.com/item?id=49020999",
+        engagement: "685 分 · 375 评论",
+      },
+    ],
     link: "https://www.bankofengland.co.uk/financial-stability-report/2026/july-2026",
     linkLabel: "去看风险报告",
     accent: "yellow",
@@ -149,6 +185,7 @@ const stories: Story[] = [
     community: "Instagram 2,000+ 赞 · 220 次分享",
     editorial: "TechCrunch · Free Library",
     sources: ["Instagram", "媒体", "机构"],
+    discussionLinks: [],
     link: "https://tech.yahoo.com/ai/articles/librarians-hosting-viral-avoiding-ai-160000074.html",
     linkLabel: "去看趋势报道",
     accent: "blue",
@@ -198,6 +235,7 @@ function issueToStories(issue: ArchiveIssue): Story[] {
       community: topic.community ?? `${topic.signal} · 热度${topic.heat}`,
       editorial: topic.editorial ?? "点击查看本主题的原始来源",
       sources: topic.sources ?? [topic.category, "原始来源"],
+      discussionLinks: topic.discussionLinks ?? [],
       link: topic.link,
       linkLabel: "去看原始信号",
       accent: categoryAccent[topic.category],
@@ -238,6 +276,37 @@ function HeatMeter({ value }: { value: number }) {
   );
 }
 
+function DiscussionLinks({
+  links,
+  compact = false,
+}: {
+  links: DiscussionLink[];
+  compact?: boolean;
+}) {
+  if (!links.length) return null;
+
+  return (
+    <div className={`discussion-links${compact ? " compact" : ""}`}>
+      <strong>💬 讨论现场</strong>
+      <div>
+        {links.map((link) => (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noreferrer"
+            key={`${link.platform}-${link.url}`}
+            title={link.title}
+          >
+            <span>{link.platform}</span>
+            {link.engagement ? <small>{link.engagement}</small> : null}
+            <i aria-hidden="true">↗</i>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function StoryCard({ story }: { story: Story }) {
   return (
     <article className={`story-card accent-${story.accent}`}>
@@ -267,6 +336,8 @@ function StoryCard({ story }: { story: Story }) {
           {story.editorial}
         </p>
       </div>
+
+      <DiscussionLinks links={story.discussionLinks} />
 
       <div className="mascot-note">
         <span aria-hidden="true">✦</span>
@@ -299,11 +370,46 @@ function formatShanghaiTime(value: string) {
 }
 
 export default function Home() {
-  const [edition, setEdition] = useState<"morning" | "evening">(archiveIssues[0].edition);
+  const [archiveIssues, setArchiveIssues] = useState(fallbackArchiveIssues);
+  const [breakingFeed, setBreakingFeed] = useState(fallbackBreakingFeed);
+  const [edition, setEdition] = useState<"morning" | "evening">(
+    fallbackArchiveIssues[0].edition,
+  );
   const [category, setCategory] = useState<(typeof filters)[number]>("全部");
   const [strongOnly, setStrongOnly] = useState(false);
-  const [archiveIssueId, setArchiveIssueId] = useState(archiveIssues[0].id);
+  const [archiveIssueId, setArchiveIssueId] = useState(fallbackArchiveIssues[0].id);
   const briefingAnchorRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let active = true;
+
+    async function refreshFeed() {
+      try {
+        const response = await fetch("/api/feed", { cache: "no-store" });
+        if (!response.ok) return;
+        const payload = (await response.json()) as {
+          archiveIssues?: ArchiveIssue[];
+          breakingFeed?: BreakingFeed;
+        };
+        if (!active) return;
+        if (payload.archiveIssues?.length) {
+          setArchiveIssues(payload.archiveIssues);
+        }
+        if (payload.breakingFeed) {
+          setBreakingFeed(payload.breakingFeed);
+        }
+      } catch {
+        // Keep the bundled snapshot when the live database is temporarily unavailable.
+      }
+    }
+
+    void refreshFeed();
+    const timer = window.setInterval(refreshFeed, 60_000);
+    return () => {
+      active = false;
+      window.clearInterval(timer);
+    };
+  }, []);
 
   const latestDate = archiveIssues[0].date;
   const currentIssue = archiveIssues.find(
@@ -457,6 +563,7 @@ export default function Home() {
                   <h3>{item.title}</h3>
                   <p>{item.summary}</p>
                   <div className="breaking-judgement"><strong>风酱速判</strong>{item.why}</div>
+                  <DiscussionLinks links={item.discussionLinks ?? []} compact />
                   <footer>
                     <div>{item.sources.map((source) => <span key={source}>#{source}</span>)}</div>
                     <a href={item.link} target="_blank" rel="noreferrer">看原始信号 ↗</a>
@@ -594,18 +701,21 @@ export default function Home() {
             <p className="archive-summary">{selectedArchive.summary}</p>
             <div className="archive-topics">
               {selectedArchive.topics.map((topic, index) => (
-                <a href={topic.link} target="_blank" rel="noreferrer" key={`${selectedArchive.id}-${topic.title}`}>
-                  <span className="archive-topic-number">{String(index + 1).padStart(2, "0")}</span>
-                  <div>
-                    <div className="archive-topic-meta">
-                      <span>#{topic.category}</span>
-                      <span>{topic.heat === "高" ? "♥♥♥" : topic.heat === "中" ? "♥♥♡" : "♥♡♡"}</span>
-                      <span>{topic.signal}</span>
+                <div className="archive-topic-row" key={`${selectedArchive.id}-${topic.title}`}>
+                  <a className="archive-topic-source" href={topic.link} target="_blank" rel="noreferrer">
+                    <span className="archive-topic-number">{String(index + 1).padStart(2, "0")}</span>
+                    <div>
+                      <div className="archive-topic-meta">
+                        <span>#{topic.category}</span>
+                        <span>{topic.heat === "高" ? "♥♥♥" : topic.heat === "中" ? "♥♥♡" : "♥♡♡"}</span>
+                        <span>{topic.signal}</span>
+                      </div>
+                      <h4>{topic.title}</h4>
                     </div>
-                    <h4>{topic.title}</h4>
-                  </div>
-                  <span className="archive-arrow" aria-hidden="true">↗</span>
-                </a>
+                    <span className="archive-source-label">原始报道 ↗</span>
+                  </a>
+                  <DiscussionLinks links={topic.discussionLinks ?? []} compact />
+                </div>
               ))}
             </div>
             <footer className="archive-paper-footer">

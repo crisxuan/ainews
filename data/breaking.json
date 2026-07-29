@@ -52,6 +52,13 @@
         "Hacker News",
         "Digg"
       ],
+      "discussionLinks": [
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49070311",
+          "engagement": "16 分 · 4 评论"
+        }
+      ],
       "link": "https://nvidianews.nvidia.com/news/ilya-sutskevers-safe-superintelligence-inc-and-nvidia-announce-long-term-strategic-partnership"
     },
     {
@@ -67,6 +74,13 @@
       "sources": [
         "Hacker News",
         "Reddit"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49069939",
+          "engagement": "277 分 · 144 评论"
+        }
       ],
       "link": "https://www.ft.com/content/d8a5f95e-3b6d-463a-a848-c9ef8e2394db"
     },
@@ -84,6 +98,13 @@
         "Hacker News",
         "Reddit",
         "Digg"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49068738",
+          "engagement": "790 分 · 510 评论"
+        }
       ],
       "link": "https://futurism.com/artificial-intelligence/ai-companies-destroying-rare-books"
     }
