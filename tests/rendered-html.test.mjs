@@ -39,8 +39,8 @@ test("server-renders the AI hotspot briefing", async () => {
   assert.match(html, /AI 风向标/);
   assert.match(html, /准实时雷达/);
   assert.match(html, /briefing-anchor/);
-  assert.match(html, /fengjiang-performance\.webp/);
-  assert.match(html, /fengjiang-performance-still\.webp/);
+  assert.match(html, /fengjiang-performance-hd\.webp/);
+  assert.match(html, /fengjiang-performance-hd-still\.webp/);
   assert.match(html, /风酱先挥手打招呼，开心地笑起来，再跳一小段舞/);
   if (breaking.items.length === 0) {
     assert.match(html, /当前没有达到推送阈值的突发热点/);

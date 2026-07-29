@@ -214,7 +214,7 @@
         "signal": "单点信号",
         "summary": "Hugging Face 官方 YouTube 频道发布《The Hugging Face Hub for Enterprise & Academia》，将 Hub 在企业与学术机构中的使用作为独立主题。",
         "why": "这是一个早期官方信号：开放模型平台的竞争正在从个人开发者扩展到组织级协作与治理。当前证据只有官方频道发布，尚不足以判断市场反应。",
-        "community": "官方 YouTube 频道 RSS 抓取成功；last30days 的 YouTube 全站深挖返回 no-results，按规则标记为覆盖不足，不能据此判断没有讨论。",
+        "community": "官方 YouTube 频道 RSS 抓取成功；本轮 YouTube 全站深度检索暂无可靠结果，按规则标记为覆盖不足，不能据此判断没有讨论。",
         "editorial": "YouTube · Hugging Face",
         "sources": [
           "YouTube · Hugging Face"

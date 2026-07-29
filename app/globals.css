@@ -328,7 +328,8 @@ h1, h2, h3, h4, .brand strong, .archive-stats strong, .live-metrics strong {
   bottom: -8px;
   width: 210px;
   height: auto;
-  filter: drop-shadow(4px 7px 0 rgba(205, 180, 255, 0.34));
+  image-rendering: auto;
+  backface-visibility: hidden;
   transform: translateX(-50%);
 }
 
@@ -343,7 +344,7 @@ h1, h2, h3, h4, .brand strong, .archive-stats strong, .live-metrics strong {
   background: rgba(74, 59, 61, 0.12);
   filter: blur(1px);
   transform: translateX(-50%);
-  animation: dance-shadow 8.25s ease-in-out infinite;
+  animation: dance-shadow 7.87s ease-in-out infinite;
 }
 
 .dance-note {

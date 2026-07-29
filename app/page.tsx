@@ -413,7 +413,7 @@ export default function Home() {
             <div className="live-radar-note">
               <span className="live-mode"><i /> 准实时监测中</span>
               <p>
-                整点轻扫，命中阈值才启动 last30days 深挖并推送。没有足够证据时，风酱会安静观察，不拿半成品打扰你。
+                整点轻扫，命中阈值才启动多来源深度核验并推送。没有足够证据时，风酱会安静观察，不拿半成品打扰你。
               </p>
             </div>
             <figure className="live-dancer">
@@ -423,14 +423,14 @@ export default function Home() {
               <picture className="dance-frames">
                 <source
                   media="(prefers-reduced-motion: reduce)"
-                  srcSet="/fengjiang-performance-still.webp"
+                  srcSet="/fengjiang-performance-hd-still.webp"
                 />
                 <img
                   className="dance-frame"
-                  src="/fengjiang-performance.webp"
+                  src="/fengjiang-performance-hd.webp"
                   alt="风酱先挥手打招呼，开心地笑起来，再跳一小段舞"
-                  width={192}
-                  height={208}
+                  width={480}
+                  height={520}
                   decoding="async"
                 />
               </picture>
@@ -622,7 +622,7 @@ export default function Home() {
           <h2>风酱的信号袋，<br />今天装了些什么？</h2>
           <p>
             25 个编辑源负责捕捉事实，Reddit、Hacker News 与 Digg 负责发现社区升温。
-            只有线索达到门槛，last30days 才会接力深挖，看到的是一阵正在形成的风，而不是一篇孤零零的报道。
+            只有线索达到门槛，深度核验流程才会接力追踪，看到的是一阵正在形成的风，而不是一篇孤零零的报道。
           </p>
           <div className="method-tags" id="method">
             <span>⏱ 每小时轻扫</span>
@@ -643,7 +643,7 @@ export default function Home() {
             ["Reddit", "100%", "full", "💬"],
             ["Hacker News", "100%", "full", "🟠"],
             ["Digg", "100%", "full", "📰"],
-            ["last30days 深挖", "按需触发", "medium", "🔭"],
+            ["多来源深度核验", "按需触发", "medium", "🔭"],
           ].map(([name, value, size, emoji]) => (
             <div className="coverage-row" key={name}>
               <div><span>{emoji} {name}</span><strong>{value}</strong></div>
