@@ -36,6 +36,9 @@ test("server-renders the AI hotspot briefing", async () => {
     await readFile(new URL("../data/briefings.json", import.meta.url), "utf8"),
   );
   const latestBriefing = briefings[0];
+  const latestDiscussionLink = latestBriefing.topics
+    .flatMap((topic) => topic.discussionLinks ?? [])
+    .find((link) => link.url)?.url;
   assert.match(html, /AI 风向标/);
   assert.match(html, /准实时雷达/);
   assert.match(html, /briefing-anchor/);
@@ -43,7 +46,8 @@ test("server-renders the AI hotspot briefing", async () => {
   assert.match(html, /fengjiang-performance-hd-still\.webp/);
   assert.match(html, /风酱先挥手打招呼，开心地笑起来，再跳一小段舞/);
   assert.match(html, /讨论现场/);
-  assert.match(html, /news\.ycombinator\.com\/item\?id=49010129/);
+  assert.ok(latestDiscussionLink);
+  assert.ok(html.includes(latestDiscussionLink));
   if (breaking.items.length === 0) {
     assert.match(html, /当前没有达到推送阈值的突发热点/);
   } else {

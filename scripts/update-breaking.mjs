@@ -80,7 +80,8 @@ if (process.argv.includes("--help")) {
       await rename(temporaryPath, feedPath);
       console.log(`已清理 ${feed.items.length - activeItems.length} 条过期热点。`);
     }
-    await upsertBreakingFeed(nextFeed);
+    const databaseUpdated = await upsertBreakingFeed(nextFeed);
+    console.log(databaseUpdated ? "准实时热点已同步到 Neon。" : "准实时热点未同步到 Neon。");
   } catch (error) {
     fail(error instanceof Error ? error.message : String(error));
   }

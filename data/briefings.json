@@ -1,5 +1,168 @@
 [
   {
+    "date": "2026-07-30",
+    "dateLabel": "07.30",
+    "weekday": "周四",
+    "edition": "morning",
+    "publishedAt": "08:00",
+    "title": "GPT-5.6 全栈效率与训练数据争议占据上午焦点",
+    "summary": "OpenAI 把 GPT-5.6 的叙事从模型分数扩展到推理栈与 Agent harness，社区已有产品反馈；另一边，AI 公司拆书获取训练数据的说法继续高热，但关键事实仍缺少官方确认。",
+    "topics": [
+      {
+        "title": "GPT-5.6 把模型能力竞争转向全栈效率",
+        "category": "模型",
+        "heat": "高",
+        "signal": "已形成热点",
+        "summary": "OpenAI 表示 GPT-5.6 Sol 参与优化生产内核、负载均衡和推测解码，使端到端推理成本下降 20%，token 生成效率提升超过 15%。另一项官方测试显示，保留推理与启用 compaction 后，ARC-AGI-3 得分约提升 3 倍，输出 token 减少 6 倍。",
+        "why": "重要变化不只是模型更强，而是模型开始参与优化自身的部署栈。ARC-AGI-3 结果也提醒开发者，harness 和上下文管理会显著改变 Agent 的真实表现。",
+        "community": "Digg 对 ARC-AGI-3、推理成本和效率分别形成 19 条帖子/12 位作者、16 条帖子/14 位作者、5 条帖子/4 位作者的聚合；GitHub 的 Codex 并行调用反馈有 67 个 reaction、16 条评论。YouTube 深挖本轮无结果，grounding 覆盖不足。",
+        "editorial": "OpenAI News",
+        "sources": [
+          "OpenAI News",
+          "Digg",
+          "GitHub"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/bx10jm0q",
+            "title": "Two Settings Triple GPT-5.6 ARC-AGI-3 Scores",
+            "engagement": "19 条帖子 · 12 位作者"
+          },
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/vufe3uff",
+            "title": "OpenAI Cuts GPT-5.6 Sol Serving Costs 20%",
+            "engagement": "16 条帖子 · 14 位作者"
+          },
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/0ofz2zvv",
+            "title": "GPT-5.6 Sol Delivers Major Performance Efficiency Gains",
+            "engagement": "5 条帖子 · 4 位作者"
+          },
+          {
+            "platform": "GitHub",
+            "url": "https://github.com/openai/codex/issues/35050",
+            "title": "GPT-5.6 serializes independent Code Mode calls",
+            "engagement": "67 个 reaction · 16 条评论"
+          }
+        ],
+        "link": "https://openai.com/index/gpt-5-6-frontier-intelligence-efficiency"
+      },
+      {
+        "title": "珍本书训练数据争议继续高热，事实链仍待核验",
+        "category": "社会情绪",
+        "heat": "高",
+        "signal": "持续追踪",
+        "summary": "关于 AI 公司批量购买、扫描并销毁珍本书的说法继续扩散，但本轮证据仍主要来自匿名来源和二手报道，尚未出现可核验的买家身份、订单规模或官方确认。社区同时出现对文化遗产损失的强烈批评和对原始报道证据链的质疑。",
+        "why": "该事件把训练数据来源、版权合理使用和实体文化遗产保存三个问题绑在了一起。热度已经形成，但事实确认没有同步扩大，因此应继续追踪而不是把争议性说法写成定论。",
+        "community": "Reddit 主帖达到 3139 分、274 条评论，另一条质疑证据链的帖子为 300 分、37 条评论；discovery 汇总的 Hacker News 相关条目为 1347 分、823 条评论，Digg 主聚类为 65 条帖子、24 位作者。",
+        "editorial": "本轮白名单监控未出现对应官方确认",
+        "sources": [
+          "Reddit",
+          "Hacker News",
+          "Digg"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/antiwork/comments/1v9wp8m/ai_companies_are_bulkbuying_rare_books_scanning/",
+            "title": "AI companies are bulk-buying rare books",
+            "engagement": "3139 分 · 274 条评论"
+          },
+          {
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/NextGenRebellion/comments/1v9goxh/ai_companies_are_reportedly_shredding_millions_of/",
+            "title": "AI companies are reportedly shredding millions of books",
+            "engagement": "300 分 · 37 条评论"
+          },
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/fjqkjdbm",
+            "title": "AI Companies Shred Rare Books for Training Data",
+            "engagement": "65 条帖子 · 24 位作者"
+          },
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/nrq562ec",
+            "title": "Bulk Book Orders Fuel Amazon Arbitrage Not AI Training",
+            "engagement": "6 条帖子 · 6 位作者"
+          }
+        ],
+        "link": "https://www.news.com.au/technology/online/internet/ai-labs-buy-scan-shred-millions-of-rare-books/news-story/0c3b45a67093ab462a587a0348538ce9"
+      },
+      {
+        "title": "OpenAI 向 10 万名学术研究者开放前沿模型",
+        "category": "开放生态",
+        "heat": "中",
+        "signal": "官方先发",
+        "summary": "OpenAI 推出 ChatGPT for Academic Researchers，今夏先覆盖 1 万名研究者，并计划在 2027 年扩展到 10 万人。参与者可免费使用包括 GPT-5.6 Sol Pro 在内的模型，工作区数据默认不用于训练。",
+        "why": "这把前沿模型的高成本访问从少数公司和大型实验室扩展到更广泛的学术机构，也为 OpenAI 建立了一条来自真实科研工作流的产品反馈渠道。",
+        "community": "OpenAI 官方 YouTube 频道同步发布说明视频；专项深挖未返回可靠的 Reddit、Hacker News、Digg 或 GitHub 讨论，YouTube 全站深挖也未返回结果，因此社区覆盖不足。",
+        "editorial": "OpenAI News · YouTube · OpenAI",
+        "sources": [
+          "OpenAI News",
+          "YouTube · OpenAI"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "YouTube",
+            "url": "https://www.youtube.com/watch?v=MLehRytu9Zo",
+            "title": "We're giving 100,000 academic researchers free access to our frontier models"
+          }
+        ],
+        "link": "https://openai.com/index/chatgpt-for-academic-researchers"
+      },
+      {
+        "title": "BAIR 用 K-Search 把 CUDA 内核经验迁移到 Apple Silicon",
+        "category": "基础设施",
+        "heat": "观察中",
+        "signal": "官方先发",
+        "summary": "Berkeley BAIR 与 IBM Research 为 K-Search 增加结构化 CUDA-to-MLX 翻译层，让系统利用既有 CUDA 优化知识生成 Apple Silicon 内核。其 Attention 性能接近原生 MLX 内核，Mamba SSM 的 prefill 相对社区 mlx-lm 实现最高加速 20 倍。",
+        "why": "如果跨硬件内核优化能自动复用，非 NVIDIA 生态不必从零积累全部底层工程经验。这对本地推理和多硬件后端的成本结构有长期意义。",
+        "community": "本轮社区 discovery 未返回与该工作直接匹配的 Reddit、Hacker News 或 Digg 条目；这代表本次未覆盖到社区信号，不代表没有讨论。",
+        "editorial": "Berkeley BAIR Blog",
+        "sources": [
+          "Berkeley BAIR Blog"
+        ],
+        "discussionLinks": [],
+        "link": "http://bair.berkeley.edu/blog/2026/07/29/cuda-to-mlx-k-search"
+      },
+      {
+        "title": "微软进一步强调自研模型与多模型编排",
+        "category": "开放生态",
+        "heat": "观察中",
+        "signal": "单点信号",
+        "summary": "TechCrunch 根据微软财报沟通称，微软正在同时推进自研模型、Agent harness 和多模型系统，并更公开地与 OpenAI、Anthropic 形成竞合关系。同源报道还提到微软对 Anthropic 的投资账面收益达到 32 亿美元。",
+        "why": "微软若持续把模型层、编排层与合作伙伴解耦，Azure AI 的议价权和产品韧性都会提高。但当前联合证据较薄，仍需等待微软官方材料或更多独立报道确认战略边界。",
+        "community": "Digg 的微软多模型系统条目只有 2 条帖子、2 位作者；Polymarket 相关估值市场成交量约 5202 美元，但并不能确认本次战略变化。Reddit 和 YouTube 深挖无结果，grounding 覆盖不足。",
+        "editorial": "TechCrunch AI",
+        "sources": [
+          "TechCrunch AI",
+          "Digg",
+          "Polymarket"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/lqnf4pxp",
+            "title": "Microsoft Builds Multi-Model AI System for Efficiency",
+            "engagement": "2 条帖子 · 2 位作者"
+          },
+          {
+            "platform": "Polymarket",
+            "url": "https://polymarket.com/event/anthropic-openai-vs-microsoft-higher-valuation-on-december-31",
+            "title": "Anthropic + OpenAI vs Microsoft - higher valuation on December 31?",
+            "engagement": "成交量约 5202 美元"
+          }
+        ],
+        "link": "https://techcrunch.com/2026/07/29/microsoft-is-openly-competing-with-openai-anthropic-more-than-ever"
+      }
+    ],
+    "id": "2026-07-30-morning"
+  },
+  {
     "date": "2026-07-28",
     "dateLabel": "07.28",
     "weekday": "周二",
