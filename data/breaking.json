@@ -1,48 +1,48 @@
 {
-  "updatedAt": "2026-07-30T15:13:50.165Z",
+  "updatedAt": "2026-07-30T18:12:51.729Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
     {
       "id": "gemini-robotics-2",
-      "detectedAt": "2026-07-30T23:12:23+08:00",
-      "title": "Google DeepMind 发布 Gemini Robotics 2，机器人获得全身协同能力",
+      "detectedAt": "2026-07-31T02:12:22+08:00",
+      "title": "Gemini Robotics 2 讨论快速扩散，安全与灵巧性成为新焦点",
       "category": "模型",
-      "heat": "中",
-      "signal": "突发热点",
-      "summary": "Google DeepMind 发布 Gemini Robotics 2，并通过官方频道展示全身控制、高难度灵巧操作与多机器人协作。Reddit 与 Digg 随后出现独立讨论和聚合信号。",
-      "why": "机器人基础模型正从单臂操作扩展到全身动作和多机器人协同，这会直接影响通用机器人系统的控制栈与部署边界。",
-      "sourceCount": 4,
+      "heat": "高",
+      "signal": "重要更新",
+      "summary": "Google DeepMind 发布 Gemini Robotics 2 后，Ars Technica 新增对灵巧性和安全能力的独立报道；Hacker News 讨论升至 256 分、256 条评论，Digg 聚合扩大到 18 条帖子。",
+      "why": "与首次推送相比，新增 Hacker News 与 Ars Technica 两个独立来源，达到冷却期内的实质更新标准。关注点已经从官方演示扩展到全身控制的安全性与真实部署边界。",
+      "sourceCount": 6,
       "sources": [
         "Google DeepMind Blog",
-        "YouTube · Google DeepMind",
-        "Reddit",
+        "Ars Technica AI",
+        "Hacker News",
         "Digg"
       ],
       "discussionLinks": [
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49111237",
+          "title": "Gemini Robotics 2 brings whole body intelligence to robots",
+          "engagement": "256 分 · 256 条评论"
+        },
+        {
+          "platform": "Reddit",
+          "url": "https://www.reddit.com/r/robotics/comments/1vaxn3p/google_deepmind_announces_gemini_robotics_2/",
+          "title": "Google DeepMind announces Gemini Robotics 2",
+          "engagement": "13 分 · 0 条评论"
+        },
+        {
+          "platform": "Digg",
+          "url": "https://di.gg/ai/f2oimfyb",
+          "title": "Google DeepMind Releases Gemini Robotics ER 2",
+          "engagement": "18 条帖子 · 10 位作者"
+        },
         {
           "platform": "YouTube",
           "url": "https://www.youtube.com/watch?v=4lSQnrMC6nY",
           "title": "Gemini Robotics 2 brings whole body intelligence to robots",
           "engagement": "Google DeepMind 官方频道"
-        },
-        {
-          "platform": "Reddit",
-          "url": "https://www.reddit.com/r/singularity/comments/1vaw4x9/gemini_robotics_2_brings_whole_body_intelligence/",
-          "title": "Gemini Robotics 2 brings whole body intelligence to robots",
-          "engagement": "5 分 · 4 条评论"
-        },
-        {
-          "platform": "Reddit",
-          "url": "https://www.reddit.com/r/accelerate/comments/1vaw582/gemini_robotics_2_brings_whole_body_intelligence/",
-          "title": "Gemini Robotics 2 brings whole body intelligence to robots",
-          "engagement": "4 分 · 0 条评论"
-        },
-        {
-          "platform": "Digg",
-          "url": "https://di.gg/ai/mciz9v5g",
-          "title": "DeepMind Releases Gemini Robotics Arms Clapperboard Demo",
-          "engagement": "11 条帖子 · 10 位作者"
         }
       ],
       "link": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots"
