@@ -1,8 +1,82 @@
 {
-  "updatedAt": "2026-07-30T00:43:41.805Z",
+  "updatedAt": "2026-07-30T01:39:46.391Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
+    {
+      "id": "after-ai-crash-debate",
+      "detectedAt": "2026-07-30T09:33:35+08:00",
+      "title": "“AI 泡沫破裂之后”引发高互动情景争论",
+      "category": "社会情绪",
+      "heat": "高",
+      "signal": "突发热点",
+      "summary": "《After the AI Crash》以 AI 投资热潮退潮后的产业与社会图景为主题，在 Hacker News 获得 110 分、189 条评论。当前信号代表对泡沫、基础设施投资和长期需求的集中争论，不代表 AI 市场已经崩盘。",
+      "why": "评论量越过单一 Hacker News 事件的强互动阈值，说明行业怀疑情绪正在集中释放。值得关注的是讨论从模型能力转向资本开支能否转化为可持续需求。",
+      "sourceCount": 3,
+      "sources": [
+        "Hacker News",
+        "Reddit",
+        "Digg"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Reddit",
+          "url": "https://www.reddit.com/r/hypeurls/comments/1v9x83y/after_the_ai_crash/",
+          "title": "After the AI Crash",
+          "engagement": "1 分 · 0 评论"
+        },
+        {
+          "platform": "Digg",
+          "url": "https://di.gg/ai/iot4vyey",
+          "title": "Investors Amplify Article on AI Bubble Risks",
+          "engagement": "2 条帖子 · 2 位作者"
+        }
+      ],
+      "link": "https://potsandpansbyccg.com/2026/07/29/after-the-ai-crash/"
+    },
+    {
+      "id": "lilian-weng-rejoins-openai",
+      "detectedAt": "2026-07-30T09:33:35+08:00",
+      "title": "Lilian Weng 离开 Thinking Machines 后重返 OpenAI",
+      "category": "开放生态",
+      "heat": "中",
+      "signal": "重要更新",
+      "summary": "TechCrunch 与 QbitAI 分别报道，Thinking Machines 联合创始人 Lilian Weng 因工作压力和健康原因离开创业公司后，将回到 OpenAI，研究方向指向递归式自我改进。Digg 同一事件形成 14 条帖子、11 位作者的聚合。",
+      "why": "Weng 曾负责 OpenAI 安全系统研究，其快速回归既是重要人才流动，也说明前沿实验室围绕 Agent 自我改进和安全研究的竞争仍在加剧。",
+      "sourceCount": 3,
+      "sources": [
+        "TechCrunch AI",
+        "QbitAI",
+        "Digg"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Digg",
+          "url": "https://di.gg/ai/rfgxs6c6",
+          "title": "Lilian Weng Rejoins OpenAI for Recursive Self-Improvement",
+          "engagement": "14 条帖子 · 11 位作者"
+        },
+        {
+          "platform": "Reddit",
+          "url": "https://www.reddit.com/r/technology/comments/1vace8h/thinking_machines_cofounder_lilian_weng_left_the/",
+          "title": "Thinking Machines co-founder Lilian Weng left the company",
+          "engagement": "1 分 · 2 评论"
+        },
+        {
+          "platform": "Reddit",
+          "url": "https://www.reddit.com/r/OpenAI/comments/1va3zfe/lilian_weng_returns_to_openai_for_recursive/",
+          "title": "Lilian Weng returns to OpenAI for recursive self-improvement research",
+          "engagement": "1 分 · 0 评论"
+        },
+        {
+          "platform": "GitHub",
+          "url": "https://github.com/administrakt0r/AIautonomousBlogMY/pull/531",
+          "title": "Lilian Weng Exits Thinking Machines to Rejoin OpenAI",
+          "engagement": "4 条评论"
+        }
+      ],
+      "link": "https://techcrunch.com/2026/07/29/thinking-machines-co-founder-lilian-weng-left-the-company-citing-health-reasons-then-joined-openai"
+    },
     {
       "id": "pacing-frontier-ai-statement",
       "detectedAt": "2026-07-29T04:27:10+08:00",
