@@ -385,7 +385,7 @@ export default function Home() {
 
     async function refreshFeed() {
       try {
-        const response = await fetch("/api/feed", { cache: "no-store" });
+        const response = await fetch("/api/feed");
         if (!response.ok) return;
         const payload = (await response.json()) as {
           archiveIssues?: ArchiveIssue[];
@@ -403,11 +403,32 @@ export default function Home() {
       }
     }
 
+    let timer: number | undefined;
+    function startPolling() {
+      if (document.visibilityState !== "visible" || timer !== undefined) return;
+      timer = window.setInterval(refreshFeed, 60_000);
+    }
+    function stopPolling() {
+      if (timer === undefined) return;
+      window.clearInterval(timer);
+      timer = undefined;
+    }
+    function handleVisibilityChange() {
+      if (document.visibilityState === "visible") {
+        void refreshFeed();
+        startPolling();
+      } else {
+        stopPolling();
+      }
+    }
+
     void refreshFeed();
-    const timer = window.setInterval(refreshFeed, 60_000);
+    startPolling();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     return () => {
       active = false;
-      window.clearInterval(timer);
+      stopPolling();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
 
@@ -469,7 +490,7 @@ export default function Home() {
         <span className="hero-tape hero-tape-right" aria-hidden="true" />
         <img
           className="hero-art"
-          src="/og.png"
+          src="/og.webp"
           alt="AI 风向标动漫角色风酱，在云朵与信号波之间捕捉热点"
           width={1672}
           height={941}
