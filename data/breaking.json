@@ -1,8 +1,46 @@
 {
-  "updatedAt": "2026-07-30T18:12:51.729Z",
+  "updatedAt": "2026-07-30T19:14:22.830Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
+    {
+      "id": "linkedin-ai-slop-report-button",
+      "detectedAt": "2026-07-31T03:13:58+08:00",
+      "title": "LinkedIn 增加“疑似 AI 垃圾内容”举报按钮，社区迅速升温",
+      "category": "社会情绪",
+      "heat": "高",
+      "signal": "快速升温",
+      "summary": "LinkedIn 增加“Seems like AI slop”举报选项，让用户可以直接标记疑似 AI 生成的低质量内容。TechCrunch、The Verge 和 404 Media 分别确认了这一产品变化。",
+      "why": "Reddit 主帖达到 1039 分、96 条评论，说明用户对职业社交平台上 AI 内容泛滥的反感正在集中释放。平台将 AI 垃圾内容单列为举报类别，也意味着内容质量问题已进入正式治理流程。",
+      "sourceCount": 4,
+      "sources": [
+        "TechCrunch AI",
+        "The Verge AI",
+        "Reddit",
+        "Hacker News"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Reddit",
+          "url": "https://www.reddit.com/r/technology/comments/1vavfs8/linkedin_introduces_a_seems_like_ai_slop_button/",
+          "title": "LinkedIn Introduces a 'Seems Like AI Slop' Button",
+          "engagement": "1039 分 · 96 条评论"
+        },
+        {
+          "platform": "Reddit",
+          "url": "https://www.reddit.com/r/BetterOffline/comments/1vavzs2/linkedin_introduces_a_seems_like_ai_slop_button/",
+          "title": "LinkedIn Introduces a 'Seems Like AI Slop' Button",
+          "engagement": "209 分 · 31 条评论"
+        },
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49110742",
+          "title": "LinkedIn Introduces a 'Seems Like AI Slop' Button",
+          "engagement": "13 分 · 2 条评论"
+        }
+      ],
+      "link": "https://www.404media.co/linkedin-introduces-a-seems-like-ai-slop-button/"
+    },
     {
       "id": "gemini-robotics-2",
       "detectedAt": "2026-07-31T02:12:22+08:00",
@@ -198,23 +236,6 @@
         "Digg"
       ],
       "link": "https://www.pacingthefrontier.com/"
-    },
-    {
-      "id": "chatgpt-work-enterprise-sales",
-      "detectedAt": "2026-07-29T02:24:28+08:00",
-      "title": "ChatGPT Work 扩展企业销售场景，产品边界讨论升温",
-      "category": "开放生态",
-      "heat": "中",
-      "signal": "突发热点",
-      "summary": "OpenAI 官方频道集中发布 ChatGPT Work 销售场景演示，Latent Space 同日发布对 OpenAI 核心产品工程负责人的深度访谈。Digg 出现多组采用和产品边界讨论，Reddit 也在讨论 Work、Codex 与普通 Chat 的差异。",
-      "why": "信号已从单次产品发布转向具体行业工作流和用户认知问题。企业落地速度在提升，但产品定位、额度与 Codex 的边界仍需要更清晰的解释。",
-      "sourceCount": 3,
-      "sources": [
-        "YouTube · OpenAI",
-        "Latent Space",
-        "Digg"
-      ],
-      "link": "https://www.youtube.com/watch?v=g-g6E-qtCjA"
     }
   ]
 }
