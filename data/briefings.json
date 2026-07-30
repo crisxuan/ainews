@@ -3,6 +3,182 @@
     "date": "2026-07-30",
     "dateLabel": "07.30",
     "weekday": "周四",
+    "edition": "evening",
+    "publishedAt": "20:00",
+    "title": "研究透明度与 Agent 工程成为晚间焦点",
+    "summary": "晚间热点集中在两条主线：商业实验室减少公开研究引发开放科学争论，Agent 工程则从推理引擎、Harness 架构延伸到人才流动。社区对 AI 投资可持续性的怀疑也保持高互动。",
+    "topics": [
+      {
+        "title": "AI 头部初创公司的研究透明度争议升温",
+        "category": "开放生态",
+        "heat": "高",
+        "signal": "已形成热点",
+        "summary": "Science 文章指出，领先 AI 初创公司公开发表的研究成果明显偏少。Hacker News 讨论升至 491 分、249 条评论，争论焦点扩展到论文数量能否覆盖模型、API、基准和开源工具等研究产出。",
+        "why": "前沿能力越来越集中在商业实验室后，研究透明度、可复现性和学术人才流动正在成为模型能力之外的关键竞争变量。",
+        "community": "Hacker News 491 分、249 条评论；Reddit 相关帖最高 12 分、8 条评论；Digg 形成 3 条帖子、2 位作者。Hacker News 仅返回文章链接，未提供可核验的讨论串直链。",
+        "editorial": "Science",
+        "sources": [
+          "Science",
+          "Hacker News",
+          "Reddit",
+          "Digg"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/accelerate/comments/1v8bjo4/ais_top_startups_are_barely_publishing_their/",
+            "title": "AI’s top startups are barely publishing their research",
+            "engagement": "12 分 · 8 条评论"
+          },
+          {
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/hypeurls/comments/1vaao7n/ais_top_startups_are_barely_publishing_their/",
+            "title": "AI's top startups are barely publishing their research",
+            "engagement": "1 分 · 0 条评论"
+          },
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/qk3hh38b",
+            "title": "Closed AI Models Reduce Academic Participation",
+            "engagement": "3 条帖子 · 2 位作者"
+          }
+        ],
+        "link": "https://www.science.org/content/article/ai-s-top-startups-are-barely-publishing-their-research"
+      },
+      {
+        "title": "贾扬清新团队把自然语言意图推向生产级软件",
+        "category": "基础设施",
+        "heat": "中",
+        "signal": "已形成热点",
+        "summary": "BAAI Hub 报道贾扬清离开英伟达后再创业，并展示面向 GLM-5.2 的推理加速方案。社区深挖同时捕捉到 Intent Lab 发布 Fleet，把自然语言意图转换为可验证的生产系统。",
+        "why": "这一方向把模型竞争推进到推理引擎和软件交付栈：若自动生成的系统能够被验证并稳定上线，Agent 的价值衡量将从代码生成转向端到端生产效率。",
+        "community": "Digg 的 Intent Lab/Fleet 相关聚合形成 17 条帖子、13 位作者；Reddit、YouTube 未返回相关结果，Grounding 覆盖不足。",
+        "editorial": "BAAI Hub",
+        "sources": [
+          "BAAI Hub",
+          "Digg"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/wq1hsgly",
+            "title": "Intent Lab Launches Fleet to Turn Intent Into Production Software",
+            "engagement": "17 条帖子 · 13 位作者"
+          }
+        ],
+        "link": "http://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw==&mid=2247907980&idx=1&sn=e13f099525d69cfbc5c1158106c9d738&chksm=e9c950e267cb8d214531e95da26be1d955a5553673b5886879178669b7e984e33936cd564467&scene=126&sessionid=0"
+      },
+      {
+        "title": "Claude Code 团队把 Harness 视为快速迭代层",
+        "category": "基础设施",
+        "heat": "中",
+        "signal": "已形成热点",
+        "summary": "QbitAI 转述 Claude Code 团队关于 Harness 工程快速过时、应减少束缚模型的判断。社区同时出现跨 Harness 基准、Agent 管理器和并行合并队列等实作讨论。",
+        "why": "Agent 产品的差异化正在从单一模型能力转向上下文管理、工具编排和验证机制。Harness 更新周期缩短，会直接改变开发团队的架构边界和技术债管理。",
+        "community": "Reddit 的 Claude Code、OpenCode 与 Pi Harness 对比帖获 283 分、140 条评论；Digg 相关争论形成 2 条帖子、2 位作者；两个相关 HN 项目分别为 40 分/25 评论和 39 分/14 评论。",
+        "editorial": "QbitAI",
+        "sources": [
+          "QbitAI",
+          "Reddit",
+          "Digg",
+          "Hacker News"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/LocalLLaMA/comments/1v7d8px/harness_showdown_claude_code_vs_opencode_vs_pi/",
+            "title": "Harness showdown: Claude Code vs OpenCode vs Pi",
+            "engagement": "283 分 · 140 条评论"
+          },
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/wps2jt3p",
+            "title": "Developers Debate Unhobbling AI Models Versus Agent Harnesses",
+            "engagement": "2 条帖子 · 2 位作者"
+          }
+        ],
+        "link": "https://www.qbitai.com/2026/07/463433.html"
+      },
+      {
+        "title": "Lilian Weng 离开 Thinking Machines 后重返 OpenAI",
+        "category": "开放生态",
+        "heat": "中",
+        "signal": "已形成热点",
+        "summary": "TechCrunch 与 QbitAI 分别报道，Thinking Machines 联合创始人 Lilian Weng 因工作压力和健康原因离开创业公司后，将回到 OpenAI，研究方向指向递归式自我改进。",
+        "why": "Weng 曾负责 OpenAI 安全系统研究，其快速回归既是重要人才流动，也说明前沿实验室围绕 Agent 自我改进和安全研究的竞争仍在加剧。",
+        "community": "Digg 同一事件形成 14 条帖子、11 位作者；Reddit 相关帖互动较低；GitHub 聚合 PR 有 4 条评论。",
+        "editorial": "TechCrunch AI · QbitAI",
+        "sources": [
+          "TechCrunch AI",
+          "QbitAI",
+          "Digg",
+          "Reddit"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/rfgxs6c6",
+            "title": "Lilian Weng Rejoins OpenAI for Recursive Self-Improvement",
+            "engagement": "14 条帖子 · 11 位作者"
+          },
+          {
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/technology/comments/1vace8h/thinking_machines_cofounder_lilian_weng_left_the/",
+            "title": "Thinking Machines co-founder Lilian Weng left the company",
+            "engagement": "1 分 · 2 条评论"
+          },
+          {
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/OpenAI/comments/1va3zfe/lilian_weng_returns_to_openai_for_recursive/",
+            "title": "Lilian Weng returns to OpenAI for recursive self-improvement research",
+            "engagement": "1 分 · 0 条评论"
+          },
+          {
+            "platform": "GitHub",
+            "url": "https://github.com/administrakt0r/AIautonomousBlogMY/pull/531",
+            "title": "Lilian Weng Exits Thinking Machines to Rejoin OpenAI",
+            "engagement": "4 条评论"
+          }
+        ],
+        "link": "https://techcrunch.com/2026/07/29/thinking-machines-co-founder-lilian-weng-left-the-company-citing-health-reasons-then-joined-openai"
+      },
+      {
+        "title": "“AI 泡沫破裂之后”成为高互动情景争论",
+        "category": "社会情绪",
+        "heat": "高",
+        "signal": "社区先热",
+        "summary": "《After the AI Crash》以 AI 投资热潮退潮后的产业与社会图景为主题，在 Hacker News 升至 120 分、208 条评论。该信号代表对泡沫、基础设施投资和长期需求的集中争论，不代表市场已经崩盘。",
+        "why": "评论量越过强互动阈值，说明行业怀疑情绪正在集中释放。讨论正在从模型能力转向资本开支能否转化为可持续需求。",
+        "community": "Hacker News 120 分、208 条评论；Digg 形成 2 条帖子、2 位作者；Reddit 相关帖为 1 分、0 条评论。Hacker News 未返回可核验的讨论串直链。",
+        "editorial": "原始作者文章",
+        "sources": [
+          "Hacker News",
+          "Digg",
+          "Reddit"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/hypeurls/comments/1v9x83y/after_the_ai_crash/",
+            "title": "After the AI Crash",
+            "engagement": "1 分 · 0 条评论"
+          },
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/iot4vyey",
+            "title": "Investors Amplify Article on AI Bubble Risks",
+            "engagement": "2 条帖子 · 2 位作者"
+          }
+        ],
+        "link": "https://potsandpansbyccg.com/2026/07/29/after-the-ai-crash/"
+      }
+    ],
+    "id": "2026-07-30-evening"
+  },
+  {
+    "date": "2026-07-30",
+    "dateLabel": "07.30",
+    "weekday": "周四",
     "edition": "morning",
     "publishedAt": "08:00",
     "title": "GPT-5.6 全栈效率与训练数据争议占据上午焦点",

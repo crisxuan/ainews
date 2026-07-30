@@ -23,6 +23,10 @@ async function render() {
   );
 }
 
+function renderedHref(url) {
+  return url.replaceAll("&", "&amp;").replaceAll('"', "&quot;");
+}
+
 test("server-renders the AI hotspot briefing", async () => {
   const response = await render();
   assert.equal(response.status, 200);
@@ -47,14 +51,14 @@ test("server-renders the AI hotspot briefing", async () => {
   assert.match(html, /风酱先挥手打招呼，开心地笑起来，再跳一小段舞/);
   assert.match(html, /讨论现场/);
   assert.ok(latestDiscussionLink);
-  assert.ok(html.includes(latestDiscussionLink));
+  assert.ok(html.includes(renderedHref(latestDiscussionLink)));
   if (breaking.items.length === 0) {
     assert.match(html, /当前没有达到推送阈值的突发热点/);
   } else {
     assert.doesNotMatch(html, /当前没有达到推送阈值的突发热点/);
     for (const item of breaking.items) {
       assert.ok(html.includes(item.title));
-      assert.ok(html.includes(item.link));
+      assert.ok(html.includes(renderedHref(item.link)));
     }
   }
   assert.match(html, /60 分钟/);
@@ -67,7 +71,7 @@ test("server-renders the AI hotspot briefing", async () => {
   assert.match(html, /内容已归档/);
   for (const topic of latestBriefing.topics) {
     assert.ok(html.includes(topic.title));
-    assert.ok(html.includes(topic.link));
+    assert.ok(html.includes(renderedHref(topic.link)));
   }
   assert.match(html, /08:00/);
   assert.match(html, /20:00/);
