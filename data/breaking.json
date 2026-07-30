@@ -1,8 +1,76 @@
 {
-  "updatedAt": "2026-07-30T13:21:44.510Z",
+  "updatedAt": "2026-07-30T15:13:50.165Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
+    {
+      "id": "gemini-robotics-2",
+      "detectedAt": "2026-07-30T23:12:23+08:00",
+      "title": "Google DeepMind 发布 Gemini Robotics 2，机器人获得全身协同能力",
+      "category": "模型",
+      "heat": "中",
+      "signal": "突发热点",
+      "summary": "Google DeepMind 发布 Gemini Robotics 2，并通过官方频道展示全身控制、高难度灵巧操作与多机器人协作。Reddit 与 Digg 随后出现独立讨论和聚合信号。",
+      "why": "机器人基础模型正从单臂操作扩展到全身动作和多机器人协同，这会直接影响通用机器人系统的控制栈与部署边界。",
+      "sourceCount": 4,
+      "sources": [
+        "Google DeepMind Blog",
+        "YouTube · Google DeepMind",
+        "Reddit",
+        "Digg"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "YouTube",
+          "url": "https://www.youtube.com/watch?v=4lSQnrMC6nY",
+          "title": "Gemini Robotics 2 brings whole body intelligence to robots",
+          "engagement": "Google DeepMind 官方频道"
+        },
+        {
+          "platform": "Reddit",
+          "url": "https://www.reddit.com/r/singularity/comments/1vaw4x9/gemini_robotics_2_brings_whole_body_intelligence/",
+          "title": "Gemini Robotics 2 brings whole body intelligence to robots",
+          "engagement": "5 分 · 4 条评论"
+        },
+        {
+          "platform": "Reddit",
+          "url": "https://www.reddit.com/r/accelerate/comments/1vaw582/gemini_robotics_2_brings_whole_body_intelligence/",
+          "title": "Gemini Robotics 2 brings whole body intelligence to robots",
+          "engagement": "4 分 · 0 条评论"
+        },
+        {
+          "platform": "Digg",
+          "url": "https://di.gg/ai/mciz9v5g",
+          "title": "DeepMind Releases Gemini Robotics Arms Clapperboard Demo",
+          "engagement": "11 条帖子 · 10 位作者"
+        }
+      ],
+      "link": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots"
+    },
+    {
+      "id": "gcc-ai-policy",
+      "detectedAt": "2026-07-30T23:12:23+08:00",
+      "title": "GCC 正式划定 AI 贡献边界，重大 LLM 代码原则上拒收",
+      "category": "开放生态",
+      "heat": "高",
+      "signal": "快速升温",
+      "summary": "GCC Steering Committee 接受新的 AI 政策：原则上拒收包含或源自 LLM 内容的重大贡献，但测试用例可例外；所有 AI 辅助贡献必须由理解改动的人类提交并标注 Assisted-by。",
+      "why": "核心开源基础设施开始把 AI 代码来源、法律责任与人类问责写成正式规则。Hacker News 已升至 151 分、181 条评论，显示这一边界正在引发开发者集中争论。",
+      "sourceCount": 2,
+      "sources": [
+        "GCC Steering Committee",
+        "Hacker News"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49108685",
+          "title": "GCC steering committee announces AI policy",
+          "engagement": "151 分 · 183 条评论"
+        }
+      ],
+      "link": "https://gcc.gnu.org/pipermail/gcc/2026-July/248628.html"
+    },
     {
       "id": "ai-startups-research-publishing",
       "detectedAt": "2026-07-30T10:33:05+08:00",
