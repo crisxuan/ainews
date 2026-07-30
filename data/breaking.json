@@ -1,8 +1,45 @@
 {
-  "updatedAt": "2026-07-30T01:39:46.391Z",
+  "updatedAt": "2026-07-30T02:38:18.442Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
+    {
+      "id": "ai-startups-research-publishing",
+      "detectedAt": "2026-07-30T10:33:05+08:00",
+      "title": "AI 头部初创公司论文发表稀少，引发开放科学争论",
+      "category": "开放生态",
+      "heat": "高",
+      "signal": "突发热点",
+      "summary": "一篇 Science 文章提出，领先 AI 初创公司正在显著减少公开研究成果。在 Hacker News 上，该文章达到 237 分、132 条评论；讨论同时质疑传统论文数量能否完整衡量模型、API、基准与开源工具形式的研究产出。",
+      "why": "评论量首次越过单一 Hacker News 事件的强互动阈值。前沿能力越来越集中在商业实验室后，研究透明度、可复现性和学术人才流动正在成为模型竞争之外的重要问题。",
+      "sourceCount": 3,
+      "sources": [
+        "Hacker News",
+        "Reddit",
+        "Digg"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Reddit",
+          "url": "https://www.reddit.com/r/accelerate/comments/1v8bjo4/ais_top_startups_are_barely_publishing_their/",
+          "title": "AI’s top startups are barely publishing their research",
+          "engagement": "12 分 · 8 条评论"
+        },
+        {
+          "platform": "Reddit",
+          "url": "https://www.reddit.com/r/hypeurls/comments/1vaao7n/ais_top_startups_are_barely_publishing_their/",
+          "title": "AI's top startups are barely publishing their research",
+          "engagement": "1 分 · 0 评论"
+        },
+        {
+          "platform": "Digg",
+          "url": "https://di.gg/ai/qk3hh38b",
+          "title": "Closed AI Models Reduce Academic Participation",
+          "engagement": "3 条帖子 · 2 位作者"
+        }
+      ],
+      "link": "https://www.science.org/content/article/ai-s-top-startups-are-barely-publishing-their-research"
+    },
     {
       "id": "after-ai-crash-debate",
       "detectedAt": "2026-07-30T09:33:35+08:00",
