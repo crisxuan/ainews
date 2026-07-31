@@ -3,6 +3,145 @@
     "date": "2026-07-31",
     "dateLabel": "07.31",
     "weekday": "周五",
+    "edition": "evening",
+    "publishedAt": "20:00",
+    "title": "GPT-5.6 降价与 AI 工程外溢成为晚间主线",
+    "summary": "晚间热点从模型价格战延伸到浏览器安全维护、基础设施融资和产品审美。GPT-5.6 降价与 Chrome AI 修复形成多源热点，债务风险和 AI 视觉趋同则由技术社区率先升温。",
+    "topics": [
+      {
+        "title": "GPT-5.6 API 大幅降价，开发者工具链迅速跟进",
+        "category": "模型",
+        "heat": "高",
+        "signal": "已形成热点",
+        "summary": "OpenAI 将 GPT-5.6 Luna 的 API 输入/输出价格下调至每百万 token 0.20/1.20 美元，降幅 80%；Terra 下调至 2/12 美元，降幅 20%，Sol 价格不变。Latent Space 与 QbitAI 随后分别报道同一事件。",
+        "why": "互动量与工具链更新同时出现，说明这不是一条孤立的价格公告。低成本模型的能力基线和调用预算正在被重写，模型路由、可观测性和计费项目已开始修正价格表。",
+        "community": "Hacker News 主讨论达到 536 分、352 条评论；Reddit r/codex 主帖为 498 分、183 条评论；Digg 聚合到 65 条帖子、43 位作者；LiteLLM 的 GitHub 修价 PR 有 5 条评论。",
+        "editorial": "OpenAI · Latent Space · QbitAI",
+        "sources": [
+          "OpenAI",
+          "Latent Space",
+          "QbitAI",
+          "Reddit"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=49112867",
+            "title": "Advancing the price-performance frontier with GPT-5.6",
+            "engagement": "536 分 · 352 条评论"
+          },
+          {
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/codex/comments/1vazoph/openai_cuts_gpt56_terra_and_luna_prices/",
+            "title": "OpenAI cuts GPT-5.6 Terra and Luna prices",
+            "engagement": "498 分 · 183 条评论"
+          },
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/degtqkfk",
+            "title": "OpenAI Cuts GPT-5.6 Luna Prices by 80 Percent",
+            "engagement": "65 条帖子 · 43 位作者"
+          },
+          {
+            "platform": "GitHub",
+            "url": "https://github.com/BerriAI/litellm/pull/35316",
+            "title": "Apply the GPT-5.6 Luna and Terra price cuts across OpenAI and Bedrock Mantle",
+            "engagement": "5 条评论"
+          }
+        ],
+        "link": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/"
+      },
+      {
+        "title": "AI 帮助 Chrome 单月修复问题数超过此前两年",
+        "category": "基础设施",
+        "heat": "高",
+        "signal": "已形成热点",
+        "summary": "Google 表示，Chrome 在 6 月两次版本更新中修复了 1,072 个问题，超过此前 23 个版本合计的 1,036 个；AI 辅助工具显著加快了问题发现和修复。TechCrunch 对这一变化进行了独立报道。",
+        "why": "AI 的工程价值正在从生成代码进入浏览器级安全维护流程。数量跃升很醒目，但真正需要持续观察的是修复质量、人工复核成本和新增回归风险。",
+        "community": "Hacker News 主讨论达到 129 分、137 条评论；Reddit r/artificial 相关帖为 125 分、30 条评论。全站 YouTube 深挖无结果，按覆盖不足处理。",
+        "editorial": "Google Security Blog · TechCrunch AI",
+        "sources": [
+          "Google Security Blog",
+          "TechCrunch AI",
+          "Hacker News",
+          "Reddit"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=49120097",
+            "title": "Google fixed more Chrome bugs in June than over the past two years, thanks to AI",
+            "engagement": "129 分 · 137 条评论"
+          },
+          {
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/artificial/comments/1vb40gz/google_says_it_fixed_more_chrome_bugs_in_june/",
+            "title": "Google says it fixed more Chrome bugs in June than over the past two years, thanks to AI",
+            "engagement": "125 分 · 30 条评论"
+          }
+        ],
+        "link": "https://blog.google/security/chrome-stronger-with-every-update/"
+      },
+      {
+        "title": "AI 基础设施融资从股权叙事转向债务风险",
+        "category": "基础设施",
+        "heat": "中",
+        "signal": "社区先热",
+        "summary": "Grey Swan Signals 将 AI 基础设施扩张中的贷款、租赁和表外融资放到同一框架中，认为贷款方正在重新定价风险；GitHub 上一篇独立分析也聚焦同一类表外债务问题。",
+        "why": "市场关注点正在从模型公司的估值，转向数据中心和算力扩张由谁提供资本、风险最终留在哪张资产负债表上。信号目前主要来自技术社区，仍需等待更多权威财务数据验证。",
+        "community": "Hacker News 主讨论达到 132 分、128 条评论，超过单一事件强互动阈值；Reddit 同事件转载仅 1 分、0 评论，不计为独立确认；GitHub 相关独立分析无互动量。全站 YouTube 深挖覆盖不足。",
+        "editorial": "Grey Swan Signals",
+        "sources": [
+          "Grey Swan Signals",
+          "Hacker News",
+          "GitHub"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=49118933",
+            "title": "The AI trade now runs on borrowed money, and the lenders are repricing it",
+            "engagement": "132 分 · 128 条评论"
+          },
+          {
+            "platform": "GitHub",
+            "url": "https://github.com/albertogrande/the-wire/issues/74",
+            "title": "The AI Buildout Isn't Cash-Funded. The Debt Just Isn't on the Balance Sheet.",
+            "engagement": "0 条评论 · 0 个反应"
+          }
+        ],
+        "link": "https://greyswansignals.com/?theme=dark"
+      },
+      {
+        "title": "“AI 审美”正在变成可辨认的产品视觉模板",
+        "category": "社会情绪",
+        "heat": "中",
+        "signal": "社区先热",
+        "summary": "设计师 Jim Nielsen 总结了 AI 产品界面中反复出现的视觉特征，包括闪光符号、流式生成动画、小图标，以及米色、橙色和衬线字体组合。",
+        "why": "当模型能力快速同质化，视觉语言也在形成新的默认模板。短期这降低了用户理解成本，长期则可能让产品缺乏辨识度，并把“AI 感”固化成一套很快过时的设计惯例。",
+        "community": "Hacker News 主讨论达到 316 分、140 条评论，满足单一社区事件强互动阈值；本轮未获得第二个同事件独立来源。Reddit 与全站 YouTube 对该事件覆盖不足。",
+        "editorial": "Jim Nielsen",
+        "sources": [
+          "Jim Nielsen",
+          "Hacker News"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=49117099",
+            "title": "The AI Aesthetic",
+            "engagement": "316 分 · 140 条评论"
+          }
+        ],
+        "link": "https://blog.jim-nielsen.com/2026/ai-aesthetic/"
+      }
+    ],
+    "id": "2026-07-31-evening"
+  },
+  {
+    "date": "2026-07-31",
+    "dateLabel": "07.31",
+    "weekday": "周五",
     "edition": "morning",
     "publishedAt": "08:00",
     "title": "机器人能力跃升与 AI 安全边界同时升温",
