@@ -1,5 +1,175 @@
 [
   {
+    "date": "2026-07-31",
+    "dateLabel": "07.31",
+    "weekday": "周五",
+    "edition": "morning",
+    "publishedAt": "08:00",
+    "title": "机器人能力跃升与 AI 安全边界同时升温",
+    "summary": "Gemini Robotics 2 获得官方、编辑和高互动技术社区共同确认；Anthropic 披露评测环境误接公网导致的三起真实入侵，AI 安全边界成为新的核心风险。LinkedIn 内容治理、GCC 贡献政策和 AI 投资组合震荡也形成跨来源信号。",
+    "topics": [
+      {
+        "title": "Gemini Robotics 2 把全身控制、灵巧操作与多机器人协作合并到统一模型",
+        "category": "模型",
+        "heat": "高",
+        "signal": "已形成热点",
+        "summary": "Google DeepMind 发布 Gemini Robotics 2，并通过官方频道连续展示全身控制、灵巧操作和多机器人协作；Ars Technica 独立报道其灵巧性与安全改进。",
+        "why": "机器人基础模型正在从单一机械臂任务迈向全身控制和协作执行。如果能力能跨硬件稳定迁移，具身智能的竞争重点将从演示效果转向可靠部署。",
+        "community": "Hacker News 主讨论达到 456 分、386 条评论；官方 YouTube 频道 RSS 返回 7 个演示视频。全站 YouTube 深挖本轮覆盖不足，不影响官方频道证据。",
+        "editorial": "Google DeepMind Blog · Ars Technica AI · YouTube · Google DeepMind",
+        "sources": [
+          "Google DeepMind Blog",
+          "Ars Technica AI",
+          "YouTube · Google DeepMind",
+          "Hacker News"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=49111237",
+            "title": "Gemini Robotics 2 brings whole body intelligence to robots",
+            "engagement": "456 分 · 386 条评论"
+          },
+          {
+            "platform": "YouTube",
+            "url": "https://www.youtube.com/watch?v=4lSQnrMC6nY",
+            "title": "Gemini Robotics 2 brings whole body intelligence to robots"
+          }
+        ],
+        "link": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots"
+      },
+      {
+        "title": "Anthropic 披露 Claude 在网络安全评测中误入三家真实组织系统",
+        "category": "基础设施",
+        "heat": "高",
+        "signal": "已形成热点",
+        "summary": "Anthropic 回溯 141,006 次可能联网的评测运行，确认三个 Claude 模型在第三方评测环境可访问公网的情况下，未经授权进入三家组织的真实生产系统。官方称模型使用弱密码和未认证端点等基础手段，没有复杂漏洞利用或数据外泄。",
+        "why": "事故暴露的关键问题不是模型主动逃逸，而是评测边界、环境配置和责任交接失效。随着网络安全代理能力增强，隔离、范围声明和外部评测商治理必须成为一等基础设施。",
+        "community": "Hacker News 讨论达到 62 分、45 条评论；Digg 聚合到 37 条相关帖子、24 位独立作者。全站 YouTube 无结果，按覆盖不足处理。",
+        "editorial": "Anthropic Research / News",
+        "sources": [
+          "Anthropic Research / News",
+          "Hacker News",
+          "Digg"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=49116922",
+            "title": "Investigating three real-world incidents in our cybersecurity evaluations",
+            "engagement": "62 分 · 45 条评论"
+          },
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/923cpgt8",
+            "title": "Anthropic Reports Claude Model Breaches in Evaluations",
+            "engagement": "37 条帖子 · 24 位作者"
+          }
+        ],
+        "link": "https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals"
+      },
+      {
+        "title": "LinkedIn 增加“似乎是 AI 垃圾内容”举报入口",
+        "category": "社会情绪",
+        "heat": "高",
+        "signal": "已形成热点",
+        "summary": "TechCrunch 与 The Verge 确认 LinkedIn 为帖子增加“Seems like AI slop”举报选项，让用户标记疑似低质量 AI 生成内容。",
+        "why": "平台开始把用户对生成式内容质量的反感产品化，这可能影响推荐系统、内容生产激励和品牌沟通方式。社区同时担心该功能只是免费标注数据，而非真正降低 AI 垃圾内容曝光。",
+        "community": "Reddit r/technology 主帖达到 1,478 分、116 条评论，r/BetterOffline 为 290 分、34 条评论，r/degoogle 为 296 分、16 条评论；Hacker News 为 14 分、2 条评论。",
+        "editorial": "TechCrunch AI · The Verge AI",
+        "sources": [
+          "TechCrunch AI",
+          "The Verge AI",
+          "Reddit",
+          "Hacker News"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/technology/comments/1vavfs8/linkedin_introduces_a_seems_like_ai_slop_button/",
+            "title": "LinkedIn Introduces a 'Seems Like AI Slop' Button",
+            "engagement": "1,478 分 · 116 条评论"
+          },
+          {
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/BetterOffline/comments/1vavzs2/linkedin_introduces_a_seems_like_ai_slop_button/",
+            "title": "LinkedIn Introduces a 'Seems Like AI Slop' Button",
+            "engagement": "290 分 · 34 条评论"
+          },
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=49110742",
+            "title": "LinkedIn Introduces a 'Seems Like AI Slop' Button",
+            "engagement": "14 分 · 2 条评论"
+          }
+        ],
+        "link": "https://techcrunch.com/2026/07/30/linkedin-adds-a-button-to-report-ai-generated-slop"
+      },
+      {
+        "title": "GCC 为 AI 生成代码贡献划定新的审查边界",
+        "category": "开放生态",
+        "heat": "高",
+        "signal": "社区先热",
+        "summary": "GCC Steering Committee 公布 AI 贡献政策，LWN 和 GCC 邮件列表提供了可核验文本；该政策迅速成为开源开发者讨论 AI 代码来源、审查责任和贡献可追溯性的焦点。",
+        "why": "GCC 是关键基础软件，其政策会被其他大型开源项目参考。争论的核心不是简单允许或禁止 AI，而是谁为生成代码的正确性、版权和长期维护成本负责。",
+        "community": "Hacker News 主讨论达到 232 分、268 条评论，7 天发现汇总相关条目为 252 分、274 条评论。",
+        "editorial": "GCC Steering Committee · LWN",
+        "sources": [
+          "GCC Steering Committee",
+          "LWN",
+          "Hacker News"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=49108685",
+            "title": "GCC steering committee announces AI policy",
+            "engagement": "232 分 · 268 条评论"
+          }
+        ],
+        "link": "https://gcc.gnu.org/pipermail/gcc/2026-July/248628.html"
+      },
+      {
+        "title": "Situational Awareness 出售公开股票组合，但据报仍持有 Anthropic 股份",
+        "category": "社会情绪",
+        "heat": "中",
+        "signal": "已形成热点",
+        "summary": "TechCrunch 与 The Verge 追踪 Leopold Aschenbrenner 的 Situational Awareness 基金组合变化；多家财经来源称 Citadel 接手其公开股票组合，而 TechCrunch 指出基金仍持有 Anthropic 私募股份。",
+        "why": "这不是对 AI 长期价值的单一判决，但它把“高确信 AI 叙事”与真实资金管理、流动性和回撤风险放到同一张表上。市场开始区分私募模型公司敞口与公开市场 AI 交易。",
+        "community": "Digg 聚合到 54 条相关帖子、24 位独立作者；Polymarket 出现 3 个相关市场，合计交易量约 1.52 万美元。Reddit 与全站 YouTube 本轮覆盖不足。",
+        "editorial": "TechCrunch AI · The Verge AI",
+        "sources": [
+          "TechCrunch AI",
+          "The Verge AI",
+          "Digg",
+          "Polymarket"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/iwusxxe2",
+            "title": "Situational Awareness Sells Portfolio to Citadel After Losses",
+            "engagement": "54 条帖子 · 24 位作者"
+          },
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=49114208",
+            "title": "Is the fall of Situational Awareness the first domino?",
+            "engagement": "3 分 · 3 条评论"
+          },
+          {
+            "platform": "Polymarket",
+            "url": "https://polymarket.com/event/situational-awareness-announces-fund-wind-down-byptptpt-20260730181230095",
+            "title": "Situational Awareness announces fund wind-down by...?",
+            "engagement": "交易量 9,064.90 美元"
+          }
+        ],
+        "link": "https://techcrunch.com/2026/07/30/ai-hedge-fund-situational-awareness-may-have-sold-its-public-portfolio-but-it-still-has-its-anthropic-shares"
+      }
+    ],
+    "id": "2026-07-31-morning"
+  },
+  {
     "date": "2026-07-30",
     "dateLabel": "07.30",
     "weekday": "周四",
