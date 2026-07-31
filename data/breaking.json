@@ -1,8 +1,32 @@
 {
-  "updatedAt": "2026-07-31T20:31:02.714Z",
+  "updatedAt": "2026-07-31T22:30:41.832Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
+    {
+      "id": "ai-reasoning-wrong-reasons",
+      "detectedAt": "2026-08-01T06:30:23+08:00",
+      "title": "AI 推理是否只是用错误理由得到正确答案？",
+      "category": "模型",
+      "heat": "中",
+      "signal": "快速升温",
+      "summary": "Quanta 梳理了大推理模型的核心争议：它们确实能提高复杂任务准确率，但外显思维链未必忠实反映模型内部过程，部分基准高分还可能来自表层捷径。相关文章在 Hacker News 达到 95 分、121 条评论。",
+      "why": "模型能力评估正在从“答案是否正确”转向“方法是否可泛化、推理轨迹是否可信”。这会直接影响推理模型的基准设计、可解释性、安全审计以及在科学研究中的证据标准。",
+      "sourceCount": 2,
+      "sources": [
+        "Quanta Magazine",
+        "Hacker News"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49124358",
+          "title": "Is AI reasoning right for the wrong reasons?",
+          "engagement": "95 分 · 121 条评论"
+        }
+      ],
+      "link": "https://www.quantamagazine.org/is-ai-reasoning-right-for-the-wrong-reasons-20260731/"
+    },
     {
       "id": "google-earth-ai-feature-removed",
       "detectedAt": "2026-08-01T04:30:03+08:00",
