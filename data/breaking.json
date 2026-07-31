@@ -1,8 +1,40 @@
 {
-  "updatedAt": "2026-07-31T05:23:59.109Z",
+  "updatedAt": "2026-07-31T11:24:06.837Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
+    {
+      "id": "chrome-ai-bug-fixes",
+      "detectedAt": "2026-07-31T19:23:39+08:00",
+      "title": "AI 帮助 Chrome 单月修复漏洞数超过此前两年",
+      "category": "基础设施",
+      "heat": "高",
+      "signal": "突发热点",
+      "summary": "Google 表示，Chrome 在 6 月两次版本更新中修复了 1,072 个问题，超过此前 23 个版本合计的 1,036 个，AI 辅助工具显著加快了漏洞发现和修复。",
+      "why": "HN 讨论达到 129 分、137 条评论，Reddit 相关帖达到 125 分、30 条评论。这显示 AI 正从代码生成进入浏览器级安全维护流程，但社区同时关注修复质量、资源占用和人工复核。",
+      "sourceCount": 4,
+      "sources": [
+        "Google Security Blog",
+        "TechCrunch AI",
+        "Hacker News",
+        "Reddit"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49120097",
+          "title": "Google fixed more Chrome bugs in June than over the past two years, thanks to AI",
+          "engagement": "129 分 · 137 条评论"
+        },
+        {
+          "platform": "Reddit",
+          "url": "https://www.reddit.com/r/artificial/comments/1vb40gz/google_says_it_fixed_more_chrome_bugs_in_june/",
+          "title": "Google says it fixed more Chrome bugs in June than over the past two years, thanks to AI",
+          "engagement": "125 分 · 30 条评论"
+        }
+      ],
+      "link": "https://blog.google/security/chrome-stronger-with-every-update/"
+    },
     {
       "id": "gpt-5-6-price-cut",
       "detectedAt": "2026-07-31T13:22:59+08:00",
