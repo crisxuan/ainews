@@ -1,8 +1,52 @@
 {
-  "updatedAt": "2026-07-31T11:24:06.837Z",
+  "updatedAt": "2026-07-31T15:25:35.528Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
+    {
+      "id": "deepseek-v4-flash-0731",
+      "detectedAt": "2026-07-31T23:25:08+08:00",
+      "title": "DeepSeek V4 Flash 0731 正式发布并开放权重",
+      "category": "模型",
+      "heat": "高",
+      "signal": "突发热点",
+      "summary": "DeepSeek 将 V4 Flash 正式版投入 API 公测，并同步发布 MIT 许可权重。新版本保持预览版的架构与规模，仅重新进行后训练，官方报告 Terminal Bench 2.1 为 82.7、DeepSWE 为 54.4。",
+      "why": "两条 Hacker News 讨论分别达到 480 分、241 条评论和 314 分、152 条评论，Reddit 与 Digg 也出现独立高互动信号。官方权重当天开放，GitHub 工具项目已开始请求适配，说明热点正在从跑分迅速进入部署和生态兼容阶段。",
+      "sourceCount": 4,
+      "sources": [
+        "DeepSeek",
+        "Hacker News",
+        "Reddit",
+        "Digg"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49119559",
+          "title": "DeepSeek-V4-Flash Update",
+          "engagement": "480 分 · 241 条评论"
+        },
+        {
+          "platform": "Reddit",
+          "url": "https://www.reddit.com/r/singularity/comments/1vbphpz/weights_of_deepseek_v4_flash_0731_have_been/",
+          "title": "Weights of DeepSeek V4 Flash 0731 have been released",
+          "engagement": "318 分 · 71 条评论"
+        },
+        {
+          "platform": "Digg",
+          "url": "https://di.gg/ai/bx13u3d4",
+          "title": "DeepSeek Upgrades V4-Flash API With Agent Gains",
+          "engagement": "53 条帖子 · 20 位作者"
+        },
+        {
+          "platform": "GitHub",
+          "url": "https://github.com/anomalyco/opencode/issues/39823",
+          "title": "DeepSeek V4 Flash formal version (0731) support",
+          "engagement": "19 条评论 · 15 个反应"
+        }
+      ],
+      "link": "https://api-docs.deepseek.com/updates/"
+    },
     {
       "id": "chrome-ai-bug-fixes",
       "detectedAt": "2026-07-31T19:23:39+08:00",
