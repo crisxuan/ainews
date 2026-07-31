@@ -1,8 +1,46 @@
 {
-  "updatedAt": "2026-07-31T15:25:35.528Z",
+  "updatedAt": "2026-07-31T20:31:02.714Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
+    {
+      "id": "google-earth-ai-feature-removed",
+      "detectedAt": "2026-08-01T04:30:03+08:00",
+      "title": "Google 上线一天即撤下 Earth AI 卫星图生成能力",
+      "category": "社会情绪",
+      "heat": "中",
+      "signal": "重要更新",
+      "summary": "Google 在上线约一天后撤下 Google Earth 网页端的 AI 图像生成功能。该功能可用文本提示改写真实卫星、航拍和 3D 地图图像，媒体测试发现它能快速制造看似真实的灾难与冲突场景，即使输出带有 SynthID。",
+      "why": "这次快速回滚表明，水印不足以解决合成内容嵌入高信任地理产品后的误导风险。问题已从单次产品争议升级为地图、遥感与公共事实基础设施如何接入生成式 AI 的设计边界。",
+      "sourceCount": 5,
+      "sources": [
+        "TechCrunch AI",
+        "The Verge AI",
+        "BBC",
+        "Digg"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49124898",
+          "title": "Google Earth's New AI Lets Anyone Fabricate Satellite Images",
+          "engagement": "30 分 · 14 条评论"
+        },
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49127949",
+          "title": "Google withdraws new Earth AI tool after warnings over misinformation risks",
+          "engagement": "5 分 · 3 条评论"
+        },
+        {
+          "platform": "Digg",
+          "url": "https://di.gg/ai/rtkdxzb1",
+          "title": "Google Rolls Out Nano Banana AI in Earth",
+          "engagement": "9 条帖子 · 5 位作者"
+        }
+      ],
+      "link": "https://techcrunch.com/2026/07/31/google-nixes-its-earth-ai-feature-one-day-after-launch-amid-criticism-it-would-spread-misinformation"
+    },
     {
       "id": "deepseek-v4-flash-0731",
       "detectedAt": "2026-07-31T23:25:08+08:00",
