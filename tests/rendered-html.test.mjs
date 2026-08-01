@@ -67,6 +67,11 @@ test("server-renders the AI hotspot briefing", async () => {
   assert.ok(html.includes(`风酱捞到的 ${latestBriefing.topics.length} 个热点`));
   assert.match(html, /风酱的信号袋/);
   assert.match(html, /以前吹过的风/);
+  assert.match(html, /热点归档月历/);
+  assert.match(html, /按日期查看/);
+  assert.match(html, /每日热点汇总/);
+  assert.match(html, /早刊已归档/);
+  assert.match(html, /晚刊已归档/);
   assert.ok(html.includes(latestBriefing.date));
   assert.match(html, /内容已归档/);
   for (const topic of latestBriefing.topics) {

@@ -1,0 +1,10 @@
+{
+  "scannedAt": "2026-08-01",
+  "packageMtime": 1785366576,
+  "fontStack": "HarmonyOS Sans SC / MiSans / PingFang SC fallbacks",
+  "palette": "cream, cocoa, pink, mint, lavender, blue and yellow CSS custom properties",
+  "motion": "motion-cut; no animation library",
+  "spacing": "existing handcrafted pixel scale",
+  "framework": "Next.js 16 with Vinext and React 19",
+  "preserve": ["font stack", "palette", "existing page structure", "CSS motion stance"]
+}

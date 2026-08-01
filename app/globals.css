@@ -1,3 +1,9 @@
+/* Hallmark · component: archive calendar · genre: playful · tone: warm daily notebook
+ * theme: existing Fuka notebook · anchor hue: rose · structure: monthly grid + split daily editions
+ * states: default · hover · focus · active · disabled · loading · error · success
+ * contrast: pass (calendar controls use cocoa/paper and pink/cocoa pairs)
+ * pre-emit critique: P5 H5 E4 S5 R4 V5
+ */
 @import "tailwindcss";
 
 :root {
@@ -25,12 +31,21 @@
     "HarmonyOS Sans SC", "MiSans", "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans CJK SC",
     "Source Han Sans SC", ui-rounded, sans-serif;
+  --calendar-error: oklch(52% 0.17 25);
+  --calendar-error-soft: oklch(94% 0.035 25);
+  --calendar-focus: oklch(55% 0.19 18);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
 }
 
 * { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
   font-family: var(--font-sans-zh);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -38,6 +53,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: clip;
   color: var(--cocoa);
   background-color: var(--cream);
   background-image: radial-gradient(rgba(255, 143, 155, 0.22) 1.3px, transparent 1.3px);
@@ -610,112 +626,203 @@ h1, h2, h3, h4, .brand strong, .archive-stats strong, .live-metrics strong {
 
 .archive-stats > div + div { border-left: 1.5px dashed var(--line); }
 .archive-stats strong { display: block; color: var(--pink); font-size: 22px; }
-.archive-stats span { display: block; margin-top: 4px; color: var(--muted); font-size: 9px; font-weight: 900; }
+.archive-stats span { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; font-weight: 900; }
 
 .archive-browser {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 235px minmax(0, 1fr);
-  gap: 25px;
+  grid-template-columns: minmax(360px, 420px) minmax(0, 1fr);
+  gap: 24px;
   align-items: start;
 }
 
-.issue-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.issue-list button {
+.archive-calendar,
+.daily-archive {
   position: relative;
-  padding: 16px 17px;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: 4px 11px;
-  border: 2px solid var(--cocoa);
-  border-radius: 15px;
-  background: rgba(255, 253, 248, 0.82);
-  color: var(--cocoa);
-  cursor: pointer;
-  text-align: left;
-  box-shadow: 3px 4px 0 rgba(74, 59, 61, 0.1);
-  transition: 150ms ease;
-}
-
-.issue-list button:hover { transform: translateX(3px); }
-.issue-list button.active { background: var(--yellow-soft); box-shadow: 5px 5px 0 var(--yellow); transform: rotate(-0.7deg); }
-.issue-list button.active::after { content: "→"; position: absolute; right: -20px; color: var(--pink); font-size: 18px; font-weight: 1000; }
-.issue-date { font-size: 20px; font-weight: 1000; letter-spacing: -0.04em; }
-.issue-edition { justify-self: end; color: var(--pink); font-size: 10px; font-weight: 900; }
-.issue-list small { grid-column: 1 / -1; color: var(--muted); font-size: 9px; font-weight: 800; }
-
-.archive-paper {
-  position: relative;
-  min-height: 560px;
-  padding: 42px 48px 30px;
   border: 2.5px solid var(--cocoa);
-  border-radius: 25px 31px 27px 22px;
   background: var(--paper);
-  box-shadow: 9px 10px 0 var(--lavender);
 }
 
-.archive-paper::before {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  pointer-events: none;
-  border: 1.5px dashed rgba(205, 180, 255, 0.6);
-  border-radius: 17px 23px 19px 15px;
+.archive-calendar {
+  overflow: hidden;
+  border-radius: 22px 25px 20px 27px;
+  box-shadow: 7px 8px 0 var(--yellow);
 }
 
-.archive-clip {
-  position: absolute;
-  z-index: 2;
-  top: -19px;
-  right: 46px;
-  width: 50px;
-  height: 66px;
+.calendar-toolbar {
+  padding: 24px 24px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.calendar-toolbar > div:first-child { min-width: 0; }
+.calendar-toolbar span { color: var(--muted); font-size: 10px; font-weight: 900; letter-spacing: 0.08em; }
+.calendar-toolbar h3 { margin: 4px 0 0; font-size: 25px; line-height: 1.15; letter-spacing: -0.035em; font-variant-numeric: tabular-nums; }
+.calendar-nav { display: flex; gap: 8px; }
+.calendar-nav button {
+  width: 44px;
+  height: 44px;
+  padding: 0;
   display: grid;
   place-items: center;
-  border: 3px solid var(--pink);
-  border-radius: 25px 25px 15px 15px;
-  background: transparent;
-  color: var(--pink);
-  font-size: 22px;
-  transform: rotate(8deg);
+  border: 2px solid var(--cocoa);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--cocoa);
+  cursor: pointer;
+  transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out);
 }
+.calendar-nav button:active { transform: translateY(1px); }
+.calendar-nav button:disabled { opacity: 0.38; cursor: not-allowed; }
+.calendar-nav button[aria-busy="true"] { opacity: 0.64; cursor: progress; }
+.calendar-nav button[data-state="error"] { background: var(--calendar-error-soft); color: var(--calendar-error); }
+.calendar-nav button[data-state="success"] { background: var(--mint-soft); color: var(--cocoa); }
 
-.archive-paper > header {
+.calendar-month-note {
+  margin: 0 24px 16px;
+  padding: 8px 12px;
+  border-block: 1.5px dashed var(--line);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.calendar-month-note strong { color: var(--pink); font-size: 14px; }
+
+.calendar-weekdays,
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+.calendar-weekdays { padding-inline: 0; }
+.calendar-weekdays span {
+  min-width: 0;
+  padding-block: 8px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+  text-align: center;
+}
+.calendar-grid { border-block: 1px solid var(--line); }
+.calendar-blank { min-height: 64px; background: color-mix(in srgb, var(--lavender-soft) 22%, var(--paper)); }
+.calendar-day {
   position: relative;
+  min-width: 0;
+  min-height: 64px;
+  padding: 8px 4px;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding-bottom: 20px;
+  gap: 4px;
+  border: 0;
+  border-inline-end: 1px solid var(--line);
+  border-block-end: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--cocoa);
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+  transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+.calendar-day:nth-child(7n) { border-inline-end: 0; }
+.calendar-day-number { align-self: flex-start; padding-inline-start: 4px; font-size: 11px; font-weight: 900; }
+.calendar-day > strong { font-size: 15px; line-height: 1; }
+.calendar-day > strong small { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; font-weight: 800; }
+.calendar-editions { display: flex; gap: 4px; }
+.calendar-editions i {
+  width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--muted);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 900;
+}
+.calendar-editions i:first-child.published { border-color: var(--yellow); background: var(--yellow-soft); color: var(--cocoa); }
+.calendar-editions i:last-child.published { border-color: var(--lavender); background: var(--lavender-soft); color: var(--cocoa); }
+.calendar-day[aria-pressed="true"] {
+  background: var(--pink-soft);
+  box-shadow: inset 0 -4px var(--pink);
+}
+.calendar-day[aria-pressed="true"] .calendar-day-number { color: var(--pink); }
+.calendar-day:active { transform: translateY(1px); }
+.calendar-day:disabled { cursor: not-allowed; opacity: 0.42; }
+.calendar-day[aria-busy="true"] { cursor: progress; opacity: 0.64; }
+.calendar-day[data-state="error"] { background: var(--calendar-error-soft); color: var(--calendar-error); }
+.calendar-day[data-state="success"] { color: var(--cocoa); }
+.calendar-day.is-today .calendar-day-number::after { content: "今"; margin-inline-start: 4px; color: var(--pink); font-size: 10px; }
+
+.archive-calendar button:focus-visible { outline: 3px solid var(--calendar-focus); outline-offset: 2px; }
+
+.calendar-legend {
+  min-height: 54px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+}
+.calendar-legend span { display: inline-flex; align-items: center; gap: 4px; }
+.calendar-legend i { width: 9px; height: 9px; border-radius: 50%; }
+.calendar-legend i.morning { background: var(--yellow); }
+.calendar-legend i.evening { background: var(--lavender); }
+
+.daily-archive {
+  overflow: hidden;
+  border-radius: 26px 31px 24px 22px;
+  box-shadow: 9px 10px 0 var(--lavender);
+}
+.daily-archive-header {
+  padding: 32px 32px 24px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
   border-bottom: 2px dashed var(--line);
 }
+.daily-archive-header > div { min-width: 0; }
+.daily-archive-header span { color: var(--muted); font-size: 10px; font-weight: 900; letter-spacing: 0.08em; }
+.daily-archive-header h3 { min-width: 0; margin: 8px 0 0; font-size: clamp(25px, 3vw, 36px); line-height: 1.2; letter-spacing: -0.035em; overflow-wrap: anywhere; }
+.daily-archive-header > strong { flex: 0 0 auto; color: var(--pink); font-size: 31px; line-height: 1; font-variant-numeric: tabular-nums; }
+.daily-archive-header > strong small { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; text-align: right; }
 
-.archive-paper > header > div { display: flex; flex-direction: column; gap: 5px; }
-.archive-paper > header span { color: var(--muted); font-size: 10px; font-weight: 900; letter-spacing: 0.08em; }
-.archive-paper > header strong { color: var(--pink); font-size: 9px; letter-spacing: 0.17em; }
-.archive-paper > header .archive-count { padding: 7px 10px; border-radius: 9px; background: var(--pink-soft); color: var(--pink); }
-.archive-paper > h3 { position: relative; max-width: 760px; margin: 27px 0 10px; font-size: clamp(25px, 3.2vw, 39px); line-height: 1.3; letter-spacing: -0.03em; }
-.archive-summary { position: relative; max-width: 760px; margin: 0 0 24px; color: var(--muted); font-size: 12px; line-height: 1.75; }
+.daily-editions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.daily-edition { min-width: 0; padding: 24px 28px 28px; }
+.daily-edition + .daily-edition { border-inline-start: 2px dashed var(--line); }
+.daily-edition > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.daily-edition > header > div { display: flex; flex-direction: column; gap: 4px; }
+.daily-edition > header span { color: var(--muted); font-size: 10px; font-weight: 900; }
+.daily-edition > header strong { color: var(--pink); font-size: 11px; }
+.daily-edition.edition-evening > header strong { color: color-mix(in srgb, var(--lavender) 72%, var(--cocoa)); }
+.edition-status { flex: 0 0 auto; padding: 4px 8px; border: 1px solid var(--line); border-radius: 999px; background: var(--mint-soft); white-space: nowrap; }
+.daily-edition h4 { margin: 20px 0 8px; font-size: 19px; line-height: 1.4; letter-spacing: -0.02em; overflow-wrap: anywhere; }
+.daily-edition-summary { min-height: 5.1em; margin: 0 0 16px; color: var(--muted); font-size: 11px; line-height: 1.7; }
+.daily-topic-row { padding: 16px 0; border-top: 1.5px dashed var(--line); }
+.daily-topic-row > a { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; align-items: center; gap: 8px; }
+.daily-topic-number { width: 30px; height: 30px; display: grid; place-items: center; border: 1.5px solid var(--cocoa); border-radius: 50%; background: var(--mint-soft); color: var(--cocoa); font-size: 10px; font-weight: 1000; font-variant-numeric: tabular-nums; }
+.daily-topic-meta { display: block; margin-bottom: 4px; color: var(--muted); font-size: 10px; font-weight: 900; }
+.daily-topic-row h5 { margin: 0; font-size: 12px; line-height: 1.5; transition: color var(--dur-short) var(--ease-out); }
+.daily-topic-link { color: var(--pink); font-size: 10px; font-weight: 1000; white-space: nowrap; }
+.daily-topic-row > .discussion-links { margin: 8px 0 0 44px; }
+.daily-edition-empty { min-height: 180px; margin: 20px 0 0; padding: 24px; display: grid; place-items: center; border-block: 1.5px dashed var(--line); color: var(--muted); font-size: 11px; line-height: 1.7; text-align: center; }
+.archive-paper-footer { min-height: 0; padding: 16px 32px 20px; display: flex; justify-content: space-between; gap: 20px; border-top: 2px dashed var(--line); background: var(--lavender-soft); color: var(--muted); }
+.archive-paper-footer span { font-size: 10px; font-weight: 900; letter-spacing: 0.06em; }
+.archive-calendar-empty { padding: 40px; border: 2px dashed var(--lavender); border-radius: 20px; background: var(--paper); color: var(--muted); text-align: center; }
 
-.archive-topics { position: relative; display: flex; flex-direction: column; }
-.archive-topic-row { padding: 17px 3px; border-top: 1.5px dashed var(--line); }
-.archive-topic-source { display: grid; grid-template-columns: 42px 1fr auto; gap: 13px; align-items: center; }
-.archive-topic-source:hover h4 { color: var(--pink); }
-.archive-topic-number { width: 35px; height: 35px; display: grid; place-items: center; border: 1.5px solid var(--cocoa); border-radius: 50%; background: var(--mint-soft); color: #55aa8d; font-size: 10px; font-weight: 1000; }
-.archive-topic-meta { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 5px; color: var(--muted); font-size: 8px; font-weight: 900; }
-.archive-topic-meta span:nth-child(2) { color: var(--pink); letter-spacing: 0.08em; }
-.archive-topics h4 { margin: 0; font-size: 14px; line-height: 1.5; transition: color 150ms ease; }
-.archive-source-label { color: var(--pink); font-size: 9px; font-weight: 1000; white-space: nowrap; }
-.archive-topic-row > .discussion-links { margin: 10px 0 0 55px; }
-.archive-paper-footer { position: relative; min-height: 0; margin-top: 14px; padding: 18px 0 0; display: flex; justify-content: space-between; gap: 20px; border-top: 2px dashed var(--line); background: transparent; color: var(--muted); }
-.archive-paper-footer span { font-size: 8px; font-weight: 900; letter-spacing: 0.06em; }
+@media (hover: hover) and (pointer: fine) {
+  .calendar-nav button:not(:disabled):hover { background: var(--yellow-soft); transform: translateY(-1px); }
+  .calendar-day:not(:disabled):hover { background: var(--yellow-soft); transform: translateY(-1px); }
+  .daily-topic-row > a:hover h5 { color: var(--pink); }
+}
 
 .radar-section {
   position: relative;
@@ -784,8 +891,6 @@ button:focus-visible, a:focus-visible { outline: 3px solid rgba(255, 143, 155, 0
   .dance-frame { width: 174px; }
   .live-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .archive-browser { grid-template-columns: 1fr; }
-  .issue-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .issue-list button.active::after { content: "↓"; right: 12px; bottom: -22px; }
   .radar-section { gap: 55px; }
   footer { grid-template-columns: 1fr; gap: 18px; text-align: center; }
   footer > span { text-align: center; }
@@ -837,20 +942,32 @@ button:focus-visible, a:focus-visible { outline: 3px solid rgba(255, 143, 155, 0
   .signal-note { grid-template-columns: 1fr; }
   .story-footer { align-items: flex-start; flex-direction: column; }
   .watch-intro, .watch-list { padding: 31px 22px; }
-  .archive-section { padding-top: 76px; padding-bottom: 82px; }
+  .archive-section { padding: 76px 4px 82px; }
+  .archive-heading { margin-inline: 16px; }
   .archive-heading h2 { font-size: 36px; }
   .archive-stats { width: 100%; }
   .archive-stats > div { min-width: 0; padding: 13px 7px; }
   .archive-stats strong { font-size: 18px; }
-  .issue-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .issue-list button { padding: 13px 12px; }
-  .archive-paper { min-height: 0; padding: 34px 23px 24px; }
-  .archive-clip { right: 25px; width: 42px; height: 57px; }
-  .archive-paper > h3 { font-size: 25px; }
-  .archive-topic-source { grid-template-columns: 35px 1fr; gap: 9px; }
-  .archive-topic-number { width: 31px; height: 31px; }
-  .archive-source-label { grid-column: 2; justify-self: start; }
-  .archive-topic-row > .discussion-links { margin-left: 44px; }
+  .archive-browser { gap: 24px; }
+  .archive-calendar { border-radius: 18px; }
+  .calendar-toolbar { padding: 20px 16px 12px; }
+  .calendar-toolbar h3 { font-size: 22px; }
+  .calendar-month-note { margin-inline: 16px; }
+  .calendar-day, .calendar-blank { min-height: 58px; }
+  .calendar-day { padding-inline: 2px; }
+  .calendar-day > strong { font-size: 13px; }
+  .calendar-day > strong small { font-size: 10px; }
+  .calendar-legend { padding-inline: 16px; }
+  .daily-archive { margin-inline: 12px; }
+  .daily-archive-header { padding: 24px 20px 20px; }
+  .daily-archive-header > strong { font-size: 25px; }
+  .daily-editions { grid-template-columns: 1fr; }
+  .daily-edition { padding: 24px 20px 28px; }
+  .daily-edition + .daily-edition { border-inline-start: 0; border-top: 2px dashed var(--line); }
+  .daily-edition-summary { min-height: 0; }
+  .daily-topic-row > a { grid-template-columns: 32px minmax(0, 1fr); }
+  .daily-topic-link { grid-column: 2; justify-self: start; }
+  .daily-topic-row > .discussion-links { margin-left: 44px; }
   .archive-paper-footer { align-items: flex-start; flex-direction: column; }
   .radar-section { padding-top: 76px; padding-bottom: 76px; }
   .coverage-card { padding: 26px 20px; }

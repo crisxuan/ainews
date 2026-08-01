@@ -307,6 +307,226 @@ function DiscussionLinks({
   );
 }
 
+type ArchiveDay = {
+  date: string;
+  dateLabel: string;
+  weekday: string;
+  issues: ArchiveIssue[];
+  topicCount: number;
+};
+
+const calendarWeekdays = ["一", "二", "三", "四", "五", "六", "日"];
+
+function ArchiveCalendar({ issues }: { issues: ArchiveIssue[] }) {
+  const archiveDays = useMemo<ArchiveDay[]>(() => {
+    const grouped = new Map<string, ArchiveIssue[]>();
+
+    issues.forEach((issue) => {
+      grouped.set(issue.date, [...(grouped.get(issue.date) ?? []), issue]);
+    });
+
+    return Array.from(grouped.entries())
+      .map(([date, dayIssues]) => ({
+        date,
+        dateLabel: dayIssues[0].dateLabel,
+        weekday: dayIssues[0].weekday,
+        issues: [...dayIssues].sort((a, b) =>
+          a.edition === b.edition ? 0 : a.edition === "morning" ? -1 : 1,
+        ),
+        topicCount: dayIssues.reduce((sum, issue) => sum + issue.topics.length, 0),
+      }))
+      .sort((a, b) => b.date.localeCompare(a.date));
+  }, [issues]);
+
+  const archiveDayMap = useMemo(
+    () => new Map(archiveDays.map((day) => [day.date, day])),
+    [archiveDays],
+  );
+  const monthKeys = useMemo(
+    () => Array.from(new Set(archiveDays.map((day) => day.date.slice(0, 7)))).sort(),
+    [archiveDays],
+  );
+  const [visibleMonth, setVisibleMonth] = useState(
+    archiveDays[0]?.date.slice(0, 7) ?? "",
+  );
+  const [selectedDate, setSelectedDate] = useState(archiveDays[0]?.date ?? "");
+  const effectiveMonth = monthKeys.includes(visibleMonth)
+    ? visibleMonth
+    : archiveDays[0]?.date.slice(0, 7) ?? "";
+  const selectedDay = archiveDayMap.get(selectedDate) ?? archiveDays[0];
+  const monthIndex = monthKeys.indexOf(effectiveMonth);
+  const monthDays = archiveDays.filter((day) => day.date.startsWith(`${effectiveMonth}-`));
+  const monthTopicCount = monthDays.reduce((sum, day) => sum + day.topicCount, 0);
+  const [year, month] = effectiveMonth.split("-").map(Number);
+  const daysInMonth = year && month ? new Date(Date.UTC(year, month, 0)).getUTCDate() : 0;
+  const firstWeekday = year && month
+    ? (new Date(Date.UTC(year, month - 1, 1)).getUTCDay() + 6) % 7
+    : 0;
+  const calendarCellCount = Math.ceil((firstWeekday + daysInMonth) / 7) * 7;
+  const today = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Shanghai",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+
+  const changeMonth = (offset: number) => {
+    const nextMonth = monthKeys[monthIndex + offset];
+    if (!nextMonth) return;
+    const nextDay = archiveDays.find((day) => day.date.startsWith(`${nextMonth}-`));
+    setVisibleMonth(nextMonth);
+    if (nextDay) setSelectedDate(nextDay.date);
+  };
+
+  if (!selectedDay) {
+    return (
+      <div className="archive-calendar-empty" role="status">
+        还没有可回看的每日热点，第一期归档后会自动出现在这里。
+      </div>
+    );
+  }
+
+  return (
+    <div className="archive-browser">
+      <section className="archive-calendar" aria-label="热点归档月历">
+        <header className="calendar-toolbar">
+          <div>
+            <span>按日期查看</span>
+            <h3>{year}年 {month}月</h3>
+          </div>
+          <div className="calendar-nav" aria-label="切换归档月份">
+            <button
+              type="button"
+              onClick={() => changeMonth(-1)}
+              disabled={monthIndex <= 0}
+              aria-label="查看上一个归档月份"
+            >
+              <span aria-hidden="true">←</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => changeMonth(1)}
+              disabled={monthIndex < 0 || monthIndex >= monthKeys.length - 1}
+              aria-label="查看下一个归档月份"
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </header>
+
+        <div className="calendar-month-note">
+          <strong>{monthDays.length}</strong> 天归档 · <strong>{monthTopicCount}</strong> 个热点
+        </div>
+
+        <div className="calendar-weekdays" aria-hidden="true">
+          {calendarWeekdays.map((weekday) => <span key={weekday}>{weekday}</span>)}
+        </div>
+
+        <div className="calendar-grid">
+          {Array.from({ length: calendarCellCount }, (_, index) => {
+            const dayNumber = index - firstWeekday + 1;
+            if (dayNumber < 1 || dayNumber > daysInMonth) {
+              return <span className="calendar-blank" aria-hidden="true" key={`blank-${index}`} />;
+            }
+
+            const date = `${effectiveMonth}-${String(dayNumber).padStart(2, "0")}`;
+            const day = archiveDayMap.get(date);
+            const hasMorning = day?.issues.some((issue) => issue.edition === "morning");
+            const hasEvening = day?.issues.some((issue) => issue.edition === "evening");
+            const isSelected = date === selectedDay.date;
+
+            return (
+              <button
+                type="button"
+                key={date}
+                className={`calendar-day${date === today ? " is-today" : ""}`}
+                disabled={!day}
+                aria-pressed={isSelected}
+                data-state={isSelected ? "success" : "default"}
+                aria-label={day
+                  ? `${date}，${day.topicCount} 个热点，早刊${hasMorning ? "已归档" : "未归档"}，晚刊${hasEvening ? "已归档" : "未归档"}`
+                  : `${date}，暂无归档`}
+                onClick={() => day && setSelectedDate(date)}
+              >
+                <span className="calendar-day-number">{dayNumber}</span>
+                {day ? <strong>{day.topicCount}<small>热点</small></strong> : null}
+                <span className="calendar-editions" aria-hidden="true">
+                  <i className={hasMorning ? "published" : ""}>早</i>
+                  <i className={hasEvening ? "published" : ""}>晚</i>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <footer className="calendar-legend">
+          <span><i className="morning" aria-hidden="true" />早刊</span>
+          <span><i className="evening" aria-hidden="true" />晚刊</span>
+          <span>数字为当日热点总数</span>
+        </footer>
+      </section>
+
+      <article className="daily-archive" aria-live="polite">
+        <header className="daily-archive-header">
+          <div>
+            <span>{selectedDay.date} · {selectedDay.weekday}</span>
+            <h3>{selectedDay.dateLabel} 每日热点汇总</h3>
+          </div>
+          <strong>{selectedDay.topicCount}<small>个热点</small></strong>
+        </header>
+
+        <div className="daily-editions">
+          {(["morning", "evening"] as const).map((edition) => {
+            const issue = selectedDay.issues.find((item) => item.edition === edition);
+            const editionLabel = edition === "morning" ? "早安刊" : "晚安刊";
+
+            return (
+              <section className={`daily-edition edition-${edition}`} key={edition}>
+                <header>
+                  <div>
+                    <span>{editionLabel} · {issue?.publishedAt ?? "待归档"}</span>
+                    <strong>{issue ? `${issue.topics.length} 个热点` : "本期暂无内容"}</strong>
+                  </div>
+                  <span className="edition-status">{issue ? "已归档" : "未发布"}</span>
+                </header>
+
+                {issue ? (
+                  <>
+                    <h4>{issue.title}</h4>
+                    <p className="daily-edition-summary">{issue.summary}</p>
+                    <div className="daily-topic-list">
+                      {issue.topics.map((topic, index) => (
+                        <div className="daily-topic-row" key={`${issue.id}-${topic.title}`}>
+                          <a href={topic.link} target="_blank" rel="noreferrer">
+                            <span className="daily-topic-number">{String(index + 1).padStart(2, "0")}</span>
+                            <div>
+                              <span className="daily-topic-meta">#{topic.category} · {topic.signal}</span>
+                              <h5>{topic.title}</h5>
+                            </div>
+                            <span className="daily-topic-link">原始报道 ↗</span>
+                          </a>
+                          <DiscussionLinks links={topic.discussionLinks ?? []} compact />
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <p className="daily-edition-empty">这一期还没有形成简报，风酱会继续观察当天的信号。</p>
+                )}
+              </section>
+            );
+          })}
+        </div>
+
+        <footer className="archive-paper-footer">
+          <span>风酱的热点手账 · {selectedDay.dateLabel}</span>
+          <span>内容已归档，不会被新简报覆盖</span>
+        </footer>
+      </article>
+    </div>
+  );
+}
+
 function StoryCard({ story }: { story: Story }) {
   return (
     <article className={`story-card accent-${story.accent}`}>
@@ -377,7 +597,6 @@ export default function Home() {
   );
   const [category, setCategory] = useState<(typeof filters)[number]>("全部");
   const [strongOnly, setStrongOnly] = useState(false);
-  const [archiveIssueId, setArchiveIssueId] = useState(fallbackArchiveIssues[0].id);
   const briefingAnchorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -450,9 +669,6 @@ export default function Home() {
       }),
     [category, currentStories, strongOnly],
   );
-
-  const selectedArchive =
-    archiveIssues.find((issue) => issue.id === archiveIssueId) ?? archiveIssues[0];
 
   const selectEdition = (nextEdition: "morning" | "evening") => {
     setEdition(nextEdition);
@@ -683,68 +899,13 @@ export default function Home() {
             <h2>以前吹过的风，<br />都替你收好啦。</h2>
           </div>
           <div className="archive-stats" aria-label="历史简报统计">
-            <div><strong>{archiveIssues.length}</strong><span>已归档简报</span></div>
+            <div><strong>{new Set(archiveIssues.map((issue) => issue.date)).size}</strong><span>归档天数</span></div>
             <div><strong>{archiveIssues.reduce((sum, issue) => sum + issue.topics.length, 0)}</strong><span>历史热点</span></div>
-            <div><strong>永久</strong><span>保留时间</span></div>
+            <div><strong>08 / 20</strong><span>每日两次汇总</span></div>
           </div>
         </div>
 
-        <div className="archive-browser">
-          <div className="issue-list" role="list" aria-label="历史简报列表">
-            {archiveIssues.map((issue) => (
-              <button
-                type="button"
-                key={issue.id}
-                className={archiveIssueId === issue.id ? "active" : ""}
-                aria-pressed={archiveIssueId === issue.id}
-                aria-label={`${issue.date} ${issue.edition === "morning" ? "早安刊" : "晚安刊"}，${issue.topics.length} 个热点`}
-                onClick={() => setArchiveIssueId(issue.id)}
-              >
-                <span className="issue-date">{issue.dateLabel}</span>
-                <span className="issue-edition">
-                  {issue.edition === "morning" ? "☀️ 早安刊" : "🌙 晚安刊"}
-                </span>
-                <small>{issue.weekday} · {issue.topics.length} 个热点</small>
-              </button>
-            ))}
-          </div>
-
-          <article className="archive-paper" aria-live="polite">
-            <span className="archive-clip" aria-hidden="true">♡</span>
-            <header>
-              <div>
-                <span>{selectedArchive.date} · {selectedArchive.publishedAt}</span>
-                <strong>{selectedArchive.edition === "morning" ? "MORNING EDITION" : "EVENING EDITION"}</strong>
-              </div>
-              <span className="archive-count">{selectedArchive.topics.length} PICKS</span>
-            </header>
-            <h3>{selectedArchive.title}</h3>
-            <p className="archive-summary">{selectedArchive.summary}</p>
-            <div className="archive-topics">
-              {selectedArchive.topics.map((topic, index) => (
-                <div className="archive-topic-row" key={`${selectedArchive.id}-${topic.title}`}>
-                  <a className="archive-topic-source" href={topic.link} target="_blank" rel="noreferrer">
-                    <span className="archive-topic-number">{String(index + 1).padStart(2, "0")}</span>
-                    <div>
-                      <div className="archive-topic-meta">
-                        <span>#{topic.category}</span>
-                        <span>{topic.heat === "高" ? "♥♥♥" : topic.heat === "中" ? "♥♥♡" : "♥♡♡"}</span>
-                        <span>{topic.signal}</span>
-                      </div>
-                      <h4>{topic.title}</h4>
-                    </div>
-                    <span className="archive-source-label">原始报道 ↗</span>
-                  </a>
-                  <DiscussionLinks links={topic.discussionLinks ?? []} compact />
-                </div>
-              ))}
-            </div>
-            <footer className="archive-paper-footer">
-              <span>风酱的热点手账 · {selectedArchive.dateLabel}</span>
-              <span>内容已归档，不会被新简报覆盖</span>
-            </footer>
-          </article>
-        </div>
+        <ArchiveCalendar issues={archiveIssues} />
       </section>
 
       <section className="radar-section" id="radar">
