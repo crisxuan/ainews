@@ -1,8 +1,38 @@
 {
-  "updatedAt": "2026-08-01T13:47:15.564Z",
+  "updatedAt": "2026-08-02T01:15:13.097Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
+    {
+      "id": "microsoft-flint-ai-visualization",
+      "detectedAt": "2026-08-02T09:05:36+08:00",
+      "title": "Flint 为 AI 生成可视化设计新语言",
+      "category": "开放生态",
+      "heat": "中",
+      "signal": "快速升温",
+      "summary": "Microsoft Research 开源 Flint，以受限声明式语言描述图表，让 AI 更容易生成、修改和验证数据可视化。Hacker News 讨论达到 254 分、67 条评论。",
+      "why": "AI 生成图表的竞争正在从自然语言界面转向可验证的中间表示。Flint 若形成生态，可能成为模型、可视化库和分析工具之间的新接口层。",
+      "sourceCount": 2,
+      "sources": [
+        "Microsoft Flint",
+        "Hacker News"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49130604",
+          "title": "Flint: A Visualization Language for the AI Era",
+          "engagement": "254 分 · 67 条评论"
+        },
+        {
+          "platform": "Reddit",
+          "url": "https://www.reddit.com/r/hackernews/comments/1vcifqt/flint_a_visualization_language_for_the_ai_era/",
+          "title": "Flint: A Visualization Language for the AI Era",
+          "engagement": "1 分 · 1 条评论"
+        }
+      ],
+      "link": "https://microsoft.github.io/flint-chart/"
+    },
     {
       "id": "ai-prototype-isnt-product",
       "detectedAt": "2026-08-01T21:43:50+08:00",
@@ -208,112 +238,6 @@
         }
       ],
       "link": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/"
-    },
-    {
-      "id": "linkedin-ai-slop-report-button",
-      "detectedAt": "2026-07-31T03:13:58+08:00",
-      "title": "LinkedIn 增加“疑似 AI 垃圾内容”举报按钮，社区迅速升温",
-      "category": "社会情绪",
-      "heat": "高",
-      "signal": "快速升温",
-      "summary": "LinkedIn 增加“Seems like AI slop”举报选项，让用户可以直接标记疑似 AI 生成的低质量内容。TechCrunch、The Verge 和 404 Media 分别确认了这一产品变化。",
-      "why": "Reddit 主帖达到 1039 分、96 条评论，说明用户对职业社交平台上 AI 内容泛滥的反感正在集中释放。平台将 AI 垃圾内容单列为举报类别，也意味着内容质量问题已进入正式治理流程。",
-      "sourceCount": 4,
-      "sources": [
-        "TechCrunch AI",
-        "The Verge AI",
-        "Reddit",
-        "Hacker News"
-      ],
-      "discussionLinks": [
-        {
-          "platform": "Reddit",
-          "url": "https://www.reddit.com/r/technology/comments/1vavfs8/linkedin_introduces_a_seems_like_ai_slop_button/",
-          "title": "LinkedIn Introduces a 'Seems Like AI Slop' Button",
-          "engagement": "1039 分 · 96 条评论"
-        },
-        {
-          "platform": "Reddit",
-          "url": "https://www.reddit.com/r/BetterOffline/comments/1vavzs2/linkedin_introduces_a_seems_like_ai_slop_button/",
-          "title": "LinkedIn Introduces a 'Seems Like AI Slop' Button",
-          "engagement": "209 分 · 31 条评论"
-        },
-        {
-          "platform": "Hacker News",
-          "url": "https://news.ycombinator.com/item?id=49110742",
-          "title": "LinkedIn Introduces a 'Seems Like AI Slop' Button",
-          "engagement": "13 分 · 2 条评论"
-        }
-      ],
-      "link": "https://www.404media.co/linkedin-introduces-a-seems-like-ai-slop-button/"
-    },
-    {
-      "id": "gemini-robotics-2",
-      "detectedAt": "2026-07-31T02:12:22+08:00",
-      "title": "Gemini Robotics 2 讨论快速扩散，安全与灵巧性成为新焦点",
-      "category": "模型",
-      "heat": "高",
-      "signal": "重要更新",
-      "summary": "Google DeepMind 发布 Gemini Robotics 2 后，Ars Technica 新增对灵巧性和安全能力的独立报道；Hacker News 讨论升至 256 分、256 条评论，Digg 聚合扩大到 18 条帖子。",
-      "why": "与首次推送相比，新增 Hacker News 与 Ars Technica 两个独立来源，达到冷却期内的实质更新标准。关注点已经从官方演示扩展到全身控制的安全性与真实部署边界。",
-      "sourceCount": 6,
-      "sources": [
-        "Google DeepMind Blog",
-        "Ars Technica AI",
-        "Hacker News",
-        "Digg"
-      ],
-      "discussionLinks": [
-        {
-          "platform": "Hacker News",
-          "url": "https://news.ycombinator.com/item?id=49111237",
-          "title": "Gemini Robotics 2 brings whole body intelligence to robots",
-          "engagement": "256 分 · 256 条评论"
-        },
-        {
-          "platform": "Reddit",
-          "url": "https://www.reddit.com/r/robotics/comments/1vaxn3p/google_deepmind_announces_gemini_robotics_2/",
-          "title": "Google DeepMind announces Gemini Robotics 2",
-          "engagement": "13 分 · 0 条评论"
-        },
-        {
-          "platform": "Digg",
-          "url": "https://di.gg/ai/f2oimfyb",
-          "title": "Google DeepMind Releases Gemini Robotics ER 2",
-          "engagement": "18 条帖子 · 10 位作者"
-        },
-        {
-          "platform": "YouTube",
-          "url": "https://www.youtube.com/watch?v=4lSQnrMC6nY",
-          "title": "Gemini Robotics 2 brings whole body intelligence to robots",
-          "engagement": "Google DeepMind 官方频道"
-        }
-      ],
-      "link": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots"
-    },
-    {
-      "id": "gcc-ai-policy",
-      "detectedAt": "2026-07-30T23:12:23+08:00",
-      "title": "GCC 正式划定 AI 贡献边界，重大 LLM 代码原则上拒收",
-      "category": "开放生态",
-      "heat": "高",
-      "signal": "快速升温",
-      "summary": "GCC Steering Committee 接受新的 AI 政策：原则上拒收包含或源自 LLM 内容的重大贡献，但测试用例可例外；所有 AI 辅助贡献必须由理解改动的人类提交并标注 Assisted-by。",
-      "why": "核心开源基础设施开始把 AI 代码来源、法律责任与人类问责写成正式规则。Hacker News 已升至 151 分、181 条评论，显示这一边界正在引发开发者集中争论。",
-      "sourceCount": 2,
-      "sources": [
-        "GCC Steering Committee",
-        "Hacker News"
-      ],
-      "discussionLinks": [
-        {
-          "platform": "Hacker News",
-          "url": "https://news.ycombinator.com/item?id=49108685",
-          "title": "GCC steering committee announces AI policy",
-          "engagement": "151 分 · 183 条评论"
-        }
-      ],
-      "link": "https://gcc.gnu.org/pipermail/gcc/2026-July/248628.html"
     }
   ]
 }
