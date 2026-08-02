@@ -1,8 +1,56 @@
 {
-  "updatedAt": "2026-08-02T01:15:13.097Z",
+  "updatedAt": "2026-08-02T06:21:47.517Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
+    {
+      "id": "ai-financial-advice-mit-sloan",
+      "detectedAt": "2026-08-02T14:21:11+08:00",
+      "title": "MIT Sloan：AI 财务建议在正确提问下表现意外出色",
+      "category": "社会情绪",
+      "heat": "高",
+      "signal": "快速升温",
+      "summary": "MIT Sloan 文章讨论一项研究：AI 财务建议的质量在用户提供充分背景并提出恰当问题时明显改善。相关 Hacker News 讨论已达到 256 分、217 条评论。",
+      "why": "讨论焦点已经从 AI 能否提供建议，转向用户如何表达需求以及建议质量如何验证，这直接触及消费级 AI 在高风险场景中的使用边界。",
+      "sourceCount": 2,
+      "sources": [
+        "MIT Sloan",
+        "Hacker News"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49139102",
+          "title": "AI financial advice is surprisingly good, especially if you ask right questions",
+          "engagement": "256 分 · 217 条评论"
+        }
+      ],
+      "link": "https://mitsloan.mit.edu/ideas-made-to-matter/ai-financial-advice-surprisingly-good-especially-if-you-ask-right-questions"
+    },
+    {
+      "id": "ai-writing-process-non-use",
+      "detectedAt": "2026-08-02T14:21:11+08:00",
+      "title": "作家 Charles Stross 公开解释为何写作过程不用 AI",
+      "category": "社会情绪",
+      "heat": "中",
+      "signal": "快速升温",
+      "summary": "科幻作家 Charles Stross 发表文章，系统说明自己在写作流程中不使用 AI 的原因。Hacker News 讨论达到 129 分、121 条评论，越过单帖强互动阈值。",
+      "why": "这不是泛泛的反 AI 表态，而是职业创作者对创作过程、作者责任与工具边界的具体论证，反映生成式 AI 进入成熟期后的使用规范分化。",
+      "sourceCount": 2,
+      "sources": [
+        "Charles Stross",
+        "Hacker News"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49134038",
+          "title": "On the non-use of AI in my writing process",
+          "engagement": "129 分 · 121 条评论"
+        }
+      ],
+      "link": "https://www.antipope.org/charlie/blog-static/2026/08/on-the-non-use-of-ai-in-my-wri.html"
+    },
     {
       "id": "microsoft-flint-ai-visualization",
       "detectedAt": "2026-08-02T09:05:36+08:00",
@@ -194,50 +242,6 @@
         }
       ],
       "link": "https://blog.google/security/chrome-stronger-with-every-update/"
-    },
-    {
-      "id": "gpt-5-6-price-cut",
-      "detectedAt": "2026-07-31T13:22:59+08:00",
-      "title": "GPT-5.6 API 大幅降价，开发者社区迅速升温",
-      "category": "模型",
-      "heat": "高",
-      "signal": "突发热点",
-      "summary": "OpenAI 将 GPT-5.6 Luna 的 API 输入/输出价格下调至每百万 token 0.20/1.20 美元，降幅 80%；Terra 下调至 2/12 美元，降幅 20%。Latent Space 与 QbitAI 随后分别报道了同一降价事件。",
-      "why": "HN 讨论达到 536 分、352 条评论，Reddit 两个主帖合计超过 970 分和 300 条评论；多个 GitHub 项目已经开始修正价格表。信号说明这不是单纯的定价公告，而是在快速改变低成本模型的选型和工具链成本基线。",
-      "sourceCount": 7,
-      "sources": [
-        "OpenAI",
-        "Latent Space",
-        "QbitAI",
-        "Reddit"
-      ],
-      "discussionLinks": [
-        {
-          "platform": "Hacker News",
-          "url": "https://news.ycombinator.com/item?id=49112867",
-          "title": "Advancing the price-performance frontier with GPT-5.6",
-          "engagement": "536 分 · 352 条评论"
-        },
-        {
-          "platform": "Reddit",
-          "url": "https://www.reddit.com/r/codex/comments/1vazoph/openai_cuts_gpt56_terra_and_luna_prices/",
-          "title": "OpenAI cuts GPT-5.6 Terra and Luna prices",
-          "engagement": "498 分 · 183 条评论"
-        },
-        {
-          "platform": "Digg",
-          "url": "https://di.gg/ai/degtqkfk",
-          "title": "OpenAI Cuts GPT-5.6 Luna Prices by 80 Percent",
-          "engagement": "65 条讨论 · 43 位作者"
-        },
-        {
-          "platform": "GitHub",
-          "url": "https://github.com/BerriAI/litellm/pull/35316",
-          "title": "Apply the GPT-5.6 Luna and Terra price cuts across OpenAI and Bedrock Mantle",
-          "engagement": "5 条评论"
-        }
-      ],
-      "link": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/"
     }
   ]
 }
