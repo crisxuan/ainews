@@ -2,5 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "buildCommand": "next build",
-  "regions": ["sin1"]
+  "regions": ["sin1"],
+  "crons": [
+    {
+      "path": "/api/cron/ai-radar",
+      "schedule": "0 * * * *"
+    }
+  ]
 }

@@ -22,6 +22,15 @@
 部署本仓库可以得到完整网站；如果需要自动生成内容，还需要在自己的
 自动化环境中调用上述两个数据写入脚本。
 
+生产环境也包含 Vercel Cron 云端采集器：`/api/cron/ai-radar` 每小时运行，
+普通整点生成准实时雷达候选，Asia/Shanghai 的 08:00 和 20:00 生成半日简报。
+采集器直接读取官方/编辑 RSS、YouTube RSS、Hacker News、Reddit 和 GitHub
+公共信号，再通过 Vercel AI Gateway 聚类，只接受本轮真实采集且位于白名单
+域名中的链接，并直接写入 Neon。Vercel 需要配置 `CRON_SECRET` 和
+`DATABASE_URL`；模型鉴权使用部署自动提供的 `VERCEL_OIDC_TOKEN`，无需长期
+API Key。可选的 `OPENAI_RADAR_MODEL` 与 `OPENAI_BRIEFING_MODEL` 默认都使用
+AI Gateway 免费层可调用的 `openai/gpt-5-mini`。
+
 ## 环境要求
 
 - Node.js `>=22.13.0`

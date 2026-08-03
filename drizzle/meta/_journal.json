@@ -8,6 +8,13 @@
       "when": 1785366581781,
       "tag": "0000_nifty_pet_avengers",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1785794354378,
+      "tag": "0001_cynical_magma",
+      "breakpoints": true
     }
   ]
 }

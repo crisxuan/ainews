@@ -95,3 +95,20 @@ export const breakingItems = pgTable(
   },
   (table) => [index("breaking_items_detected_idx").on(table.detectedAt)],
 );
+
+export const radarRuns = pgTable(
+  "radar_runs",
+  {
+    id: text("id").primaryKey(),
+    mode: text("mode").notNull(),
+    status: text("status").notNull(),
+    model: text("model").notNull(),
+    startedAt: timestamp("started_at", { withTimezone: true }).notNull(),
+    finishedAt: timestamp("finished_at", { withTimezone: true }),
+    topicsFound: integer("topics_found").notNull().default(0),
+    topicsWritten: integer("topics_written").notNull().default(0),
+    openaiResponseId: text("openai_response_id"),
+    error: text("error"),
+  },
+  (table) => [index("radar_runs_started_idx").on(table.startedAt)],
+);
