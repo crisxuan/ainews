@@ -1,8 +1,32 @@
 {
-  "updatedAt": "2026-08-02T06:21:47.517Z",
+  "updatedAt": "2026-08-03T03:17:46.021Z",
   "cadenceMinutes": 60,
   "cooldownHours": 6,
   "items": [
+    {
+      "id": "ai-poster-ohio-state-fair",
+      "detectedAt": "2026-08-03T11:07:40+08:00",
+      "title": "AI 海报赢得俄亥俄州博览会竞赛，引发创作规则争议",
+      "category": "社会情绪",
+      "heat": "中",
+      "signal": "快速升温",
+      "summary": "俄亥俄州博览会海报竞赛页面成为 Hacker News 热议焦点，讨论帖以“AI poster wins Ohio State Fair contest”为题，当前达到 117 分、133 条评论。",
+      "why": "社区争论已越过强互动阈值，焦点落在生成式 AI 作品参与传统艺术竞赛时的披露、评审与公平规则。",
+      "sourceCount": 2,
+      "sources": [
+        "Ohio State Fair",
+        "Hacker News"
+      ],
+      "discussionLinks": [
+        {
+          "platform": "Hacker News",
+          "url": "https://news.ycombinator.com/item?id=49149188",
+          "title": "AI poster wins Ohio State Fair contest",
+          "engagement": "117 分 · 133 条评论"
+        }
+      ],
+      "link": "https://www.ohiostatefair.com/p/get-involved/arts/poster-contest"
+    },
     {
       "id": "ai-financial-advice-mit-sloan",
       "detectedAt": "2026-08-02T14:21:11+08:00",
@@ -104,144 +128,6 @@
         }
       ],
       "link": "https://weeraman.com/the-prototype-isnt-the-product/"
-    },
-    {
-      "id": "ai-reasoning-wrong-reasons",
-      "detectedAt": "2026-08-01T06:30:23+08:00",
-      "title": "AI 推理是否只是用错误理由得到正确答案？",
-      "category": "模型",
-      "heat": "中",
-      "signal": "快速升温",
-      "summary": "Quanta 梳理了大推理模型的核心争议：它们确实能提高复杂任务准确率，但外显思维链未必忠实反映模型内部过程，部分基准高分还可能来自表层捷径。相关文章在 Hacker News 达到 95 分、121 条评论。",
-      "why": "模型能力评估正在从“答案是否正确”转向“方法是否可泛化、推理轨迹是否可信”。这会直接影响推理模型的基准设计、可解释性、安全审计以及在科学研究中的证据标准。",
-      "sourceCount": 2,
-      "sources": [
-        "Quanta Magazine",
-        "Hacker News"
-      ],
-      "discussionLinks": [
-        {
-          "platform": "Hacker News",
-          "url": "https://news.ycombinator.com/item?id=49124358",
-          "title": "Is AI reasoning right for the wrong reasons?",
-          "engagement": "95 分 · 121 条评论"
-        }
-      ],
-      "link": "https://www.quantamagazine.org/is-ai-reasoning-right-for-the-wrong-reasons-20260731/"
-    },
-    {
-      "id": "google-earth-ai-feature-removed",
-      "detectedAt": "2026-08-01T04:30:03+08:00",
-      "title": "Google 上线一天即撤下 Earth AI 卫星图生成能力",
-      "category": "社会情绪",
-      "heat": "中",
-      "signal": "重要更新",
-      "summary": "Google 在上线约一天后撤下 Google Earth 网页端的 AI 图像生成功能。该功能可用文本提示改写真实卫星、航拍和 3D 地图图像，媒体测试发现它能快速制造看似真实的灾难与冲突场景，即使输出带有 SynthID。",
-      "why": "这次快速回滚表明，水印不足以解决合成内容嵌入高信任地理产品后的误导风险。问题已从单次产品争议升级为地图、遥感与公共事实基础设施如何接入生成式 AI 的设计边界。",
-      "sourceCount": 5,
-      "sources": [
-        "TechCrunch AI",
-        "The Verge AI",
-        "BBC",
-        "Digg"
-      ],
-      "discussionLinks": [
-        {
-          "platform": "Hacker News",
-          "url": "https://news.ycombinator.com/item?id=49124898",
-          "title": "Google Earth's New AI Lets Anyone Fabricate Satellite Images",
-          "engagement": "30 分 · 14 条评论"
-        },
-        {
-          "platform": "Hacker News",
-          "url": "https://news.ycombinator.com/item?id=49127949",
-          "title": "Google withdraws new Earth AI tool after warnings over misinformation risks",
-          "engagement": "5 分 · 3 条评论"
-        },
-        {
-          "platform": "Digg",
-          "url": "https://di.gg/ai/rtkdxzb1",
-          "title": "Google Rolls Out Nano Banana AI in Earth",
-          "engagement": "9 条帖子 · 5 位作者"
-        }
-      ],
-      "link": "https://techcrunch.com/2026/07/31/google-nixes-its-earth-ai-feature-one-day-after-launch-amid-criticism-it-would-spread-misinformation"
-    },
-    {
-      "id": "deepseek-v4-flash-0731",
-      "detectedAt": "2026-07-31T23:25:08+08:00",
-      "title": "DeepSeek V4 Flash 0731 正式发布并开放权重",
-      "category": "模型",
-      "heat": "高",
-      "signal": "突发热点",
-      "summary": "DeepSeek 将 V4 Flash 正式版投入 API 公测，并同步发布 MIT 许可权重。新版本保持预览版的架构与规模，仅重新进行后训练，官方报告 Terminal Bench 2.1 为 82.7、DeepSWE 为 54.4。",
-      "why": "两条 Hacker News 讨论分别达到 480 分、241 条评论和 314 分、152 条评论，Reddit 与 Digg 也出现独立高互动信号。官方权重当天开放，GitHub 工具项目已开始请求适配，说明热点正在从跑分迅速进入部署和生态兼容阶段。",
-      "sourceCount": 4,
-      "sources": [
-        "DeepSeek",
-        "Hacker News",
-        "Reddit",
-        "Digg"
-      ],
-      "discussionLinks": [
-        {
-          "platform": "Hacker News",
-          "url": "https://news.ycombinator.com/item?id=49119559",
-          "title": "DeepSeek-V4-Flash Update",
-          "engagement": "480 分 · 241 条评论"
-        },
-        {
-          "platform": "Reddit",
-          "url": "https://www.reddit.com/r/singularity/comments/1vbphpz/weights_of_deepseek_v4_flash_0731_have_been/",
-          "title": "Weights of DeepSeek V4 Flash 0731 have been released",
-          "engagement": "318 分 · 71 条评论"
-        },
-        {
-          "platform": "Digg",
-          "url": "https://di.gg/ai/bx13u3d4",
-          "title": "DeepSeek Upgrades V4-Flash API With Agent Gains",
-          "engagement": "53 条帖子 · 20 位作者"
-        },
-        {
-          "platform": "GitHub",
-          "url": "https://github.com/anomalyco/opencode/issues/39823",
-          "title": "DeepSeek V4 Flash formal version (0731) support",
-          "engagement": "19 条评论 · 15 个反应"
-        }
-      ],
-      "link": "https://api-docs.deepseek.com/updates/"
-    },
-    {
-      "id": "chrome-ai-bug-fixes",
-      "detectedAt": "2026-07-31T19:23:39+08:00",
-      "title": "AI 帮助 Chrome 单月修复漏洞数超过此前两年",
-      "category": "基础设施",
-      "heat": "高",
-      "signal": "突发热点",
-      "summary": "Google 表示，Chrome 在 6 月两次版本更新中修复了 1,072 个问题，超过此前 23 个版本合计的 1,036 个，AI 辅助工具显著加快了漏洞发现和修复。",
-      "why": "HN 讨论达到 129 分、137 条评论，Reddit 相关帖达到 125 分、30 条评论。这显示 AI 正从代码生成进入浏览器级安全维护流程，但社区同时关注修复质量、资源占用和人工复核。",
-      "sourceCount": 4,
-      "sources": [
-        "Google Security Blog",
-        "TechCrunch AI",
-        "Hacker News",
-        "Reddit"
-      ],
-      "discussionLinks": [
-        {
-          "platform": "Hacker News",
-          "url": "https://news.ycombinator.com/item?id=49120097",
-          "title": "Google fixed more Chrome bugs in June than over the past two years, thanks to AI",
-          "engagement": "129 分 · 137 条评论"
-        },
-        {
-          "platform": "Reddit",
-          "url": "https://www.reddit.com/r/artificial/comments/1vb40gz/google_says_it_fixed_more_chrome_bugs_in_june/",
-          "title": "Google says it fixed more Chrome bugs in June than over the past two years, thanks to AI",
-          "engagement": "125 分 · 30 条评论"
-        }
-      ],
-      "link": "https://blog.google/security/chrome-stronger-with-every-update/"
     }
   ]
 }
