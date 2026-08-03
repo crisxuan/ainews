@@ -27,8 +27,9 @@
 采集器直接读取官方/编辑 RSS、YouTube RSS、Hacker News、Reddit 和 GitHub
 公共信号，再通过 Vercel AI Gateway 聚类，只接受本轮真实采集且位于白名单
 域名中的链接，并直接写入 Neon。Vercel 需要配置 `CRON_SECRET` 和
-`DATABASE_URL`；模型鉴权使用部署自动提供的 `VERCEL_OIDC_TOKEN`，无需长期
-API Key。可选的 `OPENAI_RADAR_MODEL` 与 `OPENAI_BRIEFING_MODEL` 默认都使用
+`DATABASE_URL`；模型鉴权使用部署函数请求中的短期 OIDC token（本地开发时
+回退到 `VERCEL_OIDC_TOKEN`），无需长期 API Key。可选的
+`OPENAI_RADAR_MODEL` 与 `OPENAI_BRIEFING_MODEL` 默认都使用
 AI Gateway 免费层可调用的 `openai/gpt-5-mini`。
 
 ## 环境要求

@@ -23,7 +23,10 @@ export async function GET(request: Request) {
   }
 
   const databaseUrl = process.env.DATABASE_URL;
-  const gatewayToken = process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN;
+  const gatewayToken =
+    process.env.AI_GATEWAY_API_KEY ||
+    process.env.VERCEL_OIDC_TOKEN ||
+    request.headers.get("x-vercel-oidc-token");
   if (!databaseUrl || !gatewayToken) {
     return Response.json(
       { ok: false, error: "DATABASE_URL and Vercel AI Gateway authentication are required" },
