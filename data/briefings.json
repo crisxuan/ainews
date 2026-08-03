@@ -1,5 +1,92 @@
 [
   {
+    "date": "2026-08-03",
+    "dateLabel": "08.03",
+    "weekday": "周一",
+    "edition": "evening",
+    "publishedAt": "20:00",
+    "title": "Qwen 3.8-Max 发布引爆开发者讨论，AI 政治传播争议同步升温",
+    "summary": "晚间最强信号来自 Qwen 3.8-Max：官方发布后迅速进入 Hacker News 高互动区，并出现 Digg 聚类和 GitHub 工具链接入。OpenAI 超级 PAC 资助 AI 新闻站的调查则引发政治传播争议，MindMemOS 暂为单点编辑信号。",
+    "topics": [
+      {
+        "title": "Qwen 3.8-Max 发布，Hacker News 讨论突破 700 分",
+        "category": "模型",
+        "heat": "高",
+        "signal": "已形成热点",
+        "summary": "阿里 Qwen 发布 Qwen 3.8-Max，官方博客将其定位为面向编程和办公协作的新一代模型；QbitAI 同时报道模型发布与 Max 版本表现。",
+        "why": "官方发布、技术媒体、聚合社区和开发者工具链在同一天形成闭环。高互动不只来自参数或榜单讨论，GitHub 已出现模型接入 PR，说明关注正在转向实际可用性。",
+        "community": "Hacker News 主讨论达到 757 分、374 条评论；Digg 聚合到 65 条帖子、33 位作者；GitHub 至少 3 个接入 PR 被检出。Reddit 与全站 YouTube 深挖未返回结果，按覆盖不足处理。",
+        "editorial": "Qwen · QbitAI",
+        "sources": [
+          "Qwen",
+          "QbitAI",
+          "Hacker News",
+          "Digg"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=49150470",
+            "title": "Qwen3.8-Max: A New Bar for Coding and Cowork",
+            "engagement": "757 分 · 374 条评论"
+          },
+          {
+            "platform": "Digg",
+            "url": "https://di.gg/ai/r0evyy12",
+            "title": "Alibaba Announces Qwen3.8-Max With Open Weights",
+            "engagement": "65 条帖子 · 33 位作者"
+          },
+          {
+            "platform": "GitHub",
+            "url": "https://github.com/Kilo-Org/cloud/pull/4970",
+            "title": "feat(web): add Qwen 3.8 Max model",
+            "engagement": "1 条评论 · 3 个反应"
+          }
+        ],
+        "link": "https://qwen.ai/blog?id=qwen3.8"
+      },
+      {
+        "title": "OpenAI 超级 PAC 被指资助 AI 生成新闻站攻击行业批评者",
+        "category": "社会情绪",
+        "heat": "中",
+        "signal": "社区先热",
+        "summary": "Model Republic 调查称，OpenAI 支持的超级 PAC 被指通过一个由 AI 机器人生产内容的新闻站推进政治议程，并针对行业批评者发布内容。",
+        "why": "争议把 AI 生成内容、政治资金和媒体透明度连到了一起。当前核心事实来自一篇调查报道，社区互动已明显升温，但仍需要更多独立报道或涉事方回应来补强事实链。",
+        "community": "Hacker News 主讨论达到 187 分、84 条评论。Reddit 与全站 YouTube 深挖未返回结果，X 未配置，其他同事件独立社区证据不足。",
+        "editorial": "Model Republic",
+        "sources": [
+          "Model Republic",
+          "Hacker News"
+        ],
+        "discussionLinks": [
+          {
+            "platform": "Hacker News",
+            "url": "https://news.ycombinator.com/item?id=49150561",
+            "title": "OpenAI's super PAC is funding AI-generated news site attacking industry critics",
+            "engagement": "187 分 · 84 条评论"
+          }
+        ],
+        "link": "https://www.modelrepublic.org/articles/the-reporters-at-this-news-site-are-ai-bots.-openai%E2%80%99s-super-pac-appears-to-be-using-it-to-advance-its-political-agenda"
+      },
+      {
+        "title": "华为诺亚开源 MindMemOS，尝试统一智能体记忆与技能演化",
+        "category": "开放生态",
+        "heat": "观察中",
+        "signal": "单点信号",
+        "summary": "QbitAI 报道华为诺亚开源 MindMemOS，目标是让智能体在长期交互中同时积累记忆并演化技能。",
+        "why": "长期记忆正在成为智能体基础设施的重要竞争层，但本轮信号仍停留在单一编辑来源。社区深挖没有找到可核验的同事件讨论或 GitHub 条目，现阶段适合观察而非判定为热点。",
+        "community": "Hacker News 返回的是无关华为硬件条目；GitHub、Reddit和全站 YouTube 均未找到可核验的同事件结果，因此标记为社区覆盖不足。",
+        "editorial": "QbitAI",
+        "sources": [
+          "QbitAI"
+        ],
+        "discussionLinks": [],
+        "link": "https://www.qbitai.com/2026/08/464835.html"
+      }
+    ],
+    "id": "2026-08-03-evening"
+  },
+  {
     "date": "2026-07-31",
     "dateLabel": "07.31",
     "weekday": "周五",

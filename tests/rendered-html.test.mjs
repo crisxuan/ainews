@@ -70,8 +70,23 @@ test("server-renders the AI hotspot briefing", async () => {
   assert.match(html, /热点归档月历/);
   assert.match(html, /按日期查看/);
   assert.match(html, /每日热点汇总/);
-  assert.match(html, /早刊已归档/);
-  assert.match(html, /晚刊已归档/);
+  const latestDayEditions = new Set(
+    briefings
+      .filter((briefing) => briefing.date === latestBriefing.date)
+      .map((briefing) => briefing.edition),
+  );
+  if (latestDayEditions.has("morning")) {
+    assert.match(html, /早刊已归档/);
+  } else {
+    assert.match(html, /早安刊/);
+    assert.match(html, /待发布/);
+  }
+  if (latestDayEditions.has("evening")) {
+    assert.match(html, /晚刊已归档/);
+  } else {
+    assert.match(html, /晚安刊/);
+    assert.match(html, /待发布/);
+  }
   assert.ok(html.includes(latestBriefing.date));
   assert.match(html, /内容已归档/);
   for (const topic of latestBriefing.topics) {
