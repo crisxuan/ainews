@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  canonicalEvidenceLinks,
   collectRetrievedUrls,
   independentSourceKey,
   isAllowedUrl,
@@ -20,6 +21,24 @@ test("selects Shanghai briefing hours and supports an explicit mode", () => {
   assert.equal(selectMode(morning), "morning");
   assert.equal(selectMode(evening), "evening");
   assert.equal(selectMode(evening, "hourly"), "hourly");
+});
+
+test("builds a stable event evidence set across different primary links", () => {
+  const first = canonicalEvidenceLinks({
+    link: "https://techcrunch.com/2026/08/06/suno-watermark",
+    evidenceLinks: [
+      "https://www.theverge.com/ai-artificial-intelligence/976289/suno-ai-music-spam-watermark",
+      "https://techcrunch.com/2026/08/06/suno-watermark",
+    ],
+  });
+  const second = canonicalEvidenceLinks({
+    link: "https://www.theverge.com/ai-artificial-intelligence/976289/suno-ai-music-spam-watermark",
+    evidenceLinks: [
+      "https://techcrunch.com/2026/08/06/suno-watermark",
+      "https://www.theverge.com/ai-artificial-intelligence/976289/suno-ai-music-spam-watermark",
+    ],
+  });
+  assert.deepEqual(new Set(first), new Set(second));
 });
 
 test("merges duplicate breaking rows by canonical link and keeps the newest card", () => {
@@ -134,6 +153,10 @@ test("collects retrieved URLs and rejects unsupported or single-source hourly to
   const accepted = sanitizeTopics({ topics: [base] }, "hourly", retrieved, candidates);
   assert.equal(accepted.length, 1);
   assert.equal(accepted[0].sourceCount, 2);
+  assert.deepEqual(accepted[0].evidenceLinks, [
+    "https://openai.com/index/new-model",
+    "https://news.ycombinator.com/item?id=42",
+  ]);
   assert.deepEqual(accepted[0].sources, ["OpenAI", "Hacker News"]);
   assert.equal(accepted[0].discussionLinks.length, 1);
 

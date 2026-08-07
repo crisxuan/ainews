@@ -99,6 +99,18 @@ export const breakingItems = pgTable(
   ],
 );
 
+export const breakingItemLinks = pgTable(
+  "breaking_item_links",
+  {
+    url: text("url").primaryKey(),
+    breakingItemId: text("breaking_item_id")
+      .notNull()
+      .references(() => breakingItems.id, { onDelete: "cascade" }),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+  },
+  (table) => [index("breaking_item_links_item_idx").on(table.breakingItemId)],
+);
+
 export const radarRuns = pgTable(
   "radar_runs",
   {
