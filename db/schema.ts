@@ -93,7 +93,10 @@ export const breakingItems = pgTable(
     link: text("link").notNull(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
   },
-  (table) => [index("breaking_items_detected_idx").on(table.detectedAt)],
+  (table) => [
+    index("breaking_items_detected_idx").on(table.detectedAt),
+    uniqueIndex("breaking_items_link_idx").on(table.link),
+  ],
 );
 
 export const radarRuns = pgTable(

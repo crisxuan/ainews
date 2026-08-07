@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX "breaking_items_link_idx" ON "breaking_items" USING btree ("link");

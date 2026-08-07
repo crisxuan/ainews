@@ -4,6 +4,7 @@ import {
   collectRetrievedUrls,
   independentSourceKey,
   isAllowedUrl,
+  mergeDuplicateBreakingItems,
   normalizeUrl,
   parseFeed,
   sanitizeTopics,
@@ -19,6 +20,34 @@ test("selects Shanghai briefing hours and supports an explicit mode", () => {
   assert.equal(selectMode(morning), "morning");
   assert.equal(selectMode(evening), "evening");
   assert.equal(selectMode(evening, "hourly"), "hourly");
+});
+
+test("merges duplicate breaking rows by canonical link and keeps the newest card", () => {
+  const merged = mergeDuplicateBreakingItems([
+    {
+      id: "old-id",
+      detected_at: "2026-08-07T02:00:00Z",
+      source_count: 2,
+      sources: ["OpenAI", "The Verge"],
+      discussion_links: [
+        { platform: "Hacker News", url: "https://news.ycombinator.com/item?id=1" },
+      ],
+    },
+    {
+      id: "new-id",
+      detected_at: "2026-08-07T15:00:00Z",
+      source_count: 3,
+      sources: ["OpenAI", "TechCrunch", "The Verge"],
+      discussion_links: [
+        { platform: "Hacker News", url: "https://news.ycombinator.com/item?id=1" },
+      ],
+    },
+  ]);
+  assert.equal(merged.keeperId, "new-id");
+  assert.deepEqual(merged.removeIds, ["old-id"]);
+  assert.equal(merged.sourceCount, 3);
+  assert.deepEqual(merged.sources, ["OpenAI", "TechCrunch", "The Verge"]);
+  assert.equal(merged.discussionLinks.length, 1);
 });
 
 test("parses fresh RSS and Atom entries into traceable candidates", () => {
